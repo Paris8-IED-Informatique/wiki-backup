@@ -2,13 +2,13 @@
 title: Installation de ce serveur Wiki
 description: Comment est installé et configuré ce serveur
 published: true
-date: 2022-05-29T12:58:06.104Z
+date: 2022-05-29T13:20:24.513Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-29T10:50:06.101Z
 ---
 
-**IMPORTANT**: *Ce document est en cours d'écriture. Il peut y avoir des erreurs. Il sera finaliser prochainement.*
+**IMPORTANT**: *Ce document est en cours d'écriture. Il peut y avoir des erreurs. Il sera finalisé prochainement.*
 
 # Informations générales
 
@@ -22,7 +22,7 @@ dateCreated: 2022-05-29T10:50:06.101Z
 
 ## Editeur de fichier
 
-Les commandes ci-dessous utilise l'editeur de fichier en ligne de commande `micro` (https://micro-editor.github.io). Remplacez le par votre éditeur préféré (vi, nano, ...)
+Les commandes ci-dessous utilise l'editeur de fichier en ligne de commande `micro` (https://micro-editor.github.io). Remplacez-le par votre éditeur préféré (vi, nano, ...)
 
 
 # Serveur web
@@ -168,7 +168,7 @@ sudo micro /opt/letsencrypt/after-renew.sh
 /bin/systemctl reload nginx
 ```
 
-Changer les doits:
+Changer les droits:
 
 ```
 sudo chmod 500 /opt/letsencrypt/after-renew.sh
