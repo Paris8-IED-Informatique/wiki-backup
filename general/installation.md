@@ -2,7 +2,7 @@
 title: Installation de ce serveur Wiki
 description: Comment est installé et configuré ce serveur
 published: true
-date: 2022-05-29T12:13:34.041Z
+date: 2022-05-29T12:24:47.406Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-29T10:50:06.101Z
@@ -303,6 +303,124 @@ server {
     error_log /var/log/nginx/wiki-error.log;
     access_log /var/log/nginx/wiki-access.log;
 }
+```
+
+# Base de données
+
+## Installation de Postgres
+
+Installation et vérification:
+
+```bash
+sudo apt install -y postgresql postgresql-contrib
+sudo systemctl status postgresql
+```
+
+## Création de la base de données pour le wiki
+
+```bash
+sudo -u postgres psql
+```
+
+```
+CREATE DATABASE wiki;
+CREATE USER wiki WITH PASSWORD 'mot-de-passe';
+GRANT ALL PRIVILEGES ON DATABASE wiki TO wiki;
+\c wiki
+CREATE EXTENSION pg_trgm;
+\q
+```
+
+**Note**: *Mettre un mot de passe approprié.*
+
+# Wiki.js
+
+## Installation de Node.js
+
+Installation et vérification:
+
+```bash
+sudo apt install -y nodejs npm
+node -v
+npm -v
+```
+
+## Installation de Wiki.js
+
+Wiki.js est installé dans `/opt/wiki`:
+
+```bash
+sudo mkdir /opt/wiki
+sudo mkdir /var/wiki
+sudo chown wiki:wiki /opt/wiki
+sudo chown wiki:wiki /var/wiki
+sudo -iu wiki
+wget https://github.com/Requarks/wiki/releases/latest/download/wiki-js.tar.gz
+tar xzf wiki-js.tar.gz -C /opt/wiki
+cd /opt/wiki
+mv config.sample.yml config.yml
+```
+
+Edition de la configuration de base:
+
+```bash
+micro config.yml
+```
+```
+port: 3000
+
+db:
+  type: postgres
+  host: localhost
+  port: 5432
+  user: wiki
+  pass: mot-de-passe
+  db: wiki
+
+logLevel: info
+
+dataPath: /var/wiki
+```
+
+**Note**: *Utilisez le même mot de passe que précédemment.*
+
+## Création d'un service systemd pour le wiki
+
+Cela permet de démarrer le wiki lors du démarrage de la machine.
+
+```bash
+sudo micro /etc/systemd/system/wiki.service
+```
+
+```
+[Unit]
+Description=Wiki.js
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/node server
+Restart=always
+User=wiki
+Environment=NODE_ENV=production
+WorkingDirectory=/opt/wiki
+
+[Install]
+WantedBy=multi-user.target
+```
+
+## Démarrage et activation du service
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl start wiki
+sudo systemctl enable wiki
+```
+
+## Visualisation des logs
+
+```
+sudo journalctl -u wiki -f
 ```
 
 
