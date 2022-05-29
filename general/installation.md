@@ -2,7 +2,7 @@
 title: Installation de ce serveur Wiki
 description: Comment est installé et configuré ce serveur
 published: true
-date: 2022-05-29T12:25:45.093Z
+date: 2022-05-29T12:58:06.104Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-29T10:50:06.101Z
@@ -19,6 +19,11 @@ dateCreated: 2022-05-29T10:50:06.101Z
 * Stockage: 32 GiB
 * IP publique: 51.210.71.10
 * Nom public: wiki.paris8-ied.net
+
+## Editeur de fichier
+
+Les commandes ci-dessous utilise l'editeur de fichier en ligne de commande `micro` (https://micro-editor.github.io). Remplacez le par votre éditeur préféré (vi, nano, ...)
+
 
 # Serveur web
 
@@ -100,7 +105,7 @@ sudo chown -R www-data:www-data /opt/www/letsencrypt
 
 ### Configuration du serveur web
 
-Cette configuration sera modifiée par la suite après la génération d'un certificat TLS. On supprime la configuration existante et on créer la configuration du serveur web par défault:
+Cette configuration sera modifiée par la suite après la génération d'un certificat TLS. On supprime la configuration existante et on créer la configuration du serveur web par défaut:
 
 ```bash
 sudo rm /etc/nginx/sites-available/*
@@ -134,7 +139,7 @@ location ~ /\.well-known/acme-challenge/ {
 }
 ```
 
-### (Re-)Démarrage du serveur web
+### (Re-)démarrage du serveur web
 
 On vérifie la configuration et on démarre le serveur:
 
@@ -246,6 +251,8 @@ add_header X-Frame-Options DENY;
 add_header X-Content-Type-Options nosniff;
 ```
 
+**IMPORTANT**: *Ces paramètres ne permettent pour l´instant **pas** d´obtenir un score de A+ sur Qualys SSL Labs (https://www.ssllabs.com/ssltest/index.html), ce sera amélioré par la suite.*
+
 
 ## Configuration des serveurs web virtuels
 
@@ -307,6 +314,16 @@ server {
 }
 ```
 
+### Mise à jour du serveur web
+
+On active le nouveau serveur web virtuel, on vérifie la configuration et on recharge la configuration:
+
+```bash
+sudo nginx_ensite wiki.conf
+sudo nginx -t
+sudo systemctl reload nginx
+```
+
 # Base de données
 
 ## Installation de Postgres
@@ -320,9 +337,13 @@ sudo systemctl status postgresql
 
 ## Création de la base de données pour le wiki
 
+On se connecte à Postgres:
+
 ```bash
 sudo -u postgres psql
 ```
+
+On crée une base de données et un utilisateur dédié. On active également une extension pour la recherche:
 
 ```
 CREATE DATABASE wiki;
