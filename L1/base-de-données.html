@@ -1,0 +1,229 @@
+<!--
+title: Base de données
+description: Thérorie, SQL, Oracle et Postgres
+published: true
+date: 2022-05-29T14:57:10.849Z
+tags: 
+editor: ckeditor
+dateCreated: 2022-05-28T19:22:48.184Z
+-->
+
+<ul>
+  <li>Pour les TPs, il faut utiliser Postgresql.</li>
+  <li>Pour chaque chapitre, vous aurez des exercices à faire et à rendre.</li>
+  <li>La moyenne sera calculée comme suit avec la note de chaque TD représenté par N et la note de l'examen par NE :</li>
+</ul>
+<pre><code class="language-plaintext">M = (N1+N2+N3+N4+N5)/10 + NE/2.</code></pre>
+<h1><strong>Chapitre 1</strong></h1>
+<ul>
+  <li>Coquille. Page 5 du pdf (ou page 8 en bas de page) : “Dans l’exemple donné dans la figure 1.5, une personne ne peut être propriétaire de plusieurs voitures (cardinalité n) et peut ne posséder aucune voiture (cardinalité 0).” Effacer le “ne”.</li>
+  <li>Coquille. Page 8 du pdf (ou page 11 en bas de page) : Il manque l'attribut “spécialité” dans la relation “Médecin” (au niveau du schémas relationnel).</li>
+  <li>1.5 - [<a href="https://www.youtube.com/watch?v=vZzIi5lAD_A&amp;feature=youtu.be&amp;t=43s">https://www.youtube.com/watch?v=vZzIi5lAD_A&amp;feature=youtu.be&amp;t=43s</a> une vidéo] assez claire qui donne un exemple de la section 1.5</li>
+  <li>Un [<a href="http://www-igm.univ-mlv.fr/~cdavid/fr/cours/2015-bdL2/cours2.pdf">http://www-igm.univ-mlv.fr/~cdavid/fr/cours/2015-bdL2/cours2.pdf</a> PPT] qui reprend le même contenu du cours mais avec plus d'exemples et d'informations.</li>
+  <li>une information utile donnée dans ce document est que la CNIL n'autorise pas l'utilisation du numéro de sécurité social comme identifiant unique pour une basse de donnée, contrairement à ce que le poly du cours suggère … Bon à savoir!</li>
+  <li>Deux exemples d'exercices bien expliqués : [<a href="https://www.youtube.com/watch?v=WUFrXSTb8GY">https://www.youtube.com/watch?v=WUFrXSTb8GY</a> 1], [<a href="https://www.youtube.com/watch?v=hT-unR921qI">https://www.youtube.com/watch?v=hT-unR921qI</a> 2]</li>
+</ul>
+<h1><strong>Chapitre 2</strong></h1>
+<ul>
+  <li>[<a href="http://www.i3s.unice.fr/~lahire/tempEnseignement/BDL2/annee-2011-2012/cours-BD2012-cours3.pdf">http://www.i3s.unice.fr/~lahire/tempEnseignement/BDL2/annee-2011-2012/cours-BD2012-cours3.pdf</a> Des diapos] d'un cours sur le meme sujet</li>
+  <li><a href="https://sgbd.developpez.com/tutoriels/cours-complet-bases-de-donnees/?page=le-modele-relationnel">https://sgbd.developpez.com/tutoriels/cours-complet-bases-de-donnees/?page=le-modele-relationnel</a> La partie XI-7. FONCTIONS ET AGRÉGATS est utile pour compter des occurrences d'une valeur d'un attribut entre autre.</li>
+</ul>
+<p>Pour ceux-celles qui écrivent leur PDF avec LateX, voici quelques informations:</p>
+<ul>
+  <li>On peut utiliser le package <code>amsmath</code></li>
+  <li>produit cartésien: <code>R_1 \times R_2 \rightarrow</code> ou <code>\longrightarrow</code></li>
+  <li>jointure: <code>\bowtie</code> . Par exemple: <code>R_1 \underset{R_1 \cdot A_2=R_2 \cdot B_2}{\bowtie} R_2 \rightarrow</code></li>
+  <li>projections: <code>\pi_{R_1, R_2} (R_1) \rightarrow</code></li>
+  <li>sélections: <code>\sigma_{A_1 =12 \vee A_2 =14 } (R_1)</code></li>
+</ul>
+<p>Autres ressources :</p>
+<ul>
+  <li>Fonction d'agrégations: <a href="http://www.cpgebank.com/public/documents/1475147354434.pdf">http://www.cpgebank.com/public/documents/1475147354434.pdf</a></li>
+  <li>Le langage SQL : les fonctions, imbrications , opérateurs … <a href="http://www.lsis.org/espinasseb/Supports/BD/LangageSQL-4p.pdf">http://www.lsis.org/espinasseb/Supports/BD/LangageSQL-4p.pdf</a></li>
+  <li>un exemple d'algèbre fonctionnel avec la fonction COUNT : <a href="http://ressources.unisciel.fr/sillages/informatique/bdd/ch04_sql/co/14_agregats.html">http://ressources.unisciel.fr/sillages/informatique/bdd/ch04_sql/co/14_agregats.html</a></li>
+</ul>
+<h1><strong>Chapitre 3</strong></h1>
+<p>Le TD demande d'utiliser Postgres 9.4. Or cette version est obsolète et plus supportée. Vous avez donc trois possibilités:</p>
+<ol>
+  <li>Utiliser une version plus récente (comme la version 13)</li>
+  <li>Installer Postgres 9.4 depuis de dépôt de paquets de Postgres</li>
+  <li>Utiliser Docker et une image toute faite avec Postgres 9.4</li>
+</ol>
+<ul>
+  <li>Pour installer Postgres 9.4 sous Ubuntu:</li>
+</ul>
+<pre><code class="language-plaintext">sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" &gt; /etc/apt/sources.list.d/pgdg.list'
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+sudo apt-get update
+sudo apt-get -y install postgresql-9.4</code></pre>
+<p>&nbsp;</p>
+<ul>
+  <li>Pour lancer l'interface en ligne de commande:</li>
+</ul>
+<pre><code class="language-plaintext">sudo -u postgres psql</code></pre>
+<p><strong>Attention</strong>: cela va lancer <code>psql</code> dans le contexte de l'utilisateur <code>postgres</code>. Donc si vous voulez par exemple ouvrir un fichier avec la commande <code>\i</code>, cela ne va probablement pas marcher car psql cherchera dans le home de <code>postgres</code>.</p>
+<ul>
+  <li>Pour lancer psql depuis votre utilisateur (càd sans passer par <code>sudo</code>), vous devez créer une base de données et un utilisateur Postgres avec le même nom que votre compte utilisateur (le <code>-s</code> de <code>createuser</code> est pour créer un super-user, càd un administrateur):</li>
+</ul>
+<pre><code class="language-plaintext">sudo -u postgres createuser -s $(whoami)
+sudo -u postgres createdb $(whoami)</code></pre>
+<p>Maintenant, vous pouvez simplement lancer la commande:</p>
+<pre><code class="language-plaintext">psql</code></pre>
+<h2>Errata</h2>
+<p>Le cours comporte certaines imprécisions (des choses possibles avec d'autres systèmes de gestion de bases de données, mais pas avec Postgres)</p>
+<ul>
+  <li>Page 26, partie sur les principaux types de données. Le type <code>NUMBER</code> n'existe pas en SQL.Il existe uniquement dans certaines extensions non-standard. Il faut utiliser à la place <code>DECIMAL</code> ou <code>NUMERIC</code> (les deux sont équivalents)</li>
+  <li>Page 26, partie sur les contraintes. L'exemple a plusieurs problèmes: le type <code>NUMBER</code> n'existe pas, il y a un point virgule à la place d'une virgule. L'exemple devrait être:</li>
+</ul>
+<pre><code class="language-plaintext">CREATE TABLE EMP (NoEMP DECIMAL(8),
+Nom VARCHAR(12), JOB VARCHAR(14),
+Salaire DECIMAL(6,2), NoDEPT DECIMAL(3),
+CONSTRAINT emp_clé_prim PRIMARY KEY (NoEmp), 
+CONSTRAINT emp_clé_etr FOREIGN KEY (NoDEPT) REFERENCES DEPT(NoDept),
+CONSTRAINT Salaire_OK CHECK (Salaire&gt;0));</code></pre>
+<ul>
+  <li>Page 27, paragraphe 3,6, pour modifier le type d'une colonne, il faut utiliser <code>COLUMN</code>, <code>ALTER</code> et <code>TYPE</code>:</li>
+</ul>
+<pre><code class="language-plaintext">ALTER TABLE Nom_de_la_table ALTER COLUMN Nom_de_la_colonne TYPE Type_de_donnees;</code></pre>
+<ul>
+  <li>Le TD n'est pas complètement mis à jour pour Postgres et indiquent certaines choses spécifiques à Oracle. Il faut juste transposer:<ul>
+      <li><code>number</code> devient <code>decimal</code> ou <code>numeric</code> (c'est équivalent)</li>
+      <li><code>varchar2</code> est simplement <code>varchar</code>.</li>
+    </ul>
+  </li>
+  <li>Il y a certaines incohérences ou erreurs dans le TD:<ul>
+      <li>Exercice 3, question 3: ValComm de type réel (Number(4,2)). Les valeurs sont trop grandes pour 4 chiffres au total, 2 chiffres après la virgule. Vous aurez donc une erreur lorsque vous répondrez aux questions 6 et 8. Il faut prendre un nombre plus grand de chiffres.</li>
+      <li>Exercice 5, question 4: Supprimer la table. Comme on a créé une vue juste avant avec cette table, on ne peut pas la supprimer sans supprimer également la vue.</li>
+      <li>Exercice 5, question 7: Renommer la colonne COMM. Mais on vient de supprimer la colonne à la question précédente. Le plus simple est de supprimer la table et de la recréer. A ce moment là, on peut renommer la colonne.</li>
+    </ul>
+  </li>
+</ul>
+<p>Cette vidéo ainsi que les suivantes aident à prendre en main la console postgreSQL. Elles se présentent sous la forme de tutoriels de quelques minutes : <a href="https://www.youtube.com/watch?v=XxyxkmH87nU&amp;list=PLwvrYc43l1MxAEOI_KwGe8l42uJxMoKeS&amp;index=8">https://www.youtube.com/watch?v=XxyxkmH87nU&amp;list=PLwvrYc43l1MxAEOI_KwGe8l42uJxMoKeS&amp;index=8</a></p>
+<h1><strong>Chapitre 4</strong></h1>
+<ul>
+  <li>Coquille. Page 2 du pdf (ou page 28 en bas de page) : “En revanche l’inverse n’est pas valide car par exemple la valeur d1 est associée à deux valeurs <strong>d1 et d2</strong>” la fin de la phrase est fausse : “En revanche l’inverse n’est pas valide car par exemple la valeur d1 est associée à deux valeurs <strong>e1 et e3</strong>”.</li>
+  <li>Coquille (sur la même page) : “Toutes les DF dont la partie droite n’est composée que d’un seul attribut est une DFE”, c'est l'inverse: “Toutes les DF dont la partie gauche n’est composée que d’un seul attribut est une DFE”.</li>
+  <li>Erreur (page 31): “Si on retient comme clé de cette relation {Région, Variété} la relation Pomme est 3NF”. C'est faux. L'attribut Pays dépend d'une partie de la clef: Région.</li>
+  <li>Coquille (sur le TD) Ex2-4 : Proposer une décomposition de la relation UeEnseignant en <i>troisième</i> forme normale</li>
+  <li>Cette vidéo explique le concept de normalisation <a href="https://www.youtube.com/watch?v=Uc0NVAJb5Z0">https://www.youtube.com/watch?v=Uc0NVAJb5Z0</a></li>
+  <li>Cette vidéo est un exemple d'exercice sur la normalisation <a href="https://www.youtube.com/watch?v=wIb68JGf8C0">https://www.youtube.com/watch?v=wIb68JGf8C0</a></li>
+  <li>Ce lien mène vers un cours sur la normalisation <a href="https://sgbd.developpez.com/tutoriels/cours-complet-bdd-sql/?page=normalisation#LVIII">https://sgbd.developpez.com/tutoriels/cours-complet-bdd-sql/?page=normalisation#LVIII</a></li>
+  <li>Ce lien mène vers un cours contenant des exercices corrigés sur la normalisation <a href="https://stph.scenari-community.org/bdd/nor1-pdf">https://stph.scenari-community.org/bdd/nor1-pdf</a></li>
+</ul>
+<h1><strong>Chapitre 5</strong></h1>
+<ul>
+  <li>Coquille. Page 2 du pdf (ou page 35 en bas de page) : Remplacez tous les “SalaireMoyenne” par “SalaireMoyen” (accompagné du chiffre adéquat)</li>
+  <li>Coquille (sur la même page) : Le titre du dernier bloc est le meme que le précédent, il devrait etre “<strong>Algorithm 4</strong> revalorisation des salaires de tous les employés d’un département dont le numéro est lu au clavier (ajout de 100e)”.</li>
+</ul>
+<p>Le cours est écrit pour Oracle, mais le TD peut être fait en Postgresql. Il y a donc des conversions à faire.</p>
+<ul>
+  <li>Pour créer un bloc anonyme, il faut utiliser la commande suivante :</li>
+</ul>
+<pre><code class="language-plaintext">do $$
+declare
+ déclarer ici les variables
+begin
+  raise notice 'Hello World';
+end $$;
+</code></pre>
+<ul>
+  <li>comme dans le code précédent, l'affichage ne se fait pas avec dbms_output, mais avec RAISE NOTICE.</li>
+  <li>pour écrire une valeur dans RAISE NOTICE, on utilise une le '%' :</li>
+</ul>
+<pre><code class="language-plaintext">do $$
+declare
+  nombre1 integer :=1;
+begin
+  raise notice 'affiche le nombre un : %', nombre1;
+end $$;</code></pre>
+<p>la structure IF THEN ELSE est également différente</p>
+<pre><code class="language-plaintext">if condition then
+  statements;
+elsif conditions then
+  statements;
+else
+  alternative-statements;
+end if;</code></pre>
+<ul>
+  <li>GOTO n'existe pas et il n'y a pas d'équivalent (goto, dans tous les langages est considéré comme une mauvaise pratique de toute façon).</li>
+  <li>Pour ouvrir un script sql :</li>
+</ul>
+<pre><code class="language-plaintext">\i test.sql</code></pre>
+<p>Le terminal à partir duquel on utilise postgres doit être ouvert dans le même dossier que le fichier test.sql. Plus de ressources pour ouvrir un fichier sql à partir de postgresql : <a href="https://kb.objectrocket.com/postgresql/how-to-run-an-sql-file-in-postgres-846">Lien externe</a></p>
+<p>La syntaxe des fonctions est la suivante:</p>
+<pre><code class="language-plaintext">create or replace function NomFonction(a integer)
+  returns integer
+  language plpgsql
+  as $$
+declare
+  ...
+begin
+  return a;
+end $$;</code></pre>
+<p>Il est nécessaire de préciser le language (plpgsql) car Postgres en supporte plusieurs.</p>
+<ul>
+  <li>Avec Postgres, la notion de procédure n'a été introduite que très récemment (Postgres version 11). Pour les versions précédente, on peut simuler une procédure en utilisant une fonction qui ne retourne rien (void):</li>
+</ul>
+<pre><code class="language-plaintext">create or replace function pFact(n integer)
+  returns void
+  language plpgsql
+  as $$
+declare
+  ...
+begin
+  ...
+end $$;</code></pre>
+<p>Pour appeler cette fonction/procedure dans une autre fonction, on peut utiliser `perform`. Cela indique que l'on ignore la valeur de retour.</p>
+<ul>
+  <li>La syntaxe pour les curseurs est la suivante:</li>
+</ul>
+<pre><code class="language-plaintext">do $$
+declare
+  curseur cursor for select ...;</code></pre>
+<p>Ensuite, le curseur s'utilise de cette façon, assez proche de PL/SQL:</p>
+<pre><code class="language-plaintext">open curseur;
+fetch curseur into ...;
+close curseur;
+end $$;</code></pre>
+<p>Dans une boucle:</p>
+<pre><code class="language-plaintext">open curseur;
+loop
+    fetch curseur into ...;
+    exit when not found;
+end loop;
+close curseur;</code></pre>
+<ul>
+  <li>La syntaxe pour les triggers est la suivante:</li>
+</ul>
+<pre><code class="language-plaintext">create trigger trigger_1
+  before insert or update or ...
+  on table
+  for each row
+  execute procedure trigger_1_function();</code></pre>
+<p>On peut avoir un trigger par ligne (for each row) ou par commande (for each statement). On peut déclencher le trigger avant la mise à jour (BEFORE) ou après (AFTER). Il faut ensuite définir une fonction qui va s'exécuter quand le trigger est déclenché:</p>
+<pre><code class="language-plaintext">create or replace function trigger_1_function()
+  returns trigger
+  language plpgsql
+  as $$
+begin
+  ...
+  return NEW;
+end $$;</code></pre>
+<p>NEW permet d'avoir accès aux nouvelles valeurs, OLD aux anciennes (suivant le type de trigger: BEFORE ou AFTER).</p>
+<h1><strong>Ressources</strong></h1>
+<ul>
+  <li>Un livre très complet en libre accès: <a href="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?media=licence1:xx-totalbd.pdf">Bases de données</a></li>
+  <li>un cours assez complet : <a href="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?media=licence1:polylicbd2003.pdf">Introduction aux bases de données - Paris 6</a></li>
+  <li>Des [<a href="https://www.lamsade.dauphine.fr/~manouvri/BD/Examen_corriges_MI2EL3_20072008.pdf">https://www.lamsade.dauphine.fr/~manouvri/BD/Examen_corriges_MI2EL3_20072008.pdf</a> exercices supplémentaires] avec leur corrigé. Ca a l'air assez proche du contenu de ce cours.</li>
+  <li>Dalibo met à disposition des [<a href="https://www.dalibo.com/formations">https://www.dalibo.com/formations</a> livres PostgreSQL] (pdf et epub) en open source</li>
+  <li><i><u>Postgresqltutorial</u></i> (En <strong>Anglais</strong> mais GoogleTranslate est possible) donne des explications et des exemples. Les fonctions, triggers etc… sont expliqués en bas de pages dans <i><u>Advanced PostgreSQL Tutorial</u></i> (<a href="https://www.postgresqltutorial.com/">https://www.postgresqltutorial.com/</a>)</li>
+</ul>
+<h1><strong>Annales</strong></h1>
+<ul>
+  <li><a href="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?media=licence1:16_07_2018.pdf">16_07_2018.pdf</a></li>
+  <li><a href="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?media=licence1:25_06_2018.pdf">25_06_2018.pdf</a></li>
+  <li><a href="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?media=licence1:25_06_2018_corrige.pdf">25_06_2018_corrige.pdf</a></li>
+  <li><a href="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?media=licence1:25-06-2019.pdf">25-06-2019.pdf</a></li>
+  <li><a href="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?media=licence1:25_09_2019.pdf">25_09_2019.pdf</a></li>
+  <li><a href="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?media=licence1:25_06_2020-extraits.pdf">25_06_2020-extraits.pdf</a></li>
+</ul>
