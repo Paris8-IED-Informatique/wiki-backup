@@ -2,7 +2,7 @@
 title: Installation de ce serveur Wiki
 description: Comment est installé et configuré ce serveur
 published: true
-date: 2022-05-29T13:34:52.251Z
+date: 2022-06-08T12:30:27.104Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-29T10:50:06.101Z
@@ -46,6 +46,43 @@ Changer la ligne avec `server_tokens` par:
 
 ```nginx
 server_tokens off;
+```
+
+Pour optimiser la compression:
+
+
+```nginx
+	##
+	# Gzip Settings
+	##
+
+	gzip on;
+	gzip_vary on;
+	gzip_proxied any;
+	gzip_comp_level 6;
+	gzip_buffers 16 8k;
+	gzip_http_version 1.1;
+	gzip_min_length 256;
+	gzip_types
+	  application/atom+xml
+	  application/geo+json
+	  application/javascript
+	  application/x-javascript
+	  application/json
+	  application/ld+json
+	  application/manifest+json
+	  application/rdf+xml
+	  application/rss+xml
+	  application/xhtml+xml
+	  application/xml
+	  font/eot
+	  font/otf
+	  font/ttf
+	  image/svg+xml
+	  text/css
+	  text/javascript
+	  text/plain
+	  text/xml;
 ```
 
 La taille pour les téléversements est trop petite. Pour la changer et limiter à 6MB:
