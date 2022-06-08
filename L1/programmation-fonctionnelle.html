@@ -1,0 +1,183 @@
+<!--
+title: Programmation fonctionnelle
+description: Common LISP
+published: true
+date: 2022-06-08T12:22:16.293Z
+tags: 
+editor: ckeditor
+dateCreated: 2022-05-28T19:00:44.905Z
+-->
+
+<p>Ce cours est à commencer le plus tôt possible, il est très long et chaque exercice doit être validé par le professeur qui peut être plus ou moins long à répondre.</p>
+<h1><strong>Conseils</strong></h1>
+<ul>
+  <li>Pour les premiers exercises, laissez tomber Dia pour dessiner les schémas et utiliser consdrawing à la place. Cela vous fera gagner du temps.</li>
+  <li>Commencez ce cours des que possible et essayez d'avoir toujours un exo prêt à envoyer à GB lorsqu'il a validé le dernier que vous avez envoyé. Les delais deviennent souvent plus longs qu'on pourrait espérer et si vous voulez finir ce cours en 1 an, il faut toujours renvoyer un exo des que le précédent a été validé.</li>
+  <li>La complexité des exos progresse de manière presque exponentielle. Prévoyez que vous devrez sans doute passer beaucoup plus de temps sur les exercices à partir de la série “Vrai Prog”. De plus, GB ne répond plus à partir de cette série…</li>
+</ul>
+<h1><strong>Installer Dia</strong></h1>
+<p>Pour installer correctement Dia et l'utiliser pour le cours, il faut absolument procéder dans un certain ordre. Les commandes suivantes téléchargent les feuilles de doublets et d'arbres pour Dia, installent Dia puis décompressent les feuilles. <strong>Il est important de ne pas lancer Dia avant </strong>d'avoir <a href="/dia.tar.gz">téléchargé les feuilles</a>.</p>
+<pre><code class="language-plaintext">wget https://wiki.paris8-ied.net/dia.tar.gz -O /tmp/dia.tar.gz
+rm -rf ~/.dia || true
+sudo apt install -y dia
+tar -xf /tmp/dia.tar.gz -C ~
+rm /tmp/dia.tar.gz</code></pre>
+<p>Lancer Dia (il y a une icône pour l'application):</p>
+<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=300&amp;tok=5e6157&amp;media=licence1:dia0.png" alt=""></figure>
+<p>Vous devez obtenir quelque chose comme cela:</p>
+<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=b6d124&amp;media=licence1:dia1.png" alt=""></figure>
+<p>Pour créer des doublets, sélectionner <code>Lisp</code> dans la liste déroulante:</p>
+<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=7ccf3c&amp;media=licence1:dia2.png" alt=""></figure>
+<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=357a8a&amp;media=licence1:dia3.png" alt=""></figure>
+<h1><strong>Installer CLISP</strong></h1>
+<h2><strong>1. Installer CLisp (Common Lisp)</strong></h2>
+<p>- Soit depuis un Terminal:</p>
+<pre><code class="language-plaintext">sudo apt install clisp</code></pre>
+<p>- Soit depuis un gestionnaire de paquets genre Synaptic: chercher <code>clisp</code> et suivre les indications. Vous n'avez besoin que de clisp, rien d'autre.</p>
+<p>- Assurez-vous que CLISP est bien installé en tapant dans un Terminal la commande:</p>
+<pre><code class="language-plaintext">clisp</code></pre>
+<p>Vous devez obtenir:</p>
+<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=30cbb6&amp;media=licence1:clisp.png" alt=""></figure>
+<p>Pour quitter CLISP, entrer la commande:</p>
+<pre><code class="language-plaintext">(quit)</code></pre>
+<h2><strong>2. Créer un alias</strong></h2>
+<p>Par défaut, quand on lance clisp, on se retrouve avec une vue “archaïque” des symboles (i.e. ils sont en majuscules). Un alias permet de passer à une vue “moderne”. Il y a plusieurs manières de le faire, en voici une:</p>
+<p>Ouvrir un Terminal et entrer la commande:</p>
+<pre><code class="language-plaintext">echo "alias lisp='clisp -q -modern -L french'" &gt;&gt; ~/.bash_aliases</code></pre>
+<p>Il faut ensuite rafraichir l’environnement. On peut fermer et ouvrir un autre Terminal ou taper :</p>
+<pre><code class="language-plaintext">. ~/.bashrc</code></pre>
+<p>Pour lancer Common Lisp avec les bonnes options, il suffit alors de taper (dans un Terminal):</p>
+<pre><code class="language-plaintext">lisp</code></pre>
+<p>Vous obtiendrez:</p>
+<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=71070f&amp;media=licence1:lisp-command-line.png" alt=""></figure>
+<p>Pour quitter, taper:</p>
+<pre><code class="language-plaintext">(quit)</code></pre>
+<p>Si vous utilisez zsh plutôt que bash, il faut faire la même chose mais dans le fichier <code>.zshrc</code>.</p>
+<h2><strong>3. Créer une icône (Gnome)</strong></h2>
+<p>clisp est un outil en ligne de commande et se lance donc dans un Terminal. Mais il est tout à fait possible de créer une icône pour le lancer. Attention, je suppose que vous avez Gnome comme environnement (si vous êtes sous Ubuntu, c'est le cas). Tout d'abord, on va récupérer une icône (libre de droits), ce sera plus jolie, et la mettre dans “Documents”:</p>
+<pre><code class="language-plaintext">wget https://upload.wikimedia.org/wikipedia/commons/f/f4/Lisplogo.png -O ~/Documents/clisp.png</code></pre>
+<p>Ensuite, on créé un fichier pour démarrer notre programme clisp avec les bonnes options et la bonne icône:</p>
+<pre><code class="language-plaintext">cat &gt;~/.local/share/applications/clisp.desktop &lt;&lt;EOF
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=CLisp
+Comment=Common Lisp
+Exec=/usr/bin/clisp -q -modern -L french
+Icon=${HOME}/Documents/clisp.png
+Terminal=true
+EOF</code></pre>
+<p>Vous obtiendrez le résultat suivant:</p>
+<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=831b29&amp;media=licence1:clisp-icon.png" alt=""></figure>
+<p>Cliquez sur l'icône CLisp, cela ouvre un terminal:</p>
+<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=90ba3c&amp;media=licence1:clisp-from-icon.png" alt=""></figure>
+<p>Pour quitter, taper:</p>
+<pre><code class="language-plaintext">(quit)</code></pre>
+<h1><strong>Pretty-Print (recopié depuis la faq du cours)</strong></h1>
+<ul>
+  <li>Chaque élément d'une liste doit être séparé des autres éléments par un (seul) espace</li>
+  <li>Le premier et le dernier élément d'une liste sont collés aux parenthèses ouvrantes et fermantes.</li>
+</ul>
+<pre><code class="language-plaintext">( a b c ) ⇒ faux 
+(a b c) ⇒ correct 
+(a(b c)d) ⇒ faux 
+(a (b c) d) ⇒ correct</code></pre>
+<p>&nbsp;</p>
+<ul>
+  <li>Le premier élément d'une liste sans quote est une fonction, si tout le bloc ne tient pas sur une liste il faut le découper : on dit qu'il faut l'indenter.</li>
+  <li>Le premier élément (le nom de la fonction) doit être seul sur une ligne.</li>
+  <li>Tous les arguments sont présentés sur les lignes suivantes, un par ligne, avec un décalage nommé indentation (deux espaces).</li>
+  <li>La parenthèse fermant le bloc doit être refermée derrière le dernier argument mais séparée par un espace pour la mettre en évidence.</li>
+</ul>
+<pre><code class="language-plaintext">(cons
+  (car liste)
+  (cdr liste) )</code></pre>
+<p>&nbsp;</p>
+<ul>
+  <li>Si un argument est lui même une fonction avec plusieurs arguments (et que ça ne tient pas sur une ligne de 80 colonnes) : il faut l'indenter également. (L'exemple suivant aurait pu tenir sur une ligne mais c'est pour vous faire une démonstration de l'indentation).</li>
+</ul>
+<pre><code class="language-plaintext">(cons
+  (car liste)
+  (cons
+    (car liste2)
+    (cdr liste2) ) )</code></pre>
+<p>&nbsp;</p>
+<ul>
+  <li>Les arguments sont alors décalés par rapport à la fonction à laquelle ils appartiennent. Ainsi, on peut du premier coup d'oeil détecter quels arguments appartiennent à quelle fonction.</li>
+  <li>La définition d'une fonction est une exception, on laisse le nom et les arguments que la fonction va prendre (c'est à dire les 2 premiers arguments) sur la première ligne.</li>
+</ul>
+<pre><code class="language-plaintext">(defun fonction (arg1 arg2)
+  ( ... ) )</code></pre>
+<p>&nbsp;</p>
+<ul>
+  <li>Si une liste trop longue pour une ligne commence par un élément étant lui-même une liste trop grande pour une ligne, on écrit le premier élément de cette liste et la suite avec une indentation double :</li>
+</ul>
+<p>Exemple : ((premier élément trop long pour une ligne) suite de la liste) s'indente ainsi :</p>
+<pre><code class="language-plaintext">((premier
+    élément
+    trop
+    long
+    pour
+    une
+    ligne )
+  suite
+  de
+  la
+  liste )</code></pre>
+<p>[<a href="https://www.youtube.com/watch?v=wdVp4jRs-Eg">https://www.youtube.com/watch?v=wdVp4jRs-Eg</a>|Vidéo explications Pretty-print]</p>
+<p>“Annexe-4 : Syntaxe et pretty-print” également disponible dans le cours de Gilles Bernard, version de Novembre 2015</p>
+<h2><strong>Pretty-Print avec Visual Studio Code</strong></h2>
+<p>Pour aider à formatter correctement le code (pretty-print), utilisez un éditeur qui colorie les parenthèses suivant à quel niveau elles se situent (des parenthèses au même niveau ont la même couleur). Vous pouvez par exemple utiliser Visual Studio Code.</p>
+<p><a href="https://code.visualstudio.com/">https://code.visualstudio.com</a></p>
+<p>Par défaut, Visual Studio Code ne comprend pas le LISP, il faut lui indiquer les règles de ce langage. Il y a une extension pour cela. Cliquez sur l'icônes des extensions dans la barre sur le côté à gauche:</p>
+<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?media=licence1:vs-code-exts.png" alt=""></figure>
+<p>Tapez “Common Lisp”:</p>
+<figure class="image image_resized" style="width:45.97%;"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=6aa063&amp;media=licence1:vs-code-common-lisp.png" alt=""></figure>
+<p>La bonne extension est en principe celle qui vient en premier. C'est l'extension de Qingpeng Li. Cliquez sur “Install”. Maintenant, Visual Studio Code est capable de reconnaitre LISP et les fichiers avec l'extension .lisp.</p>
+<p>Si vous ne voyez toujours pas de couleurs, c'est que l'option n'est pas activée dans Visual Studio. Allez dans Preferences / Settings et tapez “colorization”:</p>
+<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?media=licence1:vs-code-colors.png" alt=""></figure>
+<p>Assurez-vous que l'option “Bracket Pair Colorization” est bien cochée. Vous avez maintenant des parenthèses avec des couleurs.</p>
+<h2><strong>Exemple de mauvais pretty-print et de correction</strong></h2>
+<p>L'exemple suppose que vous avez installé Visual Studio Code comme décrit précédemment. Dans l'éditeur, vous avez:</p>
+<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=bb7bea&amp;media=licence1:pretty-print-01.png" alt=""></figure>
+<p>Cela peut sembler juste, mais avec les couleurs, on voit tout de suite que quelque chose ne va pas:</p>
+<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=869234&amp;media=licence1:pretty-print-01-error.png" alt=""></figure>
+<p>On a des couleurs différentes pour deux arguments du cons au dessus. Cela veut dire que ce ne sont en fait pas tout les deux des arguments de ce cons. On corrige cette erreur:</p>
+<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=4b2a14&amp;media=licence1:pretty-print-02.png" alt=""></figure>
+<p>Et on continue en corrigeant les autres erreurs. Vers la fin, on se retrouve facilement dans ce type de situation:</p>
+<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=bf71e2&amp;media=licence1:pretty-print-03.png" alt=""></figure>
+<p>Les nil vont avec quoi ? A quel niveau ? Pour le déterminer, il suffit de mettre son curseur sur la parenthèse après (violette):</p>
+<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=1b9d24&amp;media=licence1:pretty-print-04.png" alt=""></figure>
+<p>L'éditeur indique la parenthèse ouvrante qui correspond et on peut donc formatter correctement:</p>
+<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=7cce34&amp;media=licence1:pretty-print-05.png" alt=""></figure>
+<p>On voit bien que le nil est le second argument du cons. On procède de même pour le reste:</p>
+<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=1ea020&amp;media=licence1:pretty-print-06.png" alt=""></figure>
+<p>Parfait non ? Et là, c'est le drame. Votre pretty-print est refusé sèchement par le-la prof car trop indenté. Mais quelle est la règle du trop / pas assez ? Il n'y en a pas. Il faut se fier à son bon sens. Trop indenté, cela devient illisible, pas assez aussi. Il faut trouver le juste milieu. Par exemple:</p>
+<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=a4274f&amp;media=licence1:pretty-print-07.png" alt=""></figure>
+<p>Cela semble pas mal, non ? Sauf que c'est faux. Il n'y a effectivement pas de problème de parenthèses, les mêmes couleurs sont au même niveau. Mais il y a deux types d'erreurs: 1) certaines parenthèses sont décollées alors qu'elles ne le devraient pas (indiqué en orange). Certains arguments de cons sont mal placés (indiqué en rouge):</p>
+<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=487ed2&amp;media=licence1:pretty-print-07-errors.png" alt=""></figure>
+<p>La règle est la suivante:</p>
+<p>Soit on met tout sur la même ligne</p>
+<p>Soit on met le cons sur une ligne, et chaque argument sur une autre ligne et indenté.</p>
+<p>On ne peut pas mélanger la première possibilité avec la deuxième. C'est l'un ou l'autre. Cela donne donc:</p>
+<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=c6f817&amp;media=licence1:pretty-print-08.png" alt=""></figure>
+<p>On corrige le reste:</p>
+<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=d20c03&amp;media=licence1:pretty-print-09.png" alt=""></figure>
+<p>La règle empirique semble être qu'il est raisonnable d'avoir 3 niveaux sur une seule ligne, mais pas plus:</p>
+<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=340aee&amp;media=licence1:pretty-print-levels.png" alt=""></figure>
+<p>Il faut aussi éviter d'avoir des lignes trop longues. Si vous dépassez la 80ème colonne, il est préférable de découper la ligne.</p>
+<h1><strong>Vraiprog1</strong></h1>
+<p>La série d'exercices pour Vraiprog1 commence à la page 148 (“Écrire un vrai programme : explorations”) et se termine au début de la page 154 (“Vrai programme : exploration”). Il y a quatre parties: Exercices A, B, C et la question D. Il faut rendre cette série d'exercices en une seule fois avec comme sujet “Exo Vrai- prog1”.</p>
+<h1><strong>Vraiprog2 et Vraiprog3</strong></h1>
+<p>Après avoir validé la série d'exo vraiprog1, le prof envoit ce mail générique :</p>
+<blockquote>
+  <p>A partir de là, vous êtes supposé être devenu autonome, et n'avez plus besoin d'attendre mes réponses. Envoyez un seul mail pour Vraiprog2 mais avec en pièce jointe une archive contenant tous les fichiers utilisés et le pdf de réponse - pour que je puisse tester le programme. Pareil pour Vraiprog3.<br><br>Un conseil : ne vous arrêtez pas après Vraiprog3 (même si ça vous permet d'avoir plus ou moins la moyenne), allez jusqu'à la fin du cours (vous en aurez besoin ensuite, et les exercices sont plutôt plus faciles). Le pretty-print et la qualité du code compte dans la note finale.</p>
+</blockquote>
+<h1><strong>Exécuter directement le code dans Sublime</strong></h1>
+<p><a href="https://nolandartois.fr/wiki/ied/doku.php?id=aides:comment_executer_son_code_lisp_directement_depuis_sublime_text">Lien vers le guide</a></p>
+<h1><strong>Références</strong></h1>
+<ul>
+  <li>Guide de l'étudiant - Installation de Clisp <a href="https://moodle.iedparis8.net/mod/wiki/view.php?pageid=15">https://moodle.iedparis8.net/mod/wiki/view.php?pageid=15</a></li>
+  <li>L1- Programmation fonctionnelle - DN21EM02 - Installation de Clisp <a href="https://moodle.iedparis8.net/mod/wiki/view.php?pageid=37">https://moodle.iedparis8.net/mod/wiki/view.php?pageid=37</a></li>
+  <li>Options de clisp <a href="https://linux.die.net/man/1/clisp">https://linux.die.net/man/1/clisp</a> ou man clisp</li>
+</ul>
