@@ -1,0 +1,362 @@
+<!--
+title: Programmation impérative
+description: C’est du C
+published: true
+date: 2022-06-08T12:23:30.546Z
+tags: 
+editor: ckeditor
+dateCreated: 2022-05-28T19:13:25.943Z
+-->
+
+<p>Concernant les exercices cx17, cx25, je vous conseille vivement d’élaborer une synthèse qui va reprendre les astuces les plus importantes du wiki, les consignes proposées dans les pdfs : guide de travail, recommandations de présentation, ainsi que celles éparpillées dans le support de cours. Beaucoup d'informations capitales sont disséminées dans ces trois documents, ce travail de recherche d'informations devrait vous permettre de répondre aux exigences du professeur et ainsi gagner de précieux points.</p>
+<p>Globalement, la validation de l'EC programmation impérative nécessite l'envoi :</p>
+<ul>
+  <li>du code des exercices cx17, cx25, des jeux d'essais, des makefiles, des shell-scripts de compilation;</li>
+  <li>d'une documentation utilisateur pour chaque programme.</li>
+</ul>
+<h1><strong>Astuces relatives à certains exercices</strong></h1>
+<h2><strong>cx02</strong></h2>
+<p><i><u>Abstraction</u></i> : utiliser le compteur de type int et la condition while. La plupart de l'exercice est résolue dans le cours ; il s'agit seulement de s'habituer à des conventions d'écriture et à observer le comportement en réponse.</p>
+<ul>
+  <li><i>cx02.0 : rédiger le programme proposé dans le chapitre.</i></li>
+  <li><i>cx02.1 : compiler et tester le code proposé après avoir ajouté des instructions pour afficher aussi les éléments 3 et 4</i></li>
+  <li><i>cx02.2 : compiler et tester le code proposé, avec 1, 2 ou n arguments sur la ligne de commande.</i></li>
+  <li><i>cx02.3 : le programme précédent affiche évidemment les arguments en partant du dernier : modifier le code pour les afficher dans l'ordre.</i></li>
+</ul>
+<p>Plutôt facile si l'on connaît l'opérateur d'incrémentation. En cas de <i>segmentation fault</i>, il serait bon de se rappeler l'existence de la valeur NULL.</p>
+<h2><strong>cx12.0</strong></h2>
+<ul>
+  <li>“elle retourne 1 si tout se passe bien, et 0 sinon” =⇒ sans doute une erreur: 0 si tout va bien, 1 sinon.</li>
+  <li>Aide : <a href="https://www.le.ac.uk/users/rjm1/cotter/page_58.htm">Une page</a> qui explique assez clairement comment inverser le contenu de deux variables avec les pointeurs</li>
+</ul>
+<h2><strong>cx15.3</strong></h2>
+<p>Faut-il s'amuser à trouver un moyen de gérer 2 str de suite en input avec “lucky luke” ? Sans doute que non … ou si vous trouvez une solution, donnez une piste ici :) Propositions :</p>
+<ul>
+  <li>Apparemment la solution arrive beaucoup plus tard… dans un cours de 2ème semestre de L2 ! Donc ne perdez pas votre temps avec cette exception ici.</li>
+  <li>Il serait possible de mettre une expression regex comme 2eme argument de fscanf.</li>
+</ul>
+<h2><strong>cx17.4</strong></h2>
+<p>La fonction “compare” du pdf fonctionne, il me semble, sauf qu'elle renvoie des warnings et ça vous n'en voulez vraiment pas dans un exo à rendre. Si vous faites man qsort vous allez voir qu'il y a un problème de typage des arguments de la fonction compare. Il faut donc changer ça. Mais alors la fonction compare ne fonctionne plus du tout. Il va falloir rétablir, à l'intérieur de la fonction compare, les arguments E1 et E2, qui sont au départ des structures, dans l'exercice de leur plein droit. La méthode pour y parvenir est (assez bien) expliquée dans <a href="https://www.google.fr/search?client=opera&amp;q=+le+poly(en+anglais)+sur+les+pointeurs+cit%C3%A9+au+bas+de+cette+page&amp;sourceid=opera&amp;ie=UTF-8&amp;oe=UTF-8">le poly (en anglais) sur les pointeurs cité au bas de cette page</a>. Il faut bien comprendre le type de données qu'on attend et qu'on envoie…et qu'on veut utiliser qsort pour trier les données d'un struct! C'est peut etre encore mieux expliqué ici : <a href="http://www.bien-programmer.fr/qsort.htm">http://www.bien-programmer.fr/qsort.htm</a></p>
+<h2><strong>cx17.7</strong></h2>
+<p>“adapter votre solution de [cx17.6] <strong>pour utiliser la bibliothèque créée pour [cx18.6].</strong>” Si vos fonctions créées pour le 18.6 sont différentes, adaptez simplement en fonction de votre série cx17. L'idée et de montrer qu'on peut créer une bibliothèque.</p>
+<h2><strong>cx17.7 &amp; cx17.8</strong></h2>
+<p>Il semble qu'un <strong>Makefile</strong> soit requis par l'enseignant (même si je n'ai pas réussi à trouver de trace de cette consigne). Au cas, fort improbable, ou le poly ne vous suffirait pas:</p>
+<ul>
+  <li>voici une vidéo pour découvrir le <a href="https://www.youtube.com/watch?v=GExnnTaBELk&amp;t=238s">B-A BA de la compilation et des Makefiles</a> (attention très basique)</li>
+  <li>deux autres vidéos assez claires qui parlent de <a href="https://www.youtube.com/watch?v=8oyQ3ixxDaM">Makefile</a> et de <a href="https://www.youtube.com/watch?v=Sy9rGuvfmO0&amp;t=940s">librairies</a></li>
+</ul>
+<h2><strong>cx18.3</strong></h2>
+<p>Il faut sans doute trouver un moyen dynamique pour calculer la taille de l'array :) <a href="https://www.youtube.com/watch?v=IgPGwI1f29Q&amp;feature=youtu.be&amp;t=1m47s">Cette video</a> est très bien faite (pour itérer l'array comme demandé dans la première partie de la question. Mais bien sûr, on peut quand même s'amuser à faire une length() version Lisp)</p>
+<h2><strong>cx18.5</strong></h2>
+<p>N'essayez pas de créer une fonction qui crée et retourne la table. C'est bien plus simple de la créer dans main, d'envoyer à la fonction la liste et la table et d'avoir la fonction qui rempli la table avec la liste. De cette manière, c'est plus facile de la faire “à la lisp” assez facilement.</p>
+<h2><strong>cx19.1 et cx19.2</strong></h2>
+<p>le N caculé sur cette ligne est erroné :</p>
+<pre><code class="language-plaintext">int i, dec, N = sizeof(val);</code></pre>
+<p>il faut :</p>
+<pre><code class="language-plaintext">int i, dec, N = sizeof(val) / sizeof(*val) ;</code></pre>
+<p>Si vous souhaitez éviter une erreur, il faut aussi remplacer :</p>
+<pre><code class="language-plaintext">char * romain = $[1] ;</code></pre>
+<p>par :</p>
+<pre><code class="language-plaintext">const char * romain = $[1] ;</code></pre>
+<p>L'erreur en question en compilant avec gcc -g -std=iso9899:2018 -pedantic -pedantic-errors -W -Wall:</p>
+<pre><code class="language-plaintext">error: initialization discards ‘const’ qualifier from pointer target type [-Wdiscarded-qualifiers]
+  char * romain = argv[1] ;</code></pre>
+<h2><strong>cx19.2</strong></h2>
+<p>si vous voulez vraiment faire la partie “incluant la conversion en majuscule par masquage du bit 2”, il faut regarder la 2ème partie de la note “Le problème de l'effet secondaire” page 91. De plus, il semblerait qu'il faille mieux garder l'incrémentation une fois le masquage de bit effectué. ( <code>while (*$) { *$ =(*$++) &amp; 0xDF ;</code> } –&gt;pas bon apparemment)</p>
+<h2><strong>cx21.0</strong></h2>
+<pre><code class="language-plaintext">#include &lt;stdio.h&gt;
+
+void montre(int *, int);
+void vite (int *, int, int);
+int partition (int *, int, int);
+
+int main (){
+    int val[] = {4, 9, 1, 6, 0, 5, 8, 2, 3, 7} ;
+    int max = sizeof (val) / sizeof (int) - 1 ;
+    vite(val, 0, max) ;
+    montre(val, max) ;
+    return 0 ;
+}
+
+void montre(int * val, int max){
+    int x = 0 ;
+    while (x &lt;= max)
+        printf("%i ", val[x++]) ;
+    puts("") ;
+}
+
+void vite (int val[], int gauche, int droite){
+    int pivot = partition(val, gauche, droite) ;
+    if (gauche &lt; pivot)
+        vite(val, gauche, pivot - 1) ;
+    if (droite &gt; pivot)
+        vite(val, pivot + 1, droite) ;
+}
+
+int partition (int val[], int gauche, int droite){
+    int valpiv = val[gauche] ;
+    while (gauche &lt; droite){
+        while ((val[droite] &gt;= valpiv) &amp;&amp; (gauche &lt; droite))
+            droite-- ;
+        if (gauche != droite){
+            val[gauche] = val[droite] ;
+            gauche++ ;
+        }
+        while ((val[gauche] &lt;= valpiv) &amp;&amp; (gauche &lt; droite))
+            gauche++ ;
+        if (gauche != droite){
+            val[droite] = val[gauche] ;
+            droite-- ;
+        }
+    }
+    val[gauche] = valpiv ;
+    return gauche ;
+}</code></pre>
+<h2><strong>cx21.2</strong></h2>
+<p>Faisable en introduisant une option utilisateur, par exemple -s pour des chaînes de caractères, -l pour des nombres réels, et en dupliquant le code pour chaque type. Est-ce le but recherché par l'exercice ? Pas sûr…</p>
+<h2><strong>cx23.0</strong></h2>
+<p>Si ce n'est déjà fait pensez à télécharger le module de développement de python. avec la commande :</p>
+<pre><code class="language-plaintext">apt-get install python-dev</code></pre>
+<p>Une fois votre module pour python créer dans un dossier build grâce à la commande donnée dans le cours :</p>
+<pre><code class="language-plaintext">python sreverse.setup build</code></pre>
+<p>Vous devenez coller ce module dans le site package de votre version de python. (j'ai utilisé python2.7). Cela étant il faut trouver le PYTHON PATH, pour cela lancer un interpréteur python importez le module sys et affichez la variable sys.path. Sys.path est un tableau qui contient tous les chemins que python parcourt quand il recherche un module.</p>
+<p>Vous pouvez également installer directement votre module dans le site package avec la commande suivante :</p>
+<pre><code class="language-plaintext">python sreverse.setup install</code></pre>
+<p>Les droits d’administrateur seront peut être nécessaire. Cette commande vous installera directement votre module. Chez moi il s'est installé dans /usr/local/lib/python2.7/dist-packages avec des droits d'utilisateurs restreint. Il est judicieux de vérifier après l'installation que votre module puisse être lisible et exécutable par tout le monde.</p>
+<p>Les liens vers la documentation ne sont plus bon, voici le nouveau, plus un autre lien vers une page qui m'a aidé : <a href="https://docs.python.org/fr/2.7/extending/">https://docs.python.org/fr/2.7/extending/</a> <a href="http://apprendre-python.com/page-python-path-pythonpath">http://apprendre-python.com/page-python-path-pythonpath</a></p>
+<p>Pour ceux qui utilisent Python3, il faut créer une structure PyModuleDef dans le code sreverse.c, qui contient le code suivant :</p>
+<pre><code class="language-plaintext">static struct PyModuleDef sreversedef = {
+    PyModuleDef_HEAD_INIT,
+    "sreverse",
+    NULL,
+    -1,
+    sreversemethods };</code></pre>
+<p>puis remplacer cette ligne :</p>
+<pre><code class="language-plaintext">void initsreverse() {Py_InitModule("sreverse",sreversemethods) ; }</code></pre>
+<p>par la suivante :</p>
+<pre><code class="language-plaintext">PyMODINIT_FUNC PyInit_sreverse(void)
+    {return PyModule_Create(&amp;sreversedef) ;}</code></pre>
+<h2><strong>cx25</strong></h2>
+<p>Le chapitre 13 d'architecture des ordinateurs (ADO) mentionné dans le cours a été largement remanié en 2021 et s'appelle maintenant le chapitre 10.</p>
+<ul>
+  <li>L'exercice 13.9 existe toujours dans le nouveau cours et porte le numéro 10.7. Son énoncé est le suivant:</li>
+</ul>
+<blockquote>
+  <p>Indiquer les mnémoniques qui correspondent aux valeurs suivantes dans la mémoire. Commenter le programme. Que fait-il ?</p>
+</blockquote>
+<figure class="table">
+  <table style="background-color:rgb(255, 255, 255);border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);">
+    <thead>
+      <tr>
+        <th style="background-color:var(--background_alt,#eee);border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;"><strong>adresse&nbsp;</strong></th>
+        <th style="background-color:var(--background_alt,#eee);border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;"><strong>valeur&nbsp;</strong></th>
+        <th style="background-color:var(--background_alt,#eee);border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;"><strong>valeur&nbsp;</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">50&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">49&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">70&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">52&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">40&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">70&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">54&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">48&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">71&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">56&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">48&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">72&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">58&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">00&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">5E&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">5A&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">48&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">8d&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">5C&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">10&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">74&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">5E&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">40&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">71&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">60&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">48&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">72&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">62&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">40&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">70&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">64&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">48&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">71&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">66&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">00&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">6C&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">68&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">48&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">8d&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">6A&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">10&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">74&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">6C&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">41&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">71&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">6E&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">10&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">6E&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">70&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">00&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">71&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">00&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">72&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">00&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">73&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">00&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">74&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">00&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">00&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">76&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">48&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">73&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">78&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">40&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">71&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">7A&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">12&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">88&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">7C&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">21&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">01&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">7E&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">48&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">71&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">80&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">40&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">73&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">82&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">60&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">72&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">84&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">48&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">73&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">86&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">10&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">78&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">88&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">40&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">73&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">8a&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">48&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">71&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">8c&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">10&nbsp;</td>
+        <td style="border-bottom:1px solid var(--border, #ccc);border-left:1px solid var(--border, #ccc);border-right:1px solid var(--border, #ccc);border-top:1px solid var(--border, #ccc);padding:0.3em 0.5em;vertical-align:top;">00</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<ul>
+  <li>Par contre, l'exercice 13.8 n'existe plus dans le nouveau cours. Son énoncé est le suivant:</li>
+</ul>
+<blockquote>
+  <p>Exercice 13.8 : (Assez difficile) Dans la mémoire, on trouve de l’adresse 30 à 45 les valeurs suivantes : 10 3a 00 31 40 32 60 33 48 32 49 33 40 33 22 ff 12 34 41 32 10 44. Dans PC se trouve 30. Que fera ce programme quand l’ordinateur en papier va tourner et l’exécuter ?</p>
+</blockquote>
+<ul>
+  <li>Il y a des informations dans le Wiki de Architecture des ordinateurs qui peuvent vous aider: <a href="/L1/architecture-des-ordinateurs">Architecture des ordinateurs 1</a></li>
+</ul>
+<h1><strong>Liste des exigences non explicites du prof</strong></h1>
+<p>Le prof actuel (Mariage) a des exigences assez précises sur ce qu'il attend, mais elles sont loin d'être mentionnées explicitement dans les documents du cours. En fonction des retours des autres étudiants, on peut essayer d'en créer une liste pour aider les étudiants à survivre la notation sévère de ce cours.</p>
+<h2><strong>Série cx17</strong></h2>
+<p>C'est dit nulle part, mais apparemment il faut :</p>
+<ul>
+  <li>rendre que les trois derniers exercices de la série cx17, un makefile pour le cx17.7 et le cx17.8, bien expliquer le code ajouté dans l'exercice cx17.4.</li>
+  <li>bien gérer la gestion des arguments avec la stoplist : ne pas accepter un nombre quelconque d'argurments, leur ordre, etc. Avec des messages explicites qui expliquent ce qu'on attend en cas d'erreurs;</li>
+  <li>que ça tourne avec un fichier “assez long” (plusieurs centaines de pages, un livre entier…);</li>
+  <li>bien sûr qu'il n'y ait pas de warnings à la compilation, mais cela dépend encore du standard utilisé ! penser à rajouter dans les options de compilation le standard gnu et la convention c99 (avec -std=gnu99) ou c11 (avec -std=gnu11) ou autre suivant les fonctions que vous souhaitez utiliser;</li>
+  <li>le cours utilisant des fonctions non-standards (strdup, strcasecmp, strtok, …), il est important de spécifier que vous voulez utiliser les extensions de GCC (avec -std=gnu99 plutôt que -std=c99) si vous utilisez aussi ces fonctions.</li>
+  <li>Concernant les structures et procédures de gestion des listes pour les types string &amp; idx, il ne faut pas chercher à les unifier (type union) mais à les intégrer dans un seul type;</li>
+  <li>que les programmes soient commentés et accompagnés de traces d’exécution qui montrent leur fonctionnement ainsi que les tests de régressions effectués. Tous ces éléments doivent être soigneusement commentés;</li>
+  <li>et sans doutes d'autres encore !</li>
+</ul>
+<h2><strong>Série cx25</strong></h2>
+<ul>
+  <li>des traces d'exécution</li>
+  <li>expliquer ce que font les codes des exos 13.8 et 13.9 du cours d'archi (voir plus haut pour la nouvelle version du cours ADO de 2021)</li>
+  <li>que le programme indique à l'utilisateur de quelles commandes il dispose</li>
+  <li>prévoir une commande de sortie</li>
+</ul>
+<h1><strong>Ressources</strong></h1>
+<ul>
+  <li><a href="https://nolandartois.fr/wiki/ied/doku.php?id=aides:comment_executer_son_code_lisp_directement_depuis_sublime_text">Executer son code C directement depuis l'éditeur de texte</a></li>
+  <li>Document qui explique les pointeurs <a href="https://pdos.csail.mit.edu/6.828/2012/readings/pointers.pdf">A TUTORIAL ON POINTERS AND ARRAYS IN C</a></li>
+  <li>Une <a href="https://www.youtube.com/watch?v=zuegQmMdy8M">série de vidéos</a> sur les pointeurs.</li>
+  <li>Une <a href="https://www.youtube.com/watch?v=8Ib7nwc33uA&amp;index=1&amp;list=PLGLfVvz_LVvSaXCpKS395wbCcmsmgRea7">série de tutoriaux</a> (en anglais) assez bien faits.</li>
+  <li>Pour <a href="http://www.pythontutor.com/visualize.html#mode=edit">visualiser</a> ce qu'il se passe dans la mémoire lors de l'exécution du programme.</li>
+</ul>
