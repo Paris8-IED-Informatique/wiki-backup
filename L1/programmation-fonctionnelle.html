@@ -2,7 +2,7 @@
 title: Programmation fonctionnelle
 description: Common LISP
 published: true
-date: 2022-06-08T12:22:16.293Z
+date: 2022-06-11T13:24:31.476Z
 tags: 
 editor: ckeditor
 dateCreated: 2022-05-28T19:00:44.905Z
@@ -18,6 +18,12 @@ dateCreated: 2022-05-28T19:00:44.905Z
 <h1><strong>Installer Dia</strong></h1>
 <p>Pour installer correctement Dia et l'utiliser pour le cours, il faut absolument procéder dans un certain ordre. Les commandes suivantes téléchargent les feuilles de doublets et d'arbres pour Dia, installent Dia puis décompressent les feuilles. <strong>Il est important de ne pas lancer Dia avant </strong>d'avoir <a href="/dia.tar.gz">téléchargé les feuilles</a>.</p>
 <pre><code class="language-plaintext">wget https://wiki.paris8-ied.net/dia.tar.gz -O /tmp/dia.tar.gz
+rm -rf ~/.dia || true
+sudo apt install -y dia
+tar -xf /tmp/dia.tar.gz -C ~
+rm /tmp/dia.tar.gz</code></pre>
+<p>Si vous utilisez <strong>macOS</strong> plutôt que Linux, vous n'avez peut-être pas la commande <code>wget</code>. Dans ce cas, il faut remplacer par la command <code>curl</code>:(attention, l'option de la commande est avec un <code>o</code> minuscule pour <code>curl</code>, majuscule pour <code>wget</code>):</p>
+<pre><code class="language-plaintext">curl https://wiki.paris8-ied.net/dia.tar.gz -o /tmp/dia.tar.gz
 rm -rf ~/.dia || true
 sudo apt install -y dia
 tar -xf /tmp/dia.tar.gz -C ~
