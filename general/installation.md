@@ -2,13 +2,11 @@
 title: Installation de ce serveur Wiki
 description: Comment est installé et configuré ce serveur
 published: true
-date: 2022-06-08T12:30:27.104Z
+date: 2022-06-13T22:47:42.625Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-29T10:50:06.101Z
 ---
-
-**IMPORTANT**: *Ce document est en cours d'écriture. Il peut y avoir des erreurs. Il sera finalisé prochainement.*
 
 # Informations générales
 
