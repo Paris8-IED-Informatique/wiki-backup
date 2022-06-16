@@ -2,7 +2,7 @@
 title: Programmation fonctionnelle
 description: Common LISP
 published: true
-date: 2022-06-11T13:25:33.014Z
+date: 2022-06-16T09:48:59.318Z
 tags: 
 editor: ckeditor
 dateCreated: 2022-05-28T19:00:44.905Z
@@ -88,7 +88,6 @@ EOF</code></pre>
 (a b c) ⇒ correct 
 (a(b c)d) ⇒ faux 
 (a (b c) d) ⇒ correct</code></pre>
-<p>&nbsp;</p>
 <ul>
   <li>Le premier élément d'une liste sans quote est une fonction, si tout le bloc ne tient pas sur une liste il faut le découper : on dit qu'il faut l'indenter.</li>
   <li>Le premier élément (le nom de la fonction) doit être seul sur une ligne.</li>
@@ -98,7 +97,6 @@ EOF</code></pre>
 <pre><code class="language-plaintext">(cons
   (car liste)
   (cdr liste) )</code></pre>
-<p>&nbsp;</p>
 <ul>
   <li>Si un argument est lui même une fonction avec plusieurs arguments (et que ça ne tient pas sur une ligne de 80 colonnes) : il faut l'indenter également. (L'exemple suivant aurait pu tenir sur une ligne mais c'est pour vous faire une démonstration de l'indentation).</li>
 </ul>
@@ -107,14 +105,12 @@ EOF</code></pre>
   (cons
     (car liste2)
     (cdr liste2) ) )</code></pre>
-<p>&nbsp;</p>
 <ul>
   <li>Les arguments sont alors décalés par rapport à la fonction à laquelle ils appartiennent. Ainsi, on peut du premier coup d'oeil détecter quels arguments appartiennent à quelle fonction.</li>
   <li>La définition d'une fonction est une exception, on laisse le nom et les arguments que la fonction va prendre (c'est à dire les 2 premiers arguments) sur la première ligne.</li>
 </ul>
 <pre><code class="language-plaintext">(defun fonction (arg1 arg2)
   ( ... ) )</code></pre>
-<p>&nbsp;</p>
 <ul>
   <li>Si une liste trop longue pour une ligne commence par un élément étant lui-même une liste trop grande pour une ligne, on écrit le premier élément de cette liste et la suite avec une indentation double :</li>
 </ul>
@@ -163,8 +159,10 @@ EOF</code></pre>
 <p>Cela semble pas mal, non ? Sauf que c'est faux. Il n'y a effectivement pas de problème de parenthèses, les mêmes couleurs sont au même niveau. Mais il y a deux types d'erreurs: 1) certaines parenthèses sont décollées alors qu'elles ne le devraient pas (indiqué en orange). Certains arguments de cons sont mal placés (indiqué en rouge):</p>
 <figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=487ed2&amp;media=licence1:pretty-print-07-errors.png" alt=""></figure>
 <p>La règle est la suivante:</p>
-<p>Soit on met tout sur la même ligne</p>
-<p>Soit on met le cons sur une ligne, et chaque argument sur une autre ligne et indenté.</p>
+<ul>
+  <li>Soit on met tout sur la même ligne</li>
+  <li>Soit on met le <code>cons</code> sur une ligne, et chaque argument sur une autre ligne et indenté.</li>
+</ul>
 <p>On ne peut pas mélanger la première possibilité avec la deuxième. C'est l'un ou l'autre. Cela donne donc:</p>
 <figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=c6f817&amp;media=licence1:pretty-print-08.png" alt=""></figure>
 <p>On corrige le reste:</p>
@@ -172,6 +170,21 @@ EOF</code></pre>
 <p>La règle empirique semble être qu'il est raisonnable d'avoir 3 niveaux sur une seule ligne, mais pas plus:</p>
 <figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=340aee&amp;media=licence1:pretty-print-levels.png" alt=""></figure>
 <p>Il faut aussi éviter d'avoir des lignes trop longues. Si vous dépassez la 80ème colonne, il est préférable de découper la ligne.</p>
+<h1>Passage de la représentation textuelle à la représentation graphique</h1>
+<p>Pour un certain nombre d'exercice, vous devez passer d'une représentation textuelle à une représentation graphique ou le contraire. Pour vous aider, une élève a porté un programme écrit à l'origine en Scheme (un dialecte de LISP) en Common Lisp “à la GB” (avec pretty-print, pas de let, …). Cela permet d'afficher une représentation des doubles (cons) d'une liste. Pour cela, vous devez télécharger le programme <a href="/draw-cons-tree.lisp">draw-cons-tree.lisp</a>. Pour ensuite l'utiliser, ouvrez un terminal, placez-vous (<code>cd</code>) dans le répertoire où est sauvé le fichier <i>draw-cons-tree.lisp</i>, lancez LISP (<code>clisp -q -modern -L french</code> ou simplement <code>lisp</code> si vous avez défini un alias) et entrez:</p>
+<pre><code class="language-plaintext">(load "draw-cons-tree.lisp")</code></pre>
+<p>Vous pouvez maintenant afficher les doublets (cons) avec la fonction <code>draw-tree</code> qui prend comme argument une liste. Par exemple:</p>
+<pre><code class="language-plaintext">(draw-tree '(a b (c) (d (e f) . g) h))
+[o|o]---[o|o]---[o|o]---[o|o]---[o|/]
+ |       |       |       |       |
+ a       b      [o|/]    |       h
+                 |       |
+                 c      [o|o]---[o|o]--- g
+                         |       |
+                         d      [o|o]---[o|/]
+                                 |       |
+                                 e       f</code></pre>
+<p>Ne pas oublier le dernière parenthèse qui ferme l'appel à la fonction <code>draw-tree</code>.</p>
 <h1><strong>Vraiprog1</strong></h1>
 <p>La série d'exercices pour Vraiprog1 commence à la page 148 (“Écrire un vrai programme : explorations”) et se termine au début de la page 154 (“Vrai programme : exploration”). Il y a quatre parties: Exercices A, B, C et la question D. Il faut rendre cette série d'exercices en une seule fois avec comme sujet “Exo Vrai- prog1”.</p>
 <h1><strong>Vraiprog2 et Vraiprog3</strong></h1>
