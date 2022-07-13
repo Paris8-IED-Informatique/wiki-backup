@@ -2,7 +2,7 @@
 title: Installation de ce serveur Wiki
 description: Comment est installé et configuré ce serveur
 published: true
-date: 2022-06-13T22:47:42.625Z
+date: 2022-07-13T21:41:08.011Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-29T10:50:06.101Z
@@ -150,10 +150,10 @@ sudo micro /etc/nginx/sites-available/default.conf
 
 ```
 server {
-	listen 80 default_server;
-	listen [::]:80 default_server;
+  listen 80 default_server;
+  listen [::]:80 default_server;
 
-	server_name *.paris8-ied.net;
+  server_name *.paris8-ied.net;
 
   include /etc/nginx/templates/letsencrypt.tmpl;
 }
