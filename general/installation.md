@@ -2,7 +2,7 @@
 title: Installation de ce serveur Wiki
 description: Comment est installé et configuré ce serveur
 published: true
-date: 2022-07-14T15:07:38.028Z
+date: 2022-07-14T15:20:37.626Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-29T10:50:06.101Z
@@ -406,6 +406,14 @@ Installation et vérification:
 sudo apt install -y nodejs npm
 node -v
 npm -v
+```
+
+## Création d'un utilisateur dédié
+
+Cet utilisateur sera le propriétaire des fichiers et des processus (service) du wiki.
+
+```bash
+sudo adduser wiki
 ```
 
 ## Installation de Wiki.js
