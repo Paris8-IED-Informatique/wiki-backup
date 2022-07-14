@@ -2,7 +2,7 @@
 title: Installation de ce serveur Wiki
 description: Comment est installé et configuré ce serveur
 published: true
-date: 2022-07-13T21:41:08.011Z
+date: 2022-07-14T14:32:57.521Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-29T10:50:06.101Z
@@ -92,7 +92,7 @@ sudo micro /etc/nginx/conf.d/client-body-size.conf
 Ajouter:
 
 ```
-client_max_body_size 6M
+client_max_body_size 6M;
 ```
 
 ## Outils d'activation
@@ -180,7 +180,6 @@ On vérifie la configuration et on démarre le serveur:
 
 ```bash
 sudo nginx_ensite default.conf
-sudo nginx -t
 sudo systemctl restart nginx
 ```
 
@@ -309,7 +308,7 @@ server {
   listen 80 default_server;
   listen [::]:80 default_server;
   listen 443 ssl http2 default_server;
-  listen [::]:ssl http2 443 default_server;
+  listen [::]:443 ssl http2 default_server;
 
   server_name _;
   
