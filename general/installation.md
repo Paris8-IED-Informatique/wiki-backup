@@ -2,7 +2,7 @@
 title: Installation de ce serveur Wiki
 description: Comment est installé et configuré ce serveur
 published: true
-date: 2022-07-14T15:20:37.626Z
+date: 2022-08-07T10:56:05.556Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-29T10:50:06.101Z
@@ -127,8 +127,7 @@ Il nous faut d'abord un serveur web actif, installer les outils et générer le 
 ### Installation de Certbot (Let's Encrypt)
 
 ```bash
-sudo snap install --classic certbot
-sudo ln -s /snap/bin/certbot /usr/bin/certbot
+sudo apt install certbot
 ```
 
 ### Préparation
