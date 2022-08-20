@@ -2,7 +2,7 @@
 title: Programmation impérative
 description: C’est du C
 published: true
-date: 2022-06-08T12:23:30.546Z
+date: 2022-08-20T13:28:35.582Z
 tags: 
 editor: ckeditor
 dateCreated: 2022-05-28T19:13:25.943Z
@@ -352,7 +352,42 @@ int partition (int val[], int gauche, int droite){
   <li>que le programme indique à l'utilisateur de quelles commandes il dispose</li>
   <li>prévoir une commande de sortie</li>
 </ul>
-<h1><strong>Ressources</strong></h1>
+<h2>Les déclarations en C</h2>
+<p>Les déclarations en C sont particulièrement difficiles et source d'erreurs. Par exemple, quelle-est la différence entre ces déclarations ?</p>
+<pre><code class="language-plaintext">char * txt;
+const char * txt;
+char const * txt;
+const char const * txt;
+char * const txt;
+const char * const txt;</code></pre>
+<p>La règle (standardisée) est la suivante:</p>
+<ul>
+  <li>const s'applique sur ce qui est à sa gauche</li>
+  <li>SAUF s'il est au tout début (rien à gauche). Dans ce cas (et uniquement dans ce cas), il s'applique sur ce qui à sa droite.</li>
+</ul>
+<p>Donc:</p>
+<pre><code class="language-plaintext">char * txt;  // un pointeur sur des caractères
+const char * txt;  // un pointeur sur des caractères constants
+char const * txt;  // La même chose: un pointeur sur des caractères constants
+const char const * txt;  // La même chose mais un des deux const est redondant.
+char * const txt;  // Un pointeur constant sur des caractères (non constants)
+const char * const txt;  // Un pointeur constant sur des caractères constants</code></pre>
+<p>Pour vous aider, il y a un site très pratique: <a href="https://cdecl.org">https://cdecl.org</a>. Par exemple:</p>
+<figure class="image"><img src="/screenshot_2022-08-20_at_15.13.12.png"></figure>
+<p>Et quoi penser du typedef utilisé par plusieurs profs de l'IED ?</p>
+<pre><code class="language-plaintext">typedef char * str;</code></pre>
+<p>Que va donner la déclaration suivante qui utilise ce typedef ?</p>
+<pre><code class="language-plaintext">const str txt;</code></pre>
+<p><code>txt</code> est un pointeur sur une chaine constante, comme en C++ (argument mis en avant par l'un des profs) ? Pas du tout ! <code>str</code> un le type « pointeur sur des caractères ». Donc <code>const str</code> c'est un pointeur constant sur des caractères non-constants. Alors comment écrire correctement avec le typedef ? On ne peut pas ! Il y a deux solutions: soit créer deux typedef, soit ne pas utiliser de typedef. Pour donner des exemples, Microsoft a choisi la première solution (extrait des sources de Windows):</p>
+<pre><code class="language-plaintext">typedef CHAR *              LPSTR;
+typedef WCHAR *             LPWSTR;
+typedef const CHAR *        LPCSTR;
+typedef const WCHAR *       LPCWSTR;</code></pre>
+<p>Linux (Linus Torvalds) a choisi la deuxième solution (extrait des sources du Kernel Linux):</p>
+<pre><code class="language-plaintext">int of_at91_get_clk_range(struct device_node *np, const char *propname, struct clk_range *range);</code></pre>
+<p>Et si vous pensez que c'est compliqué, il a pire:</p>
+<pre><code class="language-plaintext">const char * f(const char * (*)(const char *))</code></pre>
+<h2><strong>Ressources</strong></h2>
 <ul>
   <li><a href="https://nolandartois.fr/wiki/ied/doku.php?id=aides:comment_executer_son_code_lisp_directement_depuis_sublime_text">Executer son code C directement depuis l'éditeur de texte</a></li>
   <li>Document qui explique les pointeurs <a href="https://pdos.csail.mit.edu/6.828/2012/readings/pointers.pdf">A TUTORIAL ON POINTERS AND ARRAYS IN C</a></li>
