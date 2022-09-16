@@ -1,0 +1,48 @@
+<!--
+title: Algorithme et structures de données 1
+description: Du LISP et encore du LISP
+published: true
+date: 2022-09-16T12:40:38.496Z
+tags: 
+editor: ckeditor
+dateCreated: 2022-05-28T20:46:38.001Z
+-->
+
+<h1><strong>Révisions</strong></h1>
+<p>Ce chapitre porte assez mal son nom puisque vous allez y trouver des notions que vous n'avez pas vues l'année dernière.</p>
+<h2><strong>B- Pointeurs</strong></h2>
+<p>Gilles Bernard demande notamment une variante avec ifdef et #define, qui font appel à la notion de précompilation. Un exemple de ifdef est disponible dans le chapitre 1 de système d'exploitation p.102, puis un commentaire sur ce code p.104. ifdef signifie :“si cette variable est définie”. Il faut donc, pour exécuter la partie de code après ifdef, définir une variable, soit par un #define, soit avec gcc lors de la compilation avec l'option -Dnom_de_la_variable.</p>
+<h2><strong>D- Chaines de caractères</strong></h2>
+<p>A partir de cette série d'exercices, il va beaucoup être question de mémoire, notamment avec l'utilisation répétée de malloc. Valgrind est un outil qui permet de faire le point sur l'utilisation de la mémoire par le programme. Ce n'est pas précisé dans le cours, mais il est préférable que la mémoire allouée soit ensuite libérée (à l'aide de la fonction free().</p>
+<p>Téléchargement de Valgrind : <a href="https://www.valgrind.org/">https://www.valgrind.org/</a></p>
+<h1>Fin du chapitre II</h1>
+<p>La fin du chapitre II n'est pas dans le PDF mais encore dans l'ancien (ancien) format du cours, en HTML. L'archive se trouve sur Moodle mais vous trouverez <a href="/algostruct1-fin-chapitre2.pdf">une version PDF ici.</a></p>
+<h1><strong>PM 11 - Chapitre IV</strong></h1>
+<p>Le code donné dans le cours contient des erreurs (typos). Voici les principales erreurs (ce sont souvent les répétitions de la même erreur mais sur des pages différentes):</p>
+<ul>
+  <li>Page 77:</li>
+</ul>
+<pre><code class="language-plaintext">(or (answer (cdr (assoc (read-input) patterns :test match))) (return)) ) )</code></pre>
+<p>Il manque <code>#' </code>devant match</p>
+<ul>
+  <li>Page 78: dans la définition de la fonction <code>match</code>, il manque une parenthèse fermante</li>
+  <li>Page 79: dans la définition de la fonction <code>print-output</code>, il est écrit</li>
+</ul>
+<pre><code class="language-plaintext">(cdr  (output-pattern))</code></pre>
+<p>au lieu de</p>
+<pre><code class="language-plaintext">(cdr  output-pattern)</code></pre>
+<p>&nbsp;</p>
+<ul>
+  <li>Page 82: dans la définition de la fonction <code>match</code>, il manque une parenthèse fermante</li>
+  <li>Page 83: dans la définition de la fonction <code>print-output</code>, il manque une parenthèse fermante et il est écrit:</li>
+</ul>
+<pre><code class="language-plaintext">(cdr  (output-pattern))</code></pre>
+<p>au lieu de</p>
+<pre><code class="language-plaintext">(cdr  output-pattern)</code></pre>
+<p>&nbsp;</p>
+<ul>
+  <li>Page 83: dans la définition de la fonction <code>print-with-joker</code>, il manque une parenthèse fermante</li>
+  <li>Page 84: dans la définition de la fonction <code>match</code>, il manque une parenthèse fermante</li>
+</ul>
+<h1><strong>Notation</strong></h1>
+<p>En réponse à une question d'un élève, GB a indiqué: “La révision compte pour 3 points ; les 4 chapitres suivants valent 2 points chacun, et les 3 derniers 3 points. La note pour chaque chapitre dépend de la qualité du travail fait (intégrant le rapport de rendu d'exercice).”</p>
