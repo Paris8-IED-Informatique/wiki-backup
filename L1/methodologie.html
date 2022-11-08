@@ -1,0 +1,167 @@
+<!--
+title: Méthodologie de la programmation
+description: Python et autres reptiles
+published: true
+date: 2022-11-08T15:10:17.972Z
+tags: 
+editor: ckeditor
+dateCreated: 2022-05-26T13:18:50.730Z
+-->
+
+<h1><strong>Aide installation Jupyter Notebook</strong></h1>
+<p>Plusieurs personnes ont eu des soucis pendant l'installation de Jupyter Notebook, on va essayer de récapituler ici les problèmes rencontrés et leurs solutions.</p>
+<p><strong>Pré-requis</strong> : Suivre la méthode d'installation officielle : <a href="https://jupyter.org/install">https://jupyter.org/install</a></p>
+<p><strong>Jupyter command not found</strong></p>
+<p>Il se peut, qu'après l'installation, votre console ne reconnaisse pas la commande :</p>
+<p><code>jupyter notebook</code></p>
+<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?media=licence1:jupyternotebook-3.jpg" alt=""></figure>
+<p>Très souvent avec ce type de problème, il suffit de rajouter un lien dans le PATH manquant dans votre système. Pour cela nous allons faire la commande :</p>
+<p><code>export PATH=$PATH:~/.local/bin</code></p>
+<p>Normalement, après avoir effectué cette commande vous allez pouvoir ouvrir Jupyter Notebook avec la commande <code>jupyter notebook</code>. Si tout fonctionne correctement, il nous reste un seul problème. La commande <code>export PATH=$PATH:~/.local/bin</code> est activé que pendant la session active ! Donc au redémarrage de votre machine, le problème initial reviendra. Il faut donc exécuter cette commande au lancement de votre machine. Pour cela nous allons modifier un fichier caché qui est exécuté à chaque lancement de votre session.</p>
+<p>Pour cela, il faut donc modifier le fichier <code>~/.bashrc</code> et rajouter la ligne <code>export PATH=$PATH:~/.local/bin</code> tout en haut du fichier ! Ainsi, la commande sera exécuté à chaque redémarrage de votre session.</p>
+<h1><strong>Info de l'année 2021-2022</strong></h1>
+<p>Méthodologie de la programmation est un cours qui est à suivre tout au long de l'année. Le professeur propose un support de cours sur le Moodle qui faut lire absolument si vous n'êtes pas habitué avec la programmation avec Python. Mais attention, le cours écrit en Python 2, mais vous allez devoir utiliser Python 3 pour les exercices et devoirs !</p>
+<p>(Vous pouvez demander de l'aider sur le groupe Discord si vous ne comprenez pas un passage du cours).</p>
+<p>Attention, certains devoirs ont changés en 2020 !</p>
+<h1><strong>Conseils pour la réalisation des devoirs</strong></h1>
+<p>Pensez à bien relire ce que le prof demande et à bien vérifier votre code avant d'envoyer votre rendu (est-ce que je dois afficher quelque chose ? retourner quelque chose ? est-ce que je traite tout les cas, les erreurs, les exceptions ? est-ce que mon code est commenté ? etc … ).</p>
+<h1><strong>Liste (non exhaustive) des besoins pour les exercices</strong></h1>
+<h2><strong>Devoir 1</strong></h2>
+<h3><strong>Exercice 1 - Feu rouge</strong></h3>
+<blockquote>
+  <p>Coder une <strong>fonction feu_rouge</strong> avec un <strong>paramètre couleur</strong> qui <strong>renvoie</strong>:<br>- “stop” si c'est “rouge”,<br>- “ralentir” si c'est “orange”,<br>- “passer” si c'est “vert”</p>
+</blockquote>
+<ul>
+  <li>Opérateurs de comparaisons ( == / &gt; /&lt; par exemple)</li>
+  <li>Structures conditionnelles (if/elif/else par exemple)</li>
+  <li>Définition de fonction</li>
+  <li>Mot-clé return</li>
+  <li>Fonction print() pour tests (si besoin).</li>
+</ul>
+<h3><strong>Exercice 2 - Matrices</strong></h3>
+<blockquote>
+  <p>Nous avons vu dans le cours qu'une matrice peut être représentée par une <strong>liste de listes</strong>.<br>1. Remplir l’équivalent de la matrice ci-dessus en partant de <strong>M = []</strong> à l'aide de <strong>boucles</strong> et en utilisant la <strong>méthode</strong> <strong>append</strong>.<br>2. Définir une <strong>fonction</strong> <strong>col(mat, j)</strong> permettant de récupérer une colonne de la matrice. Par exemple col(M, 1) renverra [2, 6, 10].<br>3. Coder la <i>transposition</i> de la matrice: les lignes deviennent des colonnes et vice-versa.</p>
+</blockquote>
+<ul>
+  <li>Listes et les méthodes sur le type list (par exemple append())</li>
+  <li>Boucles (while / for par exemple)</li>
+  <li>Itérations</li>
+  <li>Outils de contrôle de flux (range() par exemple)</li>
+  <li>Mot-clé return.</li>
+  <li>Fonction print() pour tests et affichages.</li>
+</ul>
+<p>Astuce : Pour le 1., inspirez-vous du cours de Jym Feat - 3.2 (voir Ressources et liens utiles en bas de page) Pour le 3., pensez à réutiliser la fonction col() du 2.</p>
+<h3><strong>Exercice 3 - Fréquence de lettres</strong></h3>
+<blockquote>
+  <p>Soit un texte, on souhaite effectuer des statistiques en comptant le nombre d’occurrence de chaque lettre.<br>Pour cela, on peut utiliser un <strong>dictionnaire</strong>, avec les <i>caractères rencontrés</i> comme <strong>clés</strong> et le <i>nombre de fois où chaque caractère est rencontré</i> comme <strong>valeur</strong>.</p>
+</blockquote>
+<ul>
+  <li>Dictionnaires et les méthodes sur le type dict (par exemple get())</li>
+  <li>Boucles</li>
+  <li>Structures conditionnelles (si besoin)</li>
+  <li>Outils de contrôle de flux</li>
+  <li>Itérations</li>
+  <li>Fonction print() pour tests et affichages.</li>
+</ul>
+<p>Astuce : Une aide peut être trouvée dans le cours de Jym Feat - 4.2 (voir Ressources et liens utiles en bas de page) Une autre aide peut être trouvée dans le cours actuel de Josue Malka - Chapitre 6.2.1</p>
+<h2><strong>Devoir 2</strong></h2>
+<h3><strong>Exercice 1 - Sérialisation de liste</strong></h3>
+<blockquote>
+  <p>On souhaite enregistrer une liste de mots dans un fichier afin de pouvoir la réutiliser plus tard.<br><strong>Écriture</strong><br>Réaliser une <strong>fonction write_list_to_file(wordlst, filename)</strong> prenant comme <strong>paramètres</strong> une <i>liste de mots</i> <strong>wordlst</strong> et un <i>nom de fichier</i> <strong>filename</strong>. La fonction devra <i>stocker</i> les mots de la liste dans un fichier (<i>encodage UTF8</i>), <i>un mot par ligne</i>.<br><strong>Lecture</strong><br>Réaliser une <strong>fonction read_list_from_file(filename)</strong> permettant de <i>récupérer</i> la liste des mots originale <i>à partir du fichier</i> nommé <strong>filename</strong>.</p>
+</blockquote>
+<ul>
+  <li>Ouverture en écriture/lecture et méthodes sur le type file object (par exemple write())</li>
+  <li>Itérations</li>
+  <li>Définition de fonction</li>
+  <li>Listes et méthodes sur le type list (par exemple append())</li>
+  <li>Chaînes de caractère et méthodes sur le type string (par exemple string())</li>
+  <li>Mot-clé return</li>
+  <li>Fonction print() pour tests (si besoin).</li>
+</ul>
+<h3><strong>Exercice 2 - Conjugueur</strong></h3>
+<blockquote>
+  <p>Soit la <strong>liste</strong> <i>ps</i> des pronoms personnels sujets, et la <strong>liste</strong> <i>ip1</i> des terminaisons des verbes du 1er groupe à l'indicatif présent:<br><strong>Conjugue</strong><br>Définir <strong>conjugue(v, n)</strong> qui prend <i>une chaîne</i> telle que v (un verbe) et <i>un nombre n entre 1 et 6</i> (la personne), et qui génère la forme conjuguée correspondante; par exemple:<br><strong>Conjugaison</strong><br><i>A partir de l'exercice précédent</i>, coder la conjugaison de v, générant la <strong>liste</strong> des <i>6 formes</i> (par exemple:).</p>
+</blockquote>
+<ul>
+  <li>Définition de fonction</li>
+  <li>Listes et méthodes sur le type list (par exemple split())</li>
+  <li>Découpage de chaîne (voir le cours de Jym Feat - 3.2)</li>
+  <li>Boucles</li>
+  <li>Mot-clé return.</li>
+  <li>Fonction print() pour tests et affichages.</li>
+</ul>
+<h3><strong>Exercice 3 - Pluriel de mots</strong></h3>
+<blockquote>
+  <p>Coder une <strong>fonction pluriel(mot)</strong> pour former <i>correctement</i> le pluriel d'à peu près <i>n'importe quel nom ou adjectif</i>, <i>majuscule ou minuscule</i>.<br><br>Si vous ne vous souvenez pas vraiment des règles, vous pouvez consulter la page de votre choix sur internet, par exemple: <a href="https://leconjugueur.lefigaro.fr/fr_pluriel_nom.php">https://leconjugueur.lefigaro.fr/fr_pluriel_nom.php</a><br><br><strong>Script autonome</strong><br>Réaliser un <strong>script pluriel.py</strong>, capable de prendre <i>plusieurs mots</i> et <i>d'afficher</i> leur pluriel.</p>
+</blockquote>
+<p>Pour cet exercice, il est fortement conseillé d'aller voir le cours de Jym Feat - 3.1. En effet, on y trouve une explication sur la réalisation de cet exercice et, notamment, du découpage en fonction pour gérer facilement les exceptions.</p>
+<ul>
+  <li>Définition de fonction</li>
+  <li>Opérateurs de comparaisons ( == / &gt; /&lt; par exemple)</li>
+  <li>Structures conditionnelles (if/elif/else par exemple)</li>
+  <li>Découpage de chaîne (voir le cours de Jym Feat - 3.2)</li>
+  <li>Chaînes de caractère et méthodes sur le type string (par exemple upper())</li>
+  <li>Mot-clé return.</li>
+  <li>Création et utilisation d'un script (voir Chapitre 6.1 du cours de Josue Melka)</li>
+  <li>Boucles</li>
+</ul>
+<h2><strong>Devoir 3</strong></h2>
+<h3><strong>Partie 1 - Texte</strong></h3>
+<blockquote>
+  <p>Soit le code de départ suivant, tiré du cours:</p>
+</blockquote>
+<pre><code class="language-python">stoplist = []
+&nbsp;
+def pilote(fichier, idx):
+    with open(fichier, 'r', encoding='utf8') as fp:
+        # on itere sur le fichier ligne par ligne
+        for i, ligne in enumerate(fp):
+            indexe(idx, ligne.split(), i)
+&nbsp;
+def ajoute(idx, mot, ligne):
+    # si le mot ne se trouve pas encore dans l'index,
+    # initialise les occurences par une liste vide
+    if mot not in idx:
+        idx[mot] = []
+    # si la ligne n'a pas encore ete enregistree pour ce mot
+    if ligne not in idx[mot]:
+        # on ajoute le numero de ligne correspondant au mot
+        idx[mot].append(ligne)
+&nbsp;
+def indexe(idx, mots, ligne):
+    # on itere sur les mots
+    for mot in mots:
+        # met obligatoirement en minuscule
+        mot = mot.lower()
+        # nettoyage du mot, voir ci-apres
+        mot = nettoie(mot)
+        # on en profite pour verifier si on veut
+        # vraiment indexer ce mot
+        if mot and mot not in stoplist:
+            ajoute(idx, mot, ligne)
+&nbsp;
+def nettoie(mot):
+    return mot
+&nbsp;
+def prd(idx):
+    for mot in sorted(idx):
+        print('\t', mot, ':', idx[mot])
+&nbsp;
+index = {}
+pilote('../cigale_fourmi.txt', index)
+prd(index)</code></pre>
+<p>&nbsp;</p>
+<blockquote>
+  <p><strong>Stoplist</strong><br>Compléter la <strong>stoplist</strong> de façon à <i>ne garder que les mots potentiellement intéressants</i>. <i>Précisez votre méthodologie</i>.<br><strong>Nettoyage</strong><br>Compléter le code de la<strong>fonction nettoie</strong> afin de <i>ne pas tenir compte de la ponctuation au sein des mots</i>.<br>Attention, il peut y avoir plusieurs signes de ponctuation avant ou après le mot.<br><strong>Affichage</strong><br>La <strong>fonction prd</strong> est assez <i>basique</i> en l’état. <strong>Modifier cette fonction</strong> pour que la liste de lignes soit présentée sous la forme: <a href="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?media=programme:1-2_7">1-2_7</a> quand il y a 2 numéros consécutifs ou plus; par exemple, 1, 2, 3, 5, la liste est présentée sous la forme <a href="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?media=licence1:1-3_5">1-3_5</a>.<br>Pour ce faire, coder une <strong>fonction presente</strong> prenant une <i>liste d'entier</i> et <strong>retournant</strong> une <i>chaîne de caractères</i> au format voulu.</p>
+</blockquote>
+<p>Pour ce devoir plutôt long, il va falloir utiliser toutes les connaissances acquises jusqu'à présent. Une aide pourra vous être apportée par le cours de Jym Feat - 6.4 et celui de Josue Melka - Chapitre 6.2 Suivez les étapes, tout en vérifiant le fonctionnement de chaque fonction et tout devrait bien se passer.</p>
+<h3><strong>Partie 2 - Web</strong></h3>
+<blockquote>
+  <p>L'objet de cette partie est de <i>modifier et d'adapter</i> le code obtenu à la partie 1 pour le transformer en robot capable d'indexer des pages web.<br><strong>Extraction des liens</strong><br>A l'aide des <i>indications vues dans le cours</i>, écrire une <strong>fonction extraire_liens(page)</strong> retournant la <i>liste des liens HTTP</i> présents dans le contenu de la page. Pour rappel, la structure d'une balise contenant un lien est: <a href="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?media=licence1:a_href_http">a_href_http</a><br><strong>Nettoyage de la page</strong><br>On souhaite <i>nettoyer la page</i> des différentes balises HTML qui s'y trouvent (une balise commence par le caractère <a href="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?media=licence1">licence1</a> et termine par <a href="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?media=licence1">licence1</a>). Vous devez réaliser une <strong>fonction nettoie_page(page)</strong> dont le rôle est de <i>supprimer les balises HTML du contenu</i>.<br><strong>Adaptation du code</strong><br><strong>Adapter</strong> la <strong>fonction pilote</strong> vue ci-dessus pour prendre en charge des <strong>pages web</strong> au lieu de fichiers sur le disque. Pour cela, vous utiliserez <strong>requests</strong> afin d'ouvrir les URL passées en <i>argument</i> à la fonction.<br>Ne pas perdre de vue que <i>c'est désormais l'URL qui doit être indexée et non le numéro de ligne</i>. En revanche, <i>les fonctions indexe et ajoute</i> ne devraient pas subir de modification trop conséquente.<br>Enfin, <strong>intégrer</strong> le <i>nettoyage des pages avant l'indexage</i>.<br><strong>Finalisation du robot</strong><br><i>Une fois que le code fonctionne</i>, mettre en place l'extraction des liens d'une page et leur visite par le robot. Ainsi, à partir d'une page donnée, le robot doit être capable de suivre les hyperliens rencontrés et continuer l'indexation des nouvelles pages détectées.<br>Vous prendrez soin en particulier:<br>1. attention à bien <i>éviter les cycles dans la visite des pages</i>.<br>2. <i>limiter le nombre de pages web explorées</i> par le robot.<br>A présent, vous devriez avoir un robot virtuellement capable d'indexer le web!<br>N'oubliez pas de rendre votre script accompagné de quelques exemples.<br>Mettez le tout dans un script python dédié (sans oublier votre nom, prénom et numéro d’étudiant).</p>
+</blockquote>
+<p>Même choses que pour la Partie 1, suivez les étapes en vérifiant le fonctionnement de chacune des fonctions au fur et à mesure de leurs créations, modifications et intégrations dans le code final.</p>
+<h1><strong>Ressources et liens utiles</strong></h1>
+<ul>
+  <li><a href="/cours_2011_-_méthodologie_de_la_programmation.pdf">Cours de Python - Jym Feat - 2011 (utilisé jusqu'en 2018)</a> Attention: <strong>cours écrit en Python 2 !</strong> Le cours actuel est en Python 3 ! Pour être sûr de bien comprendre les différences : <a href="https://sebastianraschka.com/Articles/2014_python_2_3_key_diff.html">voir l'article "Key differences between Python 2.7 and Python 3</a></li>
+  <li>Si vous êtes perdu après la lecture de la section “encoding” dans le chapitre 3: <a href="http://sametmax.com/lencoding-en-python-une-bonne-fois-pour-toute/">voir cet l'article “l'encoding une bonne fois pour toute”</a></li>
+</ul>
