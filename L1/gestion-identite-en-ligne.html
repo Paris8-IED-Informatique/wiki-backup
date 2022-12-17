@@ -2,12 +2,61 @@
 title: Gestion d'identité en ligne
 description: 
 published: true
-date: 2022-06-02T15:20:42.071Z
+date: 2022-12-17T17:07:14.802Z
 tags: 
 editor: ckeditor
 dateCreated: 2022-05-28T20:40:54.148Z
 -->
 
-<p>2,5 pts par TP réussi et 2,5 pts par Bonus validé.</p>
-<p>&nbsp;</p>
+<p>Notation: 2,5 pts par TP réussi et 2,5 pts par Bonus validé.</p>
+<h1>Exercice 4.2</h1>
+<p>Il y a plusieurs erreurs dans le code. Le prof a confirmé qu'il allait publier une version corrigée, mais ce n'est pas encore le cas. En attendant, voici quelques explications et une correction possible (quick and dirty):</p>
+<ul>
+  <li>Le premier problème est au niveau des données elles-même. Pour faire l’analogie avec les bases de données relationnelles, la table people comporte trois colonnes : un identifiant unique (clef primaire), le nom de l’acteur-trice et (éventuellement) son année de naissance. La table movies comporte trois colonnes : un identifiant unique (clef primaire), le nom du film et son année de sortie. La table stars fait la jointure entre les deux autres tables, càd elle définit une relation n-n entre les acteurs-trices et les films (une actrice peut jouer dans plusieurs films, un film comportent plusieurs actrices). Or si on prend l’exemple de Marilyn Monroe qui se trouve bien dans la table people (id = 54), elle n’est pas présente dans la table stars. Sa filmographie est absente.</li>
+  <li>&nbsp;C’est là qu’intervient le deuxième problème : le programme n’est pas prévu pour ce type de figure. En effet, il suppose (shortest_path) que n’importe quel-le acteur-trice a au moins joué dans un film de la base de données.</li>
+  <li>Une correction possible est la suivante (le code peut encore être amélioré):</li>
+</ul>
+<pre><code class="language-python">def shortest_path(source, target):
+    """
+    Retourne la liste la plus courte des paires (movie_id, person_id) 
+    qui connecte la source à la cible (target)
+
+    Si ce n'est pas possible, retourne "none"
+    """
+    solution = list()
+
+    initial = Node(state=source, parent=None, action=None)
+    frontier = QueueFrontier()
+    frontier.add(initial)
+    explored = set()
+    i = 0
+    while True:
+
+        # Plus rien dans frontier, c'est qu'il n'y a pas de lien
+        if frontier.empty():
+            return None
+        
+        node = frontier.remove()
+        # print("\n\nNode in= ",node, ' i=', i)
+
+        if node.state == target:
+            while node.parent is not None:
+                pid, mid = node.state, node.action
+                solution.append((mid, pid))
+                node = node.parent
+            solution.reverse()
+            return solution
+
+        explored.add(node)
+        children = neighbors_for_person(node.state)
+        for child in children:
+            child_node = Node(state=child[1], action=child[0],parent=node)
+            frontier.add(child_node)
+            if child_node.state == target:
+                while child_node.parent is not None:
+                    pid, mid = child_node.state, child_node.action
+                    solution.append((mid, pid))
+                    child_node = child_node.parent
+                solution.reverse()
+                return solution</code></pre>
 <p>&nbsp;</p>
