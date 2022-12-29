@@ -1,0 +1,28 @@
+<!--
+title: Pratique des machines
+description: LexTeX
+published: true
+date: 2022-12-29T15:24:42.939Z
+tags: 
+editor: ckeditor
+dateCreated: 2022-05-28T19:05:26.501Z
+-->
+
+<p>Actuellement (mars 2022), il n'y a qu'un devoir à rendre. Il faut construire un LaTex en suivant précisément un modèle.</p>
+<h1><strong>Quelques pistes</strong></h1>
+<p>Eviter d'ajouter des packages inutiles. Certains packages ont tendance à modifier la typographie globale et vous aurez de mystérieux décalages.</p>
+<p>Faire simple. Il y a quelques pièges dans le document, mais pas tant que cela et ils sont très localisés.</p>
+<p>Utiliser pdflatex pour générer le PDF. D'autres moteurs LaTeX (comme XeLaTeX) introduisent des changements typographiques et cela introduit des décalages.</p>
+<p>Il est souvent nécessaire de compiler un document plusieurs fois (quand on a une table des matières par exemple). Dans d'autres cas (mais ce n'est pas dans l'exercice demandé), il faut même compiler encore plus. Un outil est assez pratique pour automatiser: LatexMk: <a href="https://mg.readthedocs.io/latexmk.html">https://mg.readthedocs.io/latexmk.html</a></p>
+<h1><strong>Comment superposer son devoir et le modèle</strong></h1>
+<p>Il est possible assez facilement de superposer le modèle avec son devoir dont les textes sont passés en rouge. La différence de couleur aide à bien repérer les différences avec le modèle. Dans la suite, on suppose que le devoir est dans un fichier <code>devoir.tex</code> et le modèle dans <code>devoirmodele.pdf</code>.</p>
+<p>Dans <code>devoir.tex</code>, juste avant <code>\begin{document}</code>, ajouter les lignes:</p>
+<pre><code class="language-plaintext">\makeatletter
+\newcommand{\globalcolor}[1]{%
+  \color{#1}\global\let\default@color\current@color
+}
+\makeatother
+\AtBeginDocument{\globalcolor{red}}</code></pre>
+<p>Pour générer un nouveau PDF (<code>merged.pdf</code>) avec le devoir et le modèle superposé (dans le terminal pas dans le devoir.tex) :</p>
+<pre><code class="language-plaintext">pdftk devoirmodele.pdf multibackground devoir.pdf output merged.pdf</code></pre>
+<p>A noter que vous aurez peut-être besoin d'installer <code>pdftk</code> ou <code>pdftk-java</code> (je conseille ce dernier). Plus d'information pour les utilisateurs d'Ubuntu: <a href="https://doc.ubuntu-fr.org/pdftk">https://doc.ubuntu-fr.org/pdftk</a>. pdftk-java existe aussi pour macOS (<code>brew install pdftk-java</code>).</p>
