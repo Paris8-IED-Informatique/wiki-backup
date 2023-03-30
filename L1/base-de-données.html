@@ -2,7 +2,7 @@
 title: Base de données
 description: Thérorie, SQL, Oracle et Postgres
 published: true
-date: 2022-05-29T14:57:10.849Z
+date: 2023-03-30T09:05:18.244Z
 tags: 
 editor: ckeditor
 dateCreated: 2022-05-28T19:22:48.184Z
@@ -42,6 +42,54 @@ dateCreated: 2022-05-28T19:22:48.184Z
   <li>Le langage SQL : les fonctions, imbrications , opérateurs … <a href="http://www.lsis.org/espinasseb/Supports/BD/LangageSQL-4p.pdf">http://www.lsis.org/espinasseb/Supports/BD/LangageSQL-4p.pdf</a></li>
   <li>un exemple d'algèbre fonctionnel avec la fonction COUNT : <a href="http://ressources.unisciel.fr/sillages/informatique/bdd/ch04_sql/co/14_agregats.html">http://ressources.unisciel.fr/sillages/informatique/bdd/ch04_sql/co/14_agregats.html</a></li>
 </ul>
+<h2>RelaX</h2>
+<p>Pour l'ensemble du TD n°2, les requêtes sont à faire avec l'outil RelaX : <a href="http://clotho.uom.gr/relax/calc.htm">http://clotho.uom.gr/relax/calc.htm</a></p>
+<p><u>Pour les exercices 1, 4 et 5</u>, il est possible d'importer directement les tables de données.<br>Pour ça, aller sur l'outil de sélection de dataset (cliquer sur «UIBK - R, S, T»), puis dans «Load dataset stored in a gist» rentrer l'ID qui vous intéresse parmi les suivants :</p>
+<ul>
+  <li>Exercice 1 : 337100f14d244444e770314c4e6d3109</li>
+  <li>Exercice 4 : 5dae8c0b44fa768f8856a2ec0006b760</li>
+  <li>Exercice 5 : ffc91ead4144fdff8570d64ca5f8b4e7</li>
+</ul>
+<p><u>Pour les exercices 2 et 3</u>, il faut remplir soi-même les tables avec des exemples de tuples.<br>Pour cela, toujours dans l'onglet dataset, aller dans la partie «Create your own Dataset», puis cliquer sur «create new dataset».&nbsp;</p>
+<p>Copier coller par exemple l'un des modèles suivant :&nbsp;</p>
+<pre><code class="language-plaintext">group: Base de donnée TD 2 - Algèbre relationnelle
+description: Exercice 2
+
+Enseignant = {
+	Numen:number, NS:string    , PS:string  , Grade:string        
+}
+
+Etudiant = {
+	NumEtud:number, NE:string , EP:string , NiveauEtud:string    
+}
+
+UE = {
+	CodeUE:string, Nom:string , NiveauUE:string, NumEtud:number, Numen:number    
+}</code></pre>
+<p>&nbsp;</p>
+<pre><code class="language-plaintext">group: Base de donnée TD 2 - Algèbre relationnelle
+description: Exercice 3
+
+MEDICAMENT = {
+	code:number, libelle:string    
+}
+
+PATIENT = {
+	matricule:number, nom:string
+}
+
+MEDECIN = {
+	numss:number, nom:string  
+}
+
+PRESCRIT = {
+	codeMed:number, numConsult:number, nbPrises:number           
+}
+
+CONSULTATION = {
+	num:number, numss:number, matricule:number, date:date 
+}</code></pre>
+<p>Pour remplir les tables, il suffit ensuite de cliquer sur le symbole de tableau à gauche de la ligne du nom d'une relation. Insérer les données, puis valider. Quand toutes les tables sont prêtes, cliquer sur «preview» pour vérifier, puis au bas de la page «use Group in editor», pour pouvoir effectuer les requêtes dessus.</p>
 <h1><strong>Chapitre 3</strong></h1>
 <p>Le TD demande d'utiliser Postgres 9.4. Or cette version est obsolète et plus supportée. Vous avez donc trois possibilités:</p>
 <ol>
@@ -81,10 +129,12 @@ Salaire DECIMAL(6,2), NoDEPT DECIMAL(3),
 CONSTRAINT emp_clé_prim PRIMARY KEY (NoEmp), 
 CONSTRAINT emp_clé_etr FOREIGN KEY (NoDEPT) REFERENCES DEPT(NoDept),
 CONSTRAINT Salaire_OK CHECK (Salaire&gt;0));</code></pre>
+<p>&nbsp;</p>
 <ul>
   <li>Page 27, paragraphe 3,6, pour modifier le type d'une colonne, il faut utiliser <code>COLUMN</code>, <code>ALTER</code> et <code>TYPE</code>:</li>
 </ul>
 <pre><code class="language-plaintext">ALTER TABLE Nom_de_la_table ALTER COLUMN Nom_de_la_colonne TYPE Type_de_donnees;</code></pre>
+<p>&nbsp;</p>
 <ul>
   <li>Le TD n'est pas complètement mis à jour pour Postgres et indiquent certaines choses spécifiques à Oracle. Il faut juste transposer:<ul>
       <li><code>number</code> devient <code>decimal</code> ou <code>numeric</code> (c'est équivalent)</li>
@@ -144,6 +194,7 @@ elsif conditions then
 else
   alternative-statements;
 end if;</code></pre>
+<p>&nbsp;</p>
 <ul>
   <li>GOTO n'existe pas et il n'y a pas d'équivalent (goto, dans tous les langages est considéré comme une mauvaise pratique de toute façon).</li>
   <li>Pour ouvrir un script sql :</li>
@@ -192,6 +243,7 @@ loop
     exit when not found;
 end loop;
 close curseur;</code></pre>
+<p>&nbsp;</p>
 <ul>
   <li>La syntaxe pour les triggers est la suivante:</li>
 </ul>
