@@ -2,7 +2,7 @@
 title: Interprétation et compilation
 description: 
 published: true
-date: 2023-04-26T14:49:13.297Z
+date: 2023-04-26T14:56:25.435Z
 tags: 
 editor: ckeditor
 dateCreated: 2022-06-07T11:35:40.492Z
@@ -22,7 +22,7 @@ dateCreated: 2022-06-07T11:35:40.492Z
 <pre><code class="language-plaintext">char const **</code></pre>
 <p>sont strictement équivalents. Ce dernier ne veut pas dire «le pointeur sur les caractères n’est pas modifié mais [...] les caractères, eux, peuvent l’être». La déclaration correcte pour ce cas est:</p>
 <pre><code class="language-plaintext">char * const *</code></pre>
-<p>Pour référence, \href{https://www.open-std.org/jtc1/sc22/wg14/www/docs/n2310.pdf}{le standard ISO/IEC 9899:2018 (C18)} \cite{14:00-17:00ISOIEC9899} donne l'exemple suivant (§ 6.7.6.1.3):</p>
+<p>Pour référence, <a href="https://www.open-std.org/jtc1/sc22/wg14/www/docs/n2310.pdf">le standard ISO/IEC 9899:2018 (C18)</a> donne l'exemple suivant (§ 6.7.6.1.3):</p>
 <figure class="image"><img src="/std.png">
   <figcaption>Exemple tiré du standard C18</figcaption>
 </figure>
@@ -69,5 +69,5 @@ int foo (const int n) {
  pstr = ...;
  ...</code></pre>
 <p>}</p>
-<p>Le site <a href="https://isocpp.org/">https://isocpp.org</a> dédié au C++ standard (<code>const</code> provient du C++ et a été adopté par le C) a une page (FAQ) consacrée à l'utilisation de <code>const</code>. Le site GeeksForGeeks présente un diagramme assez parlant:</p>
+<p>Le site <a href="https://isocpp.org/">https://isocpp.org</a> dédié au C++ standard (<code>const</code> provient du C++ et a été adopté par le C) a <a href="https://isocpp.org/wiki/faq/const-correctness#%20const-ptr-vs-ptr-const">une page (FAQ)</a> consacrée à l'utilisation de <code>const</code>. Le site <a href="https://www.geeksforgeeks.org/difference-between-const-int-const-int-const-and-int-const/">GeeksForGeeks</a> présente un diagramme assez parlant:</p>
 <figure class="image"><img src="/g4g.png"></figure>
