@@ -2,7 +2,7 @@
 title: Programmation fonctionnelle
 description: Common LISP
 published: true
-date: 2022-06-16T09:50:08.771Z
+date: 2023-07-26T14:23:43.516Z
 tags: 
 editor: ckeditor
 dateCreated: 2022-05-28T19:00:44.905Z
@@ -22,7 +22,7 @@ rm -rf ~/.dia || true
 sudo apt install -y dia
 tar -xf /tmp/dia.tar.gz -C ~
 rm /tmp/dia.tar.gz</code></pre>
-<p>Si vous utilisez <strong>macOS</strong> plutôt que Linux, vous n'avez peut-être pas la commande <code>wget</code>. Dans ce cas, il faut remplacer par la commande <code>curl</code>(attention, l'option de la commande est avec un <code>o</code> minuscule pour <code>curl</code>, majuscule pour <code>wget</code>):</p>
+<p>Si vous utilisez <strong>macOS</strong> plutôt que Linux, vosimpleus n'avez peut-être pas la commande <code>wget</code>. Dans ce cas, il faut remplacer par la commande <code>curl</code>(attention, l'option de la commande est avec un <code>o</code> minuscule pour <code>curl</code>, majuscule pour <code>wget</code>):</p>
 <pre><code class="language-plaintext">curl https://wiki.paris8-ied.net/dia.tar.gz -o /tmp/dia.tar.gz
 rm -rf ~/.dia || true
 sudo apt install -y dia
@@ -39,7 +39,7 @@ rm /tmp/dia.tar.gz</code></pre>
 <h2><strong>1. Installer CLisp (Common Lisp)</strong></h2>
 <p>- Soit depuis un Terminal:</p>
 <pre><code class="language-plaintext">sudo apt install clisp</code></pre>
-<p>- Soit depuis un gestionnaire de paquets genre Synaptic: chercher <code>clisp</code> et suivre les indications. Vous n'avez besoin que de clisp, rien d'autre.</p>
+<p>- Soit depuis un gestionnaire de paquets genre Synaptic: chercher <code>clisp</code> et suivre les indications. Vous n'avez besoin que de clisp, rien d'autre.simple</p>
 <p>- Assurez-vous que CLISP est bien installé en tapant dans un Terminal la commande:</p>
 <pre><code class="language-plaintext">clisp</code></pre>
 <p>Vous devez obtenir:</p>
@@ -88,6 +88,7 @@ EOF</code></pre>
 (a b c) ⇒ correct 
 (a(b c)d) ⇒ faux 
 (a (b c) d) ⇒ correct</code></pre>
+<p>&nbsp;</p>
 <ul>
   <li>Le premier élément d'une liste sans quote est une fonction, si tout le bloc ne tient pas sur une liste il faut le découper : on dit qu'il faut l'indenter.</li>
   <li>Le premier élément (le nom de la fonction) doit être seul sur une ligne.</li>
@@ -97,6 +98,7 @@ EOF</code></pre>
 <pre><code class="language-plaintext">(cons
   (car liste)
   (cdr liste) )</code></pre>
+<p>&nbsp;</p>
 <ul>
   <li>Si un argument est lui même une fonction avec plusieurs arguments (et que ça ne tient pas sur une ligne de 80 colonnes) : il faut l'indenter également. (L'exemple suivant aurait pu tenir sur une ligne mais c'est pour vous faire une démonstration de l'indentation).</li>
 </ul>
@@ -105,12 +107,14 @@ EOF</code></pre>
   (cons
     (car liste2)
     (cdr liste2) ) )</code></pre>
+<p>&nbsp;</p>
 <ul>
   <li>Les arguments sont alors décalés par rapport à la fonction à laquelle ils appartiennent. Ainsi, on peut du premier coup d'oeil détecter quels arguments appartiennent à quelle fonction.</li>
   <li>La définition d'une fonction est une exception, on laisse le nom et les arguments que la fonction va prendre (c'est à dire les 2 premiers arguments) sur la première ligne.</li>
 </ul>
 <pre><code class="language-plaintext">(defun fonction (arg1 arg2)
   ( ... ) )</code></pre>
+<p>&nbsp;</p>
 <ul>
   <li>Si une liste trop longue pour une ligne commence par un élément étant lui-même une liste trop grande pour une ligne, on écrit le premier élément de cette liste et la suite avec une indentation double :</li>
 </ul>
@@ -144,7 +148,7 @@ EOF</code></pre>
 <figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=bb7bea&amp;media=licence1:pretty-print-01.png" alt=""></figure>
 <p>Cela peut sembler juste, mais avec les couleurs, on voit tout de suite que quelque chose ne va pas:</p>
 <figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=869234&amp;media=licence1:pretty-print-01-error.png" alt=""></figure>
-<p>On a des couleurs différentes pour deux arguments du cons au dessus. Cela veut dire que ce ne sont en fait pas tout les deux des arguments de ce cons. On corrige cette erreur:</p>
+<p>On a des couleurs différentes pour deux arguments du cons au dessus. Cela veut dire que ce ne sont en fait pas tous les deux des arguments de ce cons. On corrige cette erreur:</p>
 <figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=4b2a14&amp;media=licence1:pretty-print-02.png" alt=""></figure>
 <p>Et on continue en corrigeant les autres erreurs. Vers la fin, on se retrouve facilement dans ce type de situation:</p>
 <figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=bf71e2&amp;media=licence1:pretty-print-03.png" alt=""></figure>
