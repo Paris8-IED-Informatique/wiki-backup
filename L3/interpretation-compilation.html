@@ -2,7 +2,7 @@
 title: Interprétation et compilation
 description: 
 published: true
-date: 2023-10-22T11:41:51.912Z
+date: 2023-10-22T13:03:12.854Z
 tags: 
 editor: ckeditor
 dateCreated: 2022-06-07T11:35:40.492Z
@@ -66,6 +66,7 @@ void yyerror(char *);
 int label();
 void nomem();
 %}</code></pre>
+<p>&nbsp;</p>
 <ul>
   <li>Toujours dans le même fichier, on indique explicitement le type de retour des fonctions label et nomem:</li>
 </ul>
@@ -75,14 +76,23 @@ int label(){ // On ajoute explicitement le type de la valeur de retour
   return foo++;
 }
 
-...
+void yyerror(char * message){ // On ajoute explicitement le type de la valeur de retour
+  extern int lineno;
+  extern char * yytext;
+
+  fprintf(stderr, "%d: %s at %s\n", lineno, message, yytext);
+}
 
 void nomem(){ // On ajoute explicitement le type de la valeur de retour
   fprintf(stderr, "Pas assez de memoire\n");
   exit(1);
 }</code></pre>
 <ul>
-  <li>On fait de même dans le fichier ppcm.l pour la fonction yywrap:</li>
+  <li>&nbsp;Dans le fichier ppcm.l, la fonction chaine est mal déclarée. Cela doit etre:</li>
+</ul>
+<pre><code class="language-plaintext">  char * chaine(char * s);</code></pre>
+<ul>
+  <li>On corrige aussi la fonction yywrap:</li>
 </ul>
 <pre><code class="language-plaintext">int yywrap(){ return 1; }</code></pre>
 <h1>Chapitre 8</h1>
