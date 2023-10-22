@@ -2,7 +2,7 @@
 title: Interprétation et compilation
 description: 
 published: true
-date: 2023-10-22T13:03:12.854Z
+date: 2023-10-22T13:07:43.216Z
 tags: 
 editor: ckeditor
 dateCreated: 2022-06-07T11:35:40.492Z
@@ -17,7 +17,11 @@ dateCreated: 2022-06-07T11:35:40.492Z
 <h2>Exercice 5.2</h2>
 <p>Il y a une erreur dans l’énoncé. Il est question du fichier <code>ed-3-calc.y</code>, pas du fichier <code>1-calc.y</code>.</p>
 <h1>Chapitre 7</h1>
-<p>Lorsque l’on compile le programme ppcm, on a un certain nombre d’alertes :</p>
+<p>Lorsque l’on veut compiler le programme ppcm, on a un certain nombre de problème:</p>
+<ul>
+  <li>Le Makefile a été renommé ainsi que les autres fichiers et il y a une inchoérence entre ces noms de fichiers et ce que le Makefile attend. Le plus simple est de renommer tous les fichiers et d'enlever le <code>ppcm-</code> devant les noms.&nbsp;</li>
+  <li>Ensuite, lorsque l'on veut compiler, on a un certain nombre d'erreurs et de warning:</li>
+</ul>
 <pre><code class="language-plaintext">$ make a.out
 bison ppcm.y
 ppcm.y: warning: 1 shift/reduce conflict [-Wconflicts-sr]
@@ -66,7 +70,6 @@ void yyerror(char *);
 int label();
 void nomem();
 %}</code></pre>
-<p>&nbsp;</p>
 <ul>
   <li>Toujours dans le même fichier, on indique explicitement le type de retour des fonctions label et nomem:</li>
 </ul>
@@ -95,6 +98,8 @@ void nomem(){ // On ajoute explicitement le type de la valeur de retour
   <li>On corrige aussi la fonction yywrap:</li>
 </ul>
 <pre><code class="language-plaintext">int yywrap(){ return 1; }</code></pre>
+<p>Voici une archive avec tous ces problèmes corrigés:</p>
+<p><a href="/chapitre7-ppcm.tgz">chapitre7-ppcm.tgz</a></p>
 <h1>Chapitre 8</h1>
 <p>Il y a un certain nombre d'erreurs (cela a été confirmé par le professeur) dans le paragraphe 8.4.1 de ce chapitre, à propos de l'utilisation de <code>const</code>. Les exemples à partir de «Un Autre Exemple» sont incorrectes et je suppose que cela remonte au prédécesseur xdi professeur actuel. Le cours sera modifié dans un futur plus ou moins proche.</p>
 <p>En effet:</p>
