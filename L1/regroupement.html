@@ -2,7 +2,7 @@
 title: Le regroupement
 description: 
 published: true
-date: 2023-12-27T16:39:27.024Z
+date: 2023-12-28T11:39:12.777Z
 tags: 
 editor: ckeditor
 dateCreated: 2023-08-26T12:23:44.464Z
@@ -19,5 +19,241 @@ dateCreated: 2023-08-26T12:23:44.464Z
 <p>Chaque prof décide si vous êtes convocable ou non, suivant votre avancement dans son cours. Il faut être convocable à tous les cours pour être convoqués. Vous devez venir avec votre propre ordinateur. N'oubliez pas un adaptateur secteur si vous venez de l'étranger. Vous aurez accès à vos notes, à Internet, etc.</p>
 <p>Il y a en général deux regroupements par an, un en juin ou juillet et un en septembre.</p>
 <p>Chaque matière est évaluée séparement. Si vous échouez sur une matière, vous n'aurez à repasser que cette matière lors d'un prochain regroupement, pas toutes les matières. Lorsque vous aurez réussi toutes les matières, ce cours (EC) sera validé et vous aurez la note de 10 (les “vraies" notes ne sont pas communiquées). Cette note ne compte pas dans la moyenne de l'année. En d'autres termes, c'est une étape obligatoire mais qui ne compte pas. Vous ne pouvez pas valider la L1 ni obtenir des compensations sans cet EC.</p>
-<p>Vous trouverez certains des exercices des années passées avec <a href="https://github.com/Paris8-IED-Informatique/IED-L1-Regroupement">des corrections sur GitHub</a>.</p>
+<p>Vous trouverez certains des exercices des années passées avec <a href="https://github.com/faasoa/IED-L1-Regroupement">des corrections sur GitHub</a>.</p>
+<h1>Corrigé détaillé pour Programmation fonctionnelle</h1>
+<p>Les épreuves de programmation fonctionnelles sont très souvent sur le même modèle:</p>
+<ul>
+  <li>Une première partie qui demande de partir de deux listes plates pour arriver à une seule liste qui est un mélange des deux. La construction se fait par récurrence.</li>
+  <li>Une deuxièmes partie qui demande de modifier une liste plutôt que de construire une nouvelle liste</li>
+</ul>
+<p>A titre d'exemple, prenons l'épreuve de Juin 2023. Elle débute ainsi:</p>
+<blockquote>
+  <p><strong>Epreuve 1</strong></p>
+  <p>Soient deux listes plates, la première étant une liste plate de places boursières, la seconde une liste contenant des matières premières, construire récursivement une liste comme suit (chaque bourse a toutes les matières) :</p>
+  <p>liste_bourses : (bourse1 bourse2... bourseN)<br>liste_matières : (matière1 matière2... matièreN)<br>=&gt; ((bourse1 (matière1) (matière2) ... (matièreN)) ... (bourse2 (matière1) (matière2)... (matièreN)))</p>
+  <p>On appellera cette liste : Cours-bourses. Cette partie de l'exercice est très simple pour ceux qui ont révisé, ce qui fait que c'est la suite qui compte vraiment.</p>
+</blockquote>
+<p>On va découper ce problème en deux étapes:</p>
+<ul>
+  <li>On construit d'abord la liste (de listes) <code>((matière1) (matière2) … (matièreN)</code>à partir de la liste <code>(matière1 matière2... matièreN),</code></li>
+  <li>Puis on construira la liste demandée en faisant précéder la liste des matières du nom d'une place boursière.</li>
+</ul>
+<p>Pour la première étape, on part de cette liste:</p>
+<figure class="image"><img src="/liste1.png"></figure>
+<p>Et on veut arriver avec cette liste:</p>
+<figure class="image"><img src="/liste2.png"></figure>
+<p>On procède par récurrence:</p>
+<ul>
+  <li>Si la liste en argument est vide (nil), on retourne nil</li>
+  <li>Sinon, on construit une liste avec comme unique élément la matière courante et on retourne une liste contenant cette liste et la suite</li>
+</ul>
+<p>Il y a plusieurs manières de faire, mais un code possible est le suivant:</p>
+<pre><code class="language-plaintext">(defun construit-matières (matières)
+  (cond
+    ((atom matières) nil)
+    (t 
+      (cons 
+        (cons (car matières) nil) 
+        (construit-matières (cdr matières)) ) ) ) )</code></pre>
+<p><i>Note: Pendant l'épreuve, vous préoccupez pas trop du pretty-print, vous ne serez pas noté là dessus.</i></p>
+<p>On peut passer à l'étape suivante et construire la liste demandée. On part de cette liste:</p>
+<figure class="image"><img src="/liste3.png"></figure>
+<p>Et on veut arriver à cette liste:</p>
+<figure class="image"><img src="/liste4.png"></figure>
+<p>La partie entourée en rouge est ce que nous avons obtenu précédemment avec notre fonction <code>construit-matières</code>. Un code possible est le suivant, très similaire à la fonction précédente:</p>
+<pre><code class="language-plaintext">(defun construit-cours-bourse (bourses matières)
+  (cond
+    ((atom bourses) nil)
+    (t 
+      (cons 
+        (cons 
+          (car bourses) 
+          (construit-matières matières) ) 
+        (construit-cours-bourse (cdr bourses) matières) ) ) ) )</code></pre>
+<p>&nbsp;On peut tester cette fonction et construire la liste `Cours-bourses` demandée:</p>
+<pre><code class="language-plaintext">(setq liste_bourses '(Frankfort Paris Londres Bejing))
+(setq liste_matières '(blé soja café))
+(setq Cours-bourses (construit-cours-bourse liste_bourses liste_matières))
+;&nbsp;=&gt; ((Frankfort (blé) (soja) (café)) (Paris (blé) (soja) (café)) (Londres (blé) (soja) (café)) (Bejing (blé) (soja) (café)))</code></pre>
+<p>L'énoncé se poursuit ainsi:</p>
+<blockquote>
+  <p>Écrire une fonction avec comme argument Cours-bourses qui interroge l'utilisateur (avec un (read)) pour obtenir le prix de chaque matière dans chaque place boursière et qui construit la liste suivante :</p>
+  <p>=&gt; ((bourse1 (matière1 . prix) (matière2 . prix)... ) etc.</p>
+  <p>La fonction parcourt toutes les places boursières et toutes les matières, et, pour chaque couple place boursière – matière première, pose la question :</p>
+  <p>"Quel est le prix de &lt;blé par exemple&gt; à &lt;Frankfort par exemple&gt; ? (écrivez un nombre)"<br>Puis effectue un read de la réponse, vérifie que c'est bien un nombre, et insère (matière1 . prix) dans la nouvelle liste.</p>
+  <p>Astuce : pour poser la question, il faut utiliser la fonction (print &lt;message&gt;) ; vous pouvez imprimer avec cinq fois la fonction print (pour "Quel est le prix de", puis pour &lt;matière première en cours&gt;, puis pour "à", puis pour &lt;place boursière en cours&gt;, puis pour " ? (écrivez un nombre)"), ou alors construire la chaîne avec string-concat et l'imprimer avec un seul print. Faites un (terpri) à la fin pour aller à la ligne. Pour récupérer la réponse, il suffit de la fonction (read).</p>
+  <p>Conseil : écrivez une sous-fonction juste pour imprimer la question et récupérer la réponse.</p>
+</blockquote>
+<p>Comme conseillé, on crée une fonction pour imprimer la question et récupérer la réponse:</p>
+<ul>
+  <li>On imprime la question</li>
+  <li>On récupère le prix</li>
+  <li>On vérifie que c'est bien un nombre<ul>
+      <li>Si c'est bien le cas, on le retourne</li>
+      <li>Si ce n'est pas le cas, on affiche un message et on rappelle la fonction</li>
+    </ul>
+  </li>
+</ul>
+<p><i>Note: On pourrait aussi vérifier que le nombre est bien strictement positif mais on suppose qu'un cours négatif est possible.</i></p>
+<p>Cela peut donner le code suivant:</p>
+<pre><code class="language-plaintext">(defun demande-un-cours (matière bourse &amp;aux prix)
+  (print (string-concat "Quel est le prix de/du " (string matière) " à la bourse de " (string bourse) " ? (écrivez un nombre)"))
+  (setq prix (read))
+  (cond
+    ((numberp prix) prix)
+    (t
+      (print "Ce n'est pas un nombre") 
+      (demande-un-cours matière bourse)) ) )</code></pre>
+<p>On peut ensuite créer une sous-fonction dont le but est de demander les prix des matières pour une bourse donnée en argument. Là encore, on procède par récurrence pour parcourir la liste des matières et construire la liste. Les deux difficultés sont de:</p>
+<ul>
+  <li>Récupérer les bons éléments de la liste donnée en argument avec les fonctions <code>car</code>, <code>cdr</code> ou leurs dérivés comme <code>caar</code>.</li>
+  <li>De construire correctement la liste avec la bonne hiérarchie</li>
+</ul>
+<p>Ici, on va choisir de passer en argument la liste de liste des matières (construite plus haut) et on veut récupérer le symbole de la matière courante (en tête de liste).</p>
+<figure class="image"><img src="/liste5.png"></figure>
+<p>Pour récupérer ce symbole (blé), on effectue donc deux opérations <code>car</code> ce qui donne <code>caar</code>. Pour avancer dans la liste, on effectue une opération <code>cdr</code>. On construit une liste suivant le structure que l'on souhaite obtenir au final, c'est à dire la la forme <code>((matière . prix) …)</code>:</p>
+<figure class="image"><img src="/liste6.png"></figure>
+<p>Cela donne le code suivant:</p>
+<pre><code class="language-plaintext">(defun demande-les-cours (bourse matières)
+  (cond
+    ((atom matières) nil)
+    (t 
+      (cons 
+        (cons 
+          (caar matières) 
+          (demande-un-cours (caar matières) bourse) )
+        (demande-les-cours bourse (cdr matières)) ) ) ) )</code></pre>
+<p>Il ne reste qu'à parcourir la liste des bourses avec une dernière fonction, toujours sur le même modèle, pour construire notre liste finale à partir d'une liste avec le format de <code>Cours-bourses</code>:</p>
+<pre><code class="language-plaintext">(defun demande-tous-les-cours (cours-bourses)
+  (cond
+    ((atom cours-bourses) nil)
+    (t 
+      (cons 
+        (cons 
+          (caar cours-bourses) 
+          (demande-les-cours (caar cours-bourses) (cdar cours-bourses)) )
+        (demande-tous-les-cours (cdr cours-bourses)) ) ) ) )</code></pre>
+<p>On vérifie le bon fonctionnement de nos fonctions. D'abord de <code>demande-un-cours</code>:</p>
+<pre><code class="language-plaintext">(demande-un-cours 'blé 'Frankfurt)
+;&nbsp;=&gt;&nbsp;"Quel est le prix de/du blé à la bourse de Frankfurt ? (écrivez un nombre)" 2.4
+;&nbsp;=&gt;&nbsp;2.4</code></pre>
+<p>Puis de <code>demande-les-cours</code>:</p>
+<pre><code class="language-plaintext">(demande-les-cours 'Frankfurt '((blé) (soja) (café) (maïs)))
+
+"Quel est le prix de/du blé à la bourse de Frankfurt ? (écrivez un nombre)" 1.1
+
+"Quel est le prix de/du soja à la bourse de Frankfurt ? (écrivez un nombre)" 1.2
+
+"Quel est le prix de/du café à la bourse de Frankfurt ? (écrivez un nombre)" 1.3
+
+"Quel est le prix de/du maïs à la bourse de Frankfurt ? (écrivez un nombre)" 1.4
+((blé . 1.1) (soja . 1.2) (café . 1.3) (maïs . 1.4))</code></pre>
+<p>Et enfin de <code>demande-tous-les-cours</code> avec comme argument <code>Cours-bourses</code>:</p>
+<pre><code class="language-plaintext">(setq liste_bourses '(Frankfort Paris Londres Bejing))
+(setq liste_matières '(blé soja café))
+(setq Cours-bourses (construit-cours-bourse liste_bourses liste_matières))
+;&nbsp;=&gt; ((Frankfort (blé) (soja) (café)) (Paris (blé) (soja) (café)) (Londres (blé) (soja) (café)) (Bejing (blé) (soja) (café)))
+
+(demande-tous-les-cours Cours-bourses)
+;&nbsp;=&gt; "Quel est le prix de/du blé à la bourse de Frankfort ? (écrivez un nombre)" 1.2
+;&nbsp;=&gt; 
+;&nbsp;=&gt; "Quel est le prix de/du soja à la bourse de Frankfort ? (écrivez un nombre)" 2.3
+;&nbsp;=&gt; 
+;&nbsp;=&gt; "Quel est le prix de/du café à la bourse de Frankfort ? (écrivez un nombre)" 3.4
+; =&gt;
+;&nbsp;=&gt;&nbsp;"Quel est le prix de/du blé à la bourse de Paris ? (écrivez un nombre)" 4.5
+;&nbsp;=&gt;&nbsp;
+;&nbsp;=&gt;&nbsp;"Quel est le prix de/du soja à la bourse de Paris ? (écrivez un nombre)" 5.6
+;&nbsp;=&gt;&nbsp;
+;&nbsp;=&gt;&nbsp;"Quel est le prix de/du café à la bourse de Paris ? (écrivez un nombre)" 6.7
+;&nbsp;=&gt;&nbsp;
+;&nbsp;=&gt;&nbsp;"Quel est le prix de/du blé à la bourse de Londres ? (écrivez un nombre)" 7.8
+;&nbsp;=&gt;&nbsp;
+;&nbsp;=&gt;&nbsp;"Quel est le prix de/du soja à la bourse de Londres ? (écrivez un nombre)" 8.9
+;&nbsp;=&gt;&nbsp;
+;&nbsp;=&gt;&nbsp;"Quel est le prix de/du café à la bourse de Londres ? (écrivez un nombre)" 9.0
+;&nbsp;=&gt;&nbsp;
+;&nbsp;=&gt;&nbsp;"Quel est le prix de/du blé à la bourse de Bejing ? (écrivez un nombre)" 1.1
+;&nbsp;=&gt;&nbsp;
+;&nbsp;=&gt;&nbsp;"Quel est le prix de/du soja à la bourse de Bejing ? (écrivez un nombre)" 1.2
+;&nbsp;=&gt;&nbsp;
+;&nbsp;=&gt;&nbsp;"Quel est le prix de/du café à la bourse de Bejing ? (écrivez un nombre)" 1.3
+;&nbsp;=&gt;&nbsp;((Frankfort (blé . 1.2) (soja . 2.3) (café . 3.4)) (Paris (blé . 4.5) (soja . 5.6) (café . 6.7)) (Londres (blé . 7.8) (soja . 8.9) (café . 9.0)) (Bejing (blé . 1.1) (soja . 1.2) (café . 1.3)))</code></pre>
+<blockquote>
+  <p><strong>Epreuve 2</strong></p>
+  <p>Écrire une variante de la fonction finale de l'épreuve 1, qui modifie Cours-bourses au lieu de construire une nouvelle liste.</p>
+</blockquote>
+<p>Dans la partie précédente, on a construit à chaque fois de nouvelles listes (avec <code>cons</code>). Dans cette partie, on nous demande de ne pas construire de nouvelles listes mais de modifier la liste existante. En d'autres termes, on part de cette liste (<code>Cours-bourses</code>):</p>
+<figure class="image"><img src="/liste7.png"></figure>
+<p>Et on veut la modifier pour arriver à cette liste:</p>
+<figure class="image"><img src="/liste8.png"></figure>
+<p>Ce que l'on veut, c'est donc modifier le <code>cdr</code> du doublet dont le <code>car</code> contient le symbole de la matière. Cela se fait avec la fonction <code>rplacd</code> (remplacer le cdr). On va donc réécrire nos fonctions pour modifier la liste. La fonction demande-un-cours ne change pas car elle retourne simplement un prix. Pour rappel, la fonction demande-les-cours part de cette liste:</p>
+<figure class="image"><img src="/liste5.png"></figure>
+<p>et doit la modifier pour arriver à cette liste:</p>
+<figure class="image"><img src="/liste6.png"></figure>
+<p>En partant du début de la liste, on doit donc modifier le cdr du doublet donné par le car de la liste. La valeur à mettre est donnée par la fonction demande-un-cours comme dans la version précédente. Cela donne le code suivant:</p>
+<pre><code class="language-plaintext">(defun demande-les-cours (bourse matières)
+  (cond
+    ((atom matières) nil)
+    (t
+      (rplacd 
+        (car matières) 
+        (demande-un-cours (caar matières) bourse) )
+      (demande-les-cours bourse (cdr matières)) ) ) )</code></pre>
+<p>A noter que cette fonction est toujours récursive. Dans la partie 1, la récursivité se trouvait dans un appel à cons car on construisait un doublet avec la suite de la liste construite par récurrence. Dans cette partie, comme on ne construit pas la liste mais on la modifie, il n'y a pas de cons. A la place, on appelle simplement la fonction elle-même avec la suite de la liste.</p>
+<p>La fonction <code>demande-tous-les-cours</code> devient très simple car, là aussi, il n'y a plus besoin de construire quoi que ce soit. On doit juste parcourir la liste par récurrence et appeler <code>demande-les-cours</code> (qui modifie la liste). Cela donne:</p>
+<pre><code class="language-plaintext">(defun demande-tous-les-cours (cours-bourses)
+  (cond
+    ((atom cours-bourses) nil)
+    (t 
+      (demande-les-cours (caar cours-bourses) (cdar cours-bourses))
+      (demande-tous-les-cours (cdr cours-bourses)) ) ) )</code></pre>
+<p>On vérifie le bon fonctionnement de nos fonctions. D'abord de <code>demande-les-cours</code>:</p>
+<pre><code class="language-plaintext">(setq liste '((blé) (soja) (café) (maïs)))
+;&nbsp;=&gt; ((blé) (soja) (café) (maïs))
+
+(demande-les-cours 'Frankfurt liste)
+; =&gt;&nbsp;"Quel est le prix de/du blé à la bourse de Frankfurt ? (écrivez un nombre)" 1.2
+; =&gt;&nbsp;
+; =&gt;&nbsp;"Quel est le prix de/du soja à la bourse de Frankfurt ? (écrivez un nombre)" 2.3
+; =&gt;&nbsp;
+; =&gt;&nbsp;"Quel est le prix de/du café à la bourse de Frankfurt ? (écrivez un nombre)" 3.4
+; =&gt;&nbsp;
+; =&gt;&nbsp;"Quel est le prix de/du maïs à la bourse de Frankfurt ? (écrivez un nombre)" 4.5
+; =&gt;&nbsp;nil
+
+liste
+; =&gt;&nbsp;((blé . 1.2) (soja . 2.3) (café . 3.4) (maïs . 4.5))</code></pre>
+<p>Puis de <code>demande-tous-les-cours</code> avec comme argument <code>Cours-bourses</code>:</p>
+<pre><code class="language-plaintext">(setq Cours-bourses (construit-cours-bourse liste_bourses liste_matières))
+; =&gt;&nbsp;((Frankfort (blé) (soja) (café)) (Paris (blé) (soja) (café)) (Londres (blé) (soja) (café)) (Bejing (blé) (soja) (café)))
+
+(demande-tous-les-cours Cours-bourses)
+;&nbsp;=&gt; "Quel est le prix de/du blé à la bourse de Frankfort ? (écrivez un nombre)" 1.1
+;&nbsp;=&gt; 
+;&nbsp;=&gt; "Quel est le prix de/du soja à la bourse de Frankfort ? (écrivez un nombre)" 1.2
+;&nbsp;=&gt; 
+;&nbsp;=&gt; "Quel est le prix de/du café à la bourse de Frankfort ? (écrivez un nombre)" 1.3
+;&nbsp;=&gt; 
+;&nbsp;=&gt; "Quel est le prix de/du blé à la bourse de Paris ? (écrivez un nombre)" 2.1
+;&nbsp;=&gt; 
+;&nbsp;=&gt; "Quel est le prix de/du soja à la bourse de Paris ? (écrivez un nombre)" 2.2
+;&nbsp;=&gt; 
+;&nbsp;=&gt; "Quel est le prix de/du café à la bourse de Paris ? (écrivez un nombre)" 2.3
+;&nbsp;=&gt; 
+;&nbsp;=&gt; "Quel est le prix de/du blé à la bourse de Londres ? (écrivez un nombre)" 3.1
+;&nbsp;=&gt; 
+;&nbsp;=&gt; "Quel est le prix de/du soja à la bourse de Londres ? (écrivez un nombre)" 3.2
+;&nbsp;=&gt; 
+;&nbsp;=&gt; "Quel est le prix de/du café à la bourse de Londres ? (écrivez un nombre)" 3.3
+;&nbsp;=&gt; 
+;&nbsp;=&gt; "Quel est le prix de/du blé à la bourse de Bejing ? (écrivez un nombre)" 4.1
+;&nbsp;=&gt; 
+;&nbsp;=&gt; "Quel est le prix de/du soja à la bourse de Bejing ? (écrivez un nombre)" 4.2
+;&nbsp;=&gt; 
+;&nbsp;=&gt; "Quel est le prix de/du café à la bourse de Bejing ? (écrivez un nombre)" 4.3
+;&nbsp;=&gt; nil
+
+Cours-bourses
+;&nbsp;=&gt; ((Frankfort (blé . 1.1) (soja . 1.2) (café . 1.3)) (Paris (blé . 2.1) (soja . 2.2) (café . 2.3)) (Londres (blé . 3.1) (soja . 3.2) (café . 3.3)) (Bejing (blé . 4.1) (soja . 4.2) (café . 4.3)))</code></pre>
 <p>&nbsp;</p>
