@@ -2,7 +2,7 @@
 title: Le regroupement
 description: 
 published: true
-date: 2023-12-28T11:39:12.777Z
+date: 2023-12-28T11:48:33.238Z
 tags: 
 editor: ckeditor
 dateCreated: 2023-08-26T12:23:44.464Z
@@ -40,7 +40,7 @@ dateCreated: 2023-08-26T12:23:44.464Z
 </ul>
 <p>Pour la première étape, on part de cette liste:</p>
 <figure class="image"><img src="/liste1.png"></figure>
-<p>Et on veut arriver avec cette liste:</p>
+<p>Et on veut arriver à cette liste:</p>
 <figure class="image"><img src="/liste2.png"></figure>
 <p>On procède par récurrence:</p>
 <ul>
@@ -109,7 +109,7 @@ dateCreated: 2023-08-26T12:23:44.464Z
   <li>Récupérer les bons éléments de la liste donnée en argument avec les fonctions <code>car</code>, <code>cdr</code> ou leurs dérivés comme <code>caar</code>.</li>
   <li>De construire correctement la liste avec la bonne hiérarchie</li>
 </ul>
-<p>Ici, on va choisir de passer en argument la liste de liste des matières (construite plus haut) et on veut récupérer le symbole de la matière courante (en tête de liste).</p>
+<p>Ici, on va choisir de passer en argument la liste de listes des matières (construite plus haut). On veut récupérer le symbole de la matière courante (en tête de liste).</p>
 <figure class="image"><img src="/liste5.png"></figure>
 <p>Pour récupérer ce symbole (blé), on effectue donc deux opérations <code>car</code> ce qui donne <code>caar</code>. Pour avancer dans la liste, on effectue une opération <code>cdr</code>. On construit une liste suivant le structure que l'on souhaite obtenir au final, c'est à dire la la forme <code>((matière . prix) …)</code>:</p>
 <figure class="image"><img src="/liste6.png"></figure>
@@ -187,11 +187,11 @@ dateCreated: 2023-08-26T12:23:44.464Z
 <figure class="image"><img src="/liste7.png"></figure>
 <p>Et on veut la modifier pour arriver à cette liste:</p>
 <figure class="image"><img src="/liste8.png"></figure>
-<p>Ce que l'on veut, c'est donc modifier le <code>cdr</code> du doublet dont le <code>car</code> contient le symbole de la matière. Cela se fait avec la fonction <code>rplacd</code> (remplacer le cdr). On va donc réécrire nos fonctions pour modifier la liste. La fonction demande-un-cours ne change pas car elle retourne simplement un prix. Pour rappel, la fonction demande-les-cours part de cette liste:</p>
+<p>Ce que l'on veut, c'est donc modifier le <code>cdr</code> du doublet dont le <code>car</code> contient le symbole de la matière. Cela se fait avec la fonction <code>rplacd</code> (remplacer le cdr). On va donc réécrire nos fonctions pour modifier la liste. La fonction <code>demande-un-cours</code> ne change pas car elle retourne simplement un prix. La fonction <code>demande-les-cours</code> part de cette liste:</p>
 <figure class="image"><img src="/liste5.png"></figure>
 <p>et doit la modifier pour arriver à cette liste:</p>
 <figure class="image"><img src="/liste6.png"></figure>
-<p>En partant du début de la liste, on doit donc modifier le cdr du doublet donné par le car de la liste. La valeur à mettre est donnée par la fonction demande-un-cours comme dans la version précédente. Cela donne le code suivant:</p>
+<p>En partant du début de la liste, on doit donc modifier le <code>cdr</code> du doublet donné par le <code>car</code> de la liste. La valeur à mettre est donnée par la fonction <code>demande-un-cours</code> comme dans la version précédente. Cela donne le code suivant:</p>
 <pre><code class="language-plaintext">(defun demande-les-cours (bourse matières)
   (cond
     ((atom matières) nil)
@@ -200,7 +200,7 @@ dateCreated: 2023-08-26T12:23:44.464Z
         (car matières) 
         (demande-un-cours (caar matières) bourse) )
       (demande-les-cours bourse (cdr matières)) ) ) )</code></pre>
-<p>A noter que cette fonction est toujours récursive. Dans la partie 1, la récursivité se trouvait dans un appel à cons car on construisait un doublet avec la suite de la liste construite par récurrence. Dans cette partie, comme on ne construit pas la liste mais on la modifie, il n'y a pas de cons. A la place, on appelle simplement la fonction elle-même avec la suite de la liste.</p>
+<p>A noter que cette fonction est toujours récursive. Dans la partie 1, la récursivité se trouvait dans un appel à <code>cons</code> car on construisait un doublet avec la suite de la liste construite par récurrence. Dans cette partie, comme on ne construit pas la liste mais on la modifie, il n'y a pas de <code>cons</code>. A la place, on appelle simplement la fonction elle-même avec la suite de la liste.</p>
 <p>La fonction <code>demande-tous-les-cours</code> devient très simple car, là aussi, il n'y a plus besoin de construire quoi que ce soit. On doit juste parcourir la liste par récurrence et appeler <code>demande-les-cours</code> (qui modifie la liste). Cela donne:</p>
 <pre><code class="language-plaintext">(defun demande-tous-les-cours (cours-bourses)
   (cond
