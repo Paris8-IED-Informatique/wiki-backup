@@ -2,7 +2,7 @@
 title: Programmation fonctionnelle
 description: Common LISP
 published: true
-date: 2023-07-26T14:23:43.516Z
+date: 2024-03-06T12:54:32.865Z
 tags: 
 editor: ckeditor
 dateCreated: 2022-05-28T19:00:44.905Z
@@ -22,19 +22,19 @@ rm -rf ~/.dia || true
 sudo apt install -y dia
 tar -xf /tmp/dia.tar.gz -C ~
 rm /tmp/dia.tar.gz</code></pre>
-<p>Si vous utilisez <strong>macOS</strong> plutôt que Linux, vosimpleus n'avez peut-être pas la commande <code>wget</code>. Dans ce cas, il faut remplacer par la commande <code>curl</code>(attention, l'option de la commande est avec un <code>o</code> minuscule pour <code>curl</code>, majuscule pour <code>wget</code>):</p>
+<p>Si vous utilisez <strong>macOS</strong> plutôt que Linux, vous n'avez peut-être pas la commande <code>wget</code>. Dans ce cas, il faut remplacer par la commande <code>curl</code>(attention, l'option de la commande est avec un <code>o</code> minuscule pour <code>curl</code>, majuscule pour <code>wget</code>):</p>
 <pre><code class="language-plaintext">curl https://wiki.paris8-ied.net/dia.tar.gz -o /tmp/dia.tar.gz
 rm -rf ~/.dia || true
 sudo apt install -y dia
 tar -xf /tmp/dia.tar.gz -C ~
 rm /tmp/dia.tar.gz</code></pre>
 <p>Lancer Dia (il y a une icône pour l'application):</p>
-<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=300&amp;tok=5e6157&amp;media=licence1:dia0.png" alt=""></figure>
+<figure class="image"><img src="/dia.png"></figure>
 <p>Vous devez obtenir quelque chose comme cela:</p>
-<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=b6d124&amp;media=licence1:dia1.png" alt=""></figure>
+<figure class="image"><img src="/dia-app.png"></figure>
 <p>Pour créer des doublets, sélectionner <code>Lisp</code> dans la liste déroulante:</p>
-<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=7ccf3c&amp;media=licence1:dia2.png" alt=""></figure>
-<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=357a8a&amp;media=licence1:dia3.png" alt=""></figure>
+<figure class="image"><img src="/dia-choose-lisp.png"></figure>
+<figure class="image"><img src="/dia-cons.png"></figure>
 <h1><strong>Installer CLISP</strong></h1>
 <h2><strong>1. Installer CLisp (Common Lisp)</strong></h2>
 <p>- Soit depuis un Terminal:</p>
@@ -43,7 +43,7 @@ rm /tmp/dia.tar.gz</code></pre>
 <p>- Assurez-vous que CLISP est bien installé en tapant dans un Terminal la commande:</p>
 <pre><code class="language-plaintext">clisp</code></pre>
 <p>Vous devez obtenir:</p>
-<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=30cbb6&amp;media=licence1:clisp.png" alt=""></figure>
+<figure class="image"><img src="/clisp.png"></figure>
 <p>Pour quitter CLISP, entrer la commande:</p>
 <pre><code class="language-plaintext">(quit)</code></pre>
 <h2><strong>2. Créer un alias</strong></h2>
@@ -55,7 +55,7 @@ rm /tmp/dia.tar.gz</code></pre>
 <p>Pour lancer Common Lisp avec les bonnes options, il suffit alors de taper (dans un Terminal):</p>
 <pre><code class="language-plaintext">lisp</code></pre>
 <p>Vous obtiendrez:</p>
-<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=71070f&amp;media=licence1:lisp-command-line.png" alt=""></figure>
+<figure class="image"><img src="/lisp.png"></figure>
 <p>Pour quitter, taper:</p>
 <pre><code class="language-plaintext">(quit)</code></pre>
 <p>Si vous utilisez zsh plutôt que bash, il faut faire la même chose mais dans le fichier <code>.zshrc</code>.</p>
@@ -74,11 +74,73 @@ Icon=${HOME}/Documents/clisp.png
 Terminal=true
 EOF</code></pre>
 <p>Vous obtiendrez le résultat suivant:</p>
-<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=831b29&amp;media=licence1:clisp-icon.png" alt=""></figure>
+<figure class="image"><img src="/clisp-icon.png"></figure>
 <p>Cliquez sur l'icône CLisp, cela ouvre un terminal:</p>
-<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=90ba3c&amp;media=licence1:clisp-from-icon.png" alt=""></figure>
+<figure class="image"><img src="/clisp-term.png"></figure>
 <p>Pour quitter, taper:</p>
 <pre><code class="language-plaintext">(quit)</code></pre>
+<h1>Présentation du code en Latex</h1>
+<p>Le code indiqué par le prof dans la page <a href="https://moodle.iedparis8.net/mod/wiki/view.php?pageid=78">“Présentation du code en Latex”</a> est faux. Il faut corriger la première ligne par:</p>
+<pre><code class="language-plaintext">\usepackage[listings]{tcolorbox}</code></pre>
+<p>Tel qu'il est, le code est en noir sur fond blanc. Vous pouvez changer la couleur du fond mais là aussi, le code du prof est imprécis car il faut changer la couleur à deux endroits. Vous pouvez créer votre propre couleur avec le paquet xcolor. Cela donne alors (par exemple) le code complet suivant:</p>
+<pre><code class="language-plaintext">\documentclass{article}
+
+\usepackage{xcolor}
+\definecolor{mygray}{rgb}{0.9, 0.9, 0.9}
+
+\usepackage[listings]{tcolorbox}
+\newtcblisting{code}{%
+  colback=mygray, % remplacez par la couleur de fond souhaitée
+  boxrule=-1pt,
+  listing only,
+  top=-1pt,
+  bottom=-2pt,
+  left=-1pt,
+  right=0pt,
+  boxsep=0pt,
+  box align=center,
+  after={\par\smallskip\noindent\phantom{i}},
+ listing options={
+    language=Lisp,
+    backgroundcolor=\color{mygray},  % remplacez par la couleur de fond souhaitée
+    basicstyle=\sffamily\normalsize,
+    keywordstyle=\sffamily\normalsize,
+    upquote=true,
+    showstringspaces=false,
+    showspaces=false,
+    tabsize=2,
+    xleftmargin=15pt,
+    breaklines=true,
+    breakatwhitespace=true,
+    columns=fullflexible,
+    commentstyle=\sffamily\itshape,
+    escapeinside={\%/*}{*/},
+  }
+}
+
+\makeatletter
+% tirets
+\lst@CCPutMacro
+   \lst@ProcessOther {"2D}{\lst@ttfamily{-{}}{-}}
+    \@empty\z@\@empty
+% guillemets
+\lst@CCPutMacro
+   \lst@ProcessOther {"22}{\lst@ifupquote \textquotedbl%
+     \else \char34\relax \fi}
+    \@empty\z@\@empty
+\makeatother
+
+\begin{document}
+
+\section{Introduction}
+
+\begin{code}
+Votre code ici
+\end{code}
+
+\end{document}</code></pre>
+<p>Le résultat sera:</p>
+<figure class="image"><img src="/screenshot_2024-03-06_at_13.53.30.png"></figure>
 <h1><strong>Pretty-Print (recopié depuis la faq du cours)</strong></h1>
 <ul>
   <li>Chaque élément d'une liste doit être séparé des autres éléments par un (seul) espace</li>
@@ -136,44 +198,42 @@ EOF</code></pre>
 <p>Pour aider à formatter correctement le code (pretty-print), utilisez un éditeur qui colorie les parenthèses suivant à quel niveau elles se situent (des parenthèses au même niveau ont la même couleur). Vous pouvez par exemple utiliser Visual Studio Code.</p>
 <p><a href="https://code.visualstudio.com/">https://code.visualstudio.com</a></p>
 <p>Par défaut, Visual Studio Code ne comprend pas le LISP, il faut lui indiquer les règles de ce langage. Il y a une extension pour cela. Cliquez sur l'icônes des extensions dans la barre sur le côté à gauche:</p>
-<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?media=licence1:vs-code-exts.png" alt=""></figure>
+<figure class="image"><img src="/vscode-plugins.png"></figure>
 <p>Tapez “Common Lisp”:</p>
-<figure class="image image_resized" style="width:45.97%;"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=6aa063&amp;media=licence1:vs-code-common-lisp.png" alt=""></figure>
+<figure class="image"><img src="/plugin-common-lisp.png"></figure>
 <p>La bonne extension est en principe celle qui vient en premier. C'est l'extension de Qingpeng Li. Cliquez sur “Install”. Maintenant, Visual Studio Code est capable de reconnaitre LISP et les fichiers avec l'extension .lisp.</p>
 <p>Si vous ne voyez toujours pas de couleurs, c'est que l'option n'est pas activée dans Visual Studio. Allez dans Preferences / Settings et tapez “colorization”:</p>
-<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?media=licence1:vs-code-colors.png" alt=""></figure>
+<figure class="image"><img src="/colorization.png"></figure>
 <p>Assurez-vous que l'option “Bracket Pair Colorization” est bien cochée. Vous avez maintenant des parenthèses avec des couleurs.</p>
 <h2><strong>Exemple de mauvais pretty-print et de correction</strong></h2>
 <p>L'exemple suppose que vous avez installé Visual Studio Code comme décrit précédemment. Dans l'éditeur, vous avez:</p>
-<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=bb7bea&amp;media=licence1:pretty-print-01.png" alt=""></figure>
+<figure class="image"><img src="/cons0.png"></figure>
 <p>Cela peut sembler juste, mais avec les couleurs, on voit tout de suite que quelque chose ne va pas:</p>
-<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=869234&amp;media=licence1:pretty-print-01-error.png" alt=""></figure>
+<figure class="image"><img src="/cons1.png"></figure>
 <p>On a des couleurs différentes pour deux arguments du cons au dessus. Cela veut dire que ce ne sont en fait pas tous les deux des arguments de ce cons. On corrige cette erreur:</p>
-<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=4b2a14&amp;media=licence1:pretty-print-02.png" alt=""></figure>
-<p>Et on continue en corrigeant les autres erreurs. Vers la fin, on se retrouve facilement dans ce type de situation:</p>
-<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=bf71e2&amp;media=licence1:pretty-print-03.png" alt=""></figure>
+<figure class="image"><img src="/cons2.png"></figure>
+<p>On corrige les autres erreurs. On se retrouve facilement dans ce type de situation:</p>
+<figure class="image"><img src="/cons3.png"></figure>
 <p>Les nil vont avec quoi ? A quel niveau ? Pour le déterminer, il suffit de mettre son curseur sur la parenthèse après (violette):</p>
-<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=1b9d24&amp;media=licence1:pretty-print-04.png" alt=""></figure>
+<figure class="image"><img src="/cons4.png"></figure>
 <p>L'éditeur indique la parenthèse ouvrante qui correspond et on peut donc formatter correctement:</p>
-<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=7cce34&amp;media=licence1:pretty-print-05.png" alt=""></figure>
-<p>On voit bien que le nil est le second argument du cons. On procède de même pour le reste:</p>
-<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=1ea020&amp;media=licence1:pretty-print-06.png" alt=""></figure>
-<p>Parfait non ? Et là, c'est le drame. Votre pretty-print est refusé sèchement par le-la prof car trop indenté. Mais quelle est la règle du trop / pas assez ? Il n'y en a pas. Il faut se fier à son bon sens. Trop indenté, cela devient illisible, pas assez aussi. Il faut trouver le juste milieu. Par exemple:</p>
-<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=a4274f&amp;media=licence1:pretty-print-07.png" alt=""></figure>
+<figure class="image"><img src="/cons5.png"></figure>
+<p>On procède de même pour le reste:</p>
+<figure class="image"><img src="/cons6.png"></figure>
 <p>Cela semble pas mal, non ? Sauf que c'est faux. Il n'y a effectivement pas de problème de parenthèses, les mêmes couleurs sont au même niveau. Mais il y a deux types d'erreurs: 1) certaines parenthèses sont décollées alors qu'elles ne le devraient pas (indiqué en orange). Certains arguments de cons sont mal placés (indiqué en rouge):</p>
-<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=487ed2&amp;media=licence1:pretty-print-07-errors.png" alt=""></figure>
+<figure class="image"><img src="/cons7.png"></figure>
 <p>La règle est la suivante:</p>
 <ul>
   <li>Soit on met tout sur la même ligne</li>
   <li>Soit on met le <code>cons</code> sur une ligne, et chaque argument sur une autre ligne et indenté.</li>
 </ul>
 <p>On ne peut pas mélanger la première possibilité avec la deuxième. C'est l'un ou l'autre. Cela donne donc:</p>
-<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=c6f817&amp;media=licence1:pretty-print-08.png" alt=""></figure>
-<p>On corrige le reste:</p>
-<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=d20c03&amp;media=licence1:pretty-print-09.png" alt=""></figure>
-<p>La règle empirique semble être qu'il est raisonnable d'avoir 3 niveaux sur une seule ligne, mais pas plus:</p>
-<figure class="image"><img src="https://nolandartois.fr/wiki/ied/lib/exe/fetch.php?w=600&amp;tok=340aee&amp;media=licence1:pretty-print-levels.png" alt=""></figure>
-<p>Il faut aussi éviter d'avoir des lignes trop longues. Si vous dépassez la 80ème colonne, il est préférable de découper la ligne.</p>
+<figure class="image"><img src="/cons8.png"></figure>
+<p>Parfait non ? Et là, c'est le drame. Votre pretty-print est refusé sèchement par le-la prof car trop indenté. Mais quelle est la règle du trop / pas assez ? Il n'y en a pas. Il faut se fier à son bon sens. Trop indenté, cela devient illisible, pas assez aussi. Il faut trouver le juste milieu. Par exemple:</p>
+<figure class="image"><img src="/cons9.png"></figure>
+<p>Ou:</p>
+<figure class="image"><img src="/cons10.png"></figure>
+<p>Une règle empirique semble être qu'il est raisonnable d'avoir 3 niveaux sur une seule ligne, mais pas plus. Il faut aussi éviter d'avoir des lignes trop longues. Si vous dépassez la 80ème colonne, il est préférable de découper la ligne.</p>
 <h1>Passage de la représentation textuelle à la représentation graphique</h1>
 <p>Pour un certain nombre d'exercice, vous devez passer d'une représentation textuelle à une représentation graphique ou le contraire. Pour vous aider, une élève a porté un programme écrit à l'origine en Scheme (un dialecte de LISP) en Common Lisp “à la GB” (avec pretty-print, pas de let, …). Cela permet d'afficher une représentation des doubles (cons) d'une liste. Pour cela, vous devez télécharger le programme <a href="/draw-cons-tree.lisp">draw-cons-tree.lisp</a>. Pour ensuite l'utiliser, ouvrez un terminal, placez-vous (<code>cd</code>) dans le répertoire où est sauvé le fichier <i>draw-cons-tree.lisp</i>, lancez LISP (<code>clisp -q -modern -L french</code> ou simplement <code>lisp</code> si vous avez défini un alias) et entrez:</p>
 <pre><code class="language-plaintext">(load "draw-cons-tree.lisp")</code></pre>
