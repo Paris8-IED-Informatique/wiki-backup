@@ -2,7 +2,7 @@
 title: Programmation fonctionnelle
 description: Common LISP
 published: true
-date: 2024-03-06T12:56:10.737Z
+date: 2024-04-12T16:58:19.255Z
 tags: 
 editor: ckeditor
 dateCreated: 2022-05-28T19:00:44.905Z
@@ -249,6 +249,13 @@ Votre code ici
                                  |       |
                                  e       f</code></pre>
 <p>Ne pas oublier le dernière parenthèse qui ferme l'appel à la fonction <code>draw-tree</code>. Vous pouvez ainsi valider vos représentations graphiques ainsi que l'inverse (en vérifiant que la représentation est similaire à celle de l'énoncé).</p>
+<h1>Mai 10 Chirurgie</h1>
+<p>Voici un exemple:</p>
+<figure class="image"><img src="/rplacd.jpg"></figure>
+<p>On note <code>car</code> ou <code>cdr</code> au-dessus des flèches. Pour arriver au doublet dont on veut modifier le <code>cdr</code>, on passe par: <code>car</code>, <code>cdr</code> et encore <code>cdr</code>. Pour la destination, c'est: <code>cdr</code> et <code>car</code>. Il suffit d'écrire ces deux suites dans l'expression (attendion, c'est dans l'autre sens):</p>
+<pre><code class="language-plaintext">(rplacd (cdr (cdr (car liste))) (car (cdr liste)))</code></pre>
+<p>Ce qui peut aussi s'écrire:</p>
+<pre><code class="language-plaintext">(rplacd (cddar liste) (cadr liste))</code></pre>
 <h1><strong>Vraiprog1</strong></h1>
 <p>La série d'exercices pour Vraiprog1 commence à la page 148 (“Écrire un vrai programme : explorations”) et se termine au début de la page 154 (“Vrai programme : exploration”). Il y a quatre parties: Exercices A, B, C et la question D. Il faut rendre cette série d'exercices en une seule fois avec comme sujet “Exo Vrai- prog1”.</p>
 <h1><strong>Vraiprog2 et Vraiprog3</strong></h1>
