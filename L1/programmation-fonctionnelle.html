@@ -2,7 +2,7 @@
 title: Programmation fonctionnelle
 description: Common LISP
 published: true
-date: 2024-06-03T16:14:51.095Z
+date: 2024-06-03T16:31:27.860Z
 tags: 
 editor: ckeditor
 dateCreated: 2022-05-28T19:00:44.905Z
@@ -150,6 +150,7 @@ Votre code ici
 (a b c) ⇒ correct 
 (a(b c)d) ⇒ faux 
 (a (b c) d) ⇒ correct</code></pre>
+<p>&nbsp;</p>
 <ul>
   <li>Le premier élément d'une liste sans quote est une fonction, si tout le bloc ne tient pas sur une liste il faut le découper : on dit qu'il faut l'indenter.<ul>
       <li>Le premier élément (le nom de la fonction) doit être seul sur une ligne.</li>
@@ -161,6 +162,7 @@ Votre code ici
 <pre><code class="language-plaintext">(cons
   (car liste)
   (cdr liste) )</code></pre>
+<p>&nbsp;</p>
 <ul>
   <li>Si un argument est lui même une fonction avec plusieurs arguments (et que ça ne tient pas sur une ligne de 80 colonnes) : il faut l'indenter également. (L'exemple suivant aurait pu tenir sur une ligne mais c'est pour vous faire une démonstration de l'indentation).</li>
 </ul>
@@ -169,12 +171,14 @@ Votre code ici
   (cons
     (car liste2)
     (cdr liste2) ) )</code></pre>
+<p>&nbsp;</p>
 <ul>
   <li>Les arguments sont alors décalés par rapport à la fonction à laquelle ils appartiennent. Ainsi, on peut du premier coup d'oeil détecter quels arguments appartiennent à quelle fonction.</li>
   <li>La définition d'une fonction est une exception, on laisse le nom et les arguments que la fonction va prendre (c'est à dire les 2 premiers arguments) sur la première ligne.</li>
 </ul>
 <pre><code class="language-plaintext">(defun fonction (arg1 arg2)
   ( ... ) )</code></pre>
+<p>&nbsp;</p>
 <ul>
   <li>Si une liste trop longue pour une ligne commence par un élément étant lui-même une liste trop grande pour une ligne, on écrit le premier élément de cette liste et la suite avec une indentation double :</li>
 </ul>
@@ -305,7 +309,8 @@ Votre code ici
         (eq a 0) )
       (cons 2 3) )
     (t (cons 4 5)) ) )</code></pre>
-<p>Une autre manière de voir est de compter le nombre de parenthèses ouvertes et pas encore fermées. Cela donne le nombre d'indentations à faire depuis le bord de gauche.</p>
+<p>Une autre manière de voir est de compter le nombre de parenthèses ouvertes et pas encore fermées. Cela donne le nombre d'indentations à faire depuis le bord de gauche. Dans l'exemple ci-dessous, le nombre de parenthèses ouvertes (et pas encore fermées) est en orange. A chaque nouvelle parenthèse ouvrante, on ajoute 1. A chaque parenthèse fermante, on enlève 1. Cela donne le nombre d'intentions (en bleu ci dessous). Si la ligne commence par une parenthèse ouvrante (ce qui est presque toujours le cas), on prend le nombre en orange moins 1 (car lors de l'indentation, la parenthèse n'est pas encore ouverte):</p>
+<figure class="image"><img src="/indentation.jpg"></figure>
 <h1>Passage de la représentation textuelle à la représentation graphique</h1>
 <p>Pour un certain nombre d'exercice, vous devez passer d'une représentation textuelle à une représentation graphique ou le contraire. Pour vous aider, une élève a porté un programme écrit à l'origine en Scheme (un dialecte de LISP) en Common Lisp “à la GB” (avec pretty-print, pas de let, …). Cela permet d'afficher une représentation des doubles (cons) d'une liste. Pour cela, vous devez télécharger le programme <a href="/draw-cons-tree.lisp">draw-cons-tree.lisp</a>. Pour ensuite l'utiliser, ouvrez un terminal, placez-vous (<code>cd</code>) dans le répertoire où est sauvé le fichier <i>draw-cons-tree.lisp</i>, lancez LISP (<code>clisp -q -modern -L french</code> ou simplement <code>lisp</code> si vous avez défini un alias) et entrez:</p>
 <pre><code class="language-plaintext">(load "draw-cons-tree.lisp")</code></pre>
