@@ -2,7 +2,7 @@
 title: Base de données
 description: Thérorie, SQL, Oracle et Postgres
 published: true
-date: 2024-05-29T11:34:21.699Z
+date: 2024-06-09T12:38:08.680Z
 tags: 
 editor: ckeditor
 dateCreated: 2022-05-28T19:22:48.184Z
@@ -166,7 +166,7 @@ CONSTRAINT Salaire_OK CHECK (Salaire&gt;0));</code></pre>
   <li>Coquille. Page 2 du pdf (ou page 35 en bas de page) : Remplacez tous les “SalaireMoyenne” par “SalaireMoyen” (accompagné du chiffre adéquat)</li>
   <li>Coquille (sur la même page) : Le titre du dernier bloc est le meme que le précédent, il devrait etre “<strong>Algorithm 4</strong> revalorisation des salaires de tous les employés d’un département dont le numéro est lu au clavier (ajout de 100e)”.</li>
 </ul>
-<p>Le cours est écrit pour Oracle, mais le TD peut être fait en Postgresql. Il y a donc des conversions à faire.</p>
+<p>Le cours est écrit pour Oracle, mais le TD doit être fait en Postgresql. Il y a donc des conversions à faire.</p>
 <ul>
   <li>Pour créer un bloc anonyme, il faut utiliser la commande suivante :</li>
 </ul>
@@ -195,7 +195,6 @@ elsif conditions then
 else
   alternative-statements;
 end if;</code></pre>
-<p>&nbsp;</p>
 <ul>
   <li>GOTO n'existe pas et il n'y a pas d'équivalent (goto, dans tous les langages est considéré comme une mauvaise pratique de toute façon).</li>
   <li>Pour ouvrir un script sql :</li>
@@ -244,7 +243,6 @@ loop
     exit when not found;
 end loop;
 close curseur;</code></pre>
-<p>&nbsp;</p>
 <ul>
   <li>La syntaxe pour les triggers est la suivante:</li>
 </ul>
@@ -263,6 +261,10 @@ begin
   return NEW;
 end $$;</code></pre>
 <p>NEW permet d'avoir accès aux nouvelles valeurs, OLD aux anciennes (suivant le type de trigger: BEFORE ou AFTER).</p>
+<ul>
+  <li>PROMPT et ACCEPT sont des cas bien particulier. En effet, ce ne sont pas des instructions du PL/SQL d'Oracle et il n'y a pas d'équivalent avec Postgresql. En effet, Oracle est un système de base de données qui, comme tous les systèmes du même genre, tourne généralement sur un serveur distant. Donc comment ce serveur distant peut-t'il vous afficher un message et demander une donnée ? C'est simple, il ne peut pas. <a href="https://docs.oracle.com/en/database/oracle/oracle-database/21/sqpug/PROMPT.html">PROMPT</a> et <a href="https://docs.oracle.com/en/database/oracle/oracle-database/21/sqpug/ACCEPT.html">ACCEPT</a> sont en fait des mots clefs interprétés par le client utilisé pour envoyer le SQL au serveur. Ou plutôt était car ce client (<a href="https://docs.oracle.com/en/database/oracle/oracle-database/21/sqpug/SQL-Plus-quick-start.html">SQL*Plus</a>) est largement déprécié et n'est pas installé avec Oracle depuis Oracle 11g (sorti en 2009).<br>Alors par quoi remplacer PROMPT et ACCEPT pour les TDs? On peut simplement assigner une valeur à une variable:</li>
+</ul>
+<pre><code class="language-plaintext">a numeric := 1;</code></pre>
 <h1><strong>Ressources</strong></h1>
 <ul>
   <li>Un livre très complet en libre accès: <a href="/xx-totalbd.pdf">Bases de Données - Georges Gardarin - 2003</a></li>
