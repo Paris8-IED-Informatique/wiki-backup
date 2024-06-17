@@ -2,7 +2,7 @@
 title: Algorithme et structures de données 1
 description: Du LISP et encore du LISP
 published: true
-date: 2024-06-17T14:46:02.365Z
+date: 2024-06-17T14:46:41.487Z
 tags: 
 editor: ckeditor
 dateCreated: 2022-05-28T20:46:38.001Z
@@ -28,7 +28,7 @@ dateCreated: 2022-05-28T20:46:38.001Z
 <p>En effet, lorsque l'on arrive à la fin de la liste, le cdr de L vas être NULL. Donc à l'itération suivante, on va tenter d'exécuter <code>car(L)</code> c'est à dire <code>NULL→car</code> &nbsp;et c'est le plantage assuré. Le code correcte (et qui suit le modèle en LISP) est:</p>
 <pre><code class="language-plaintext">list remplace(atom A, atom B, list L) 
 {   if (!L) return L;
-    if ((car(L)) eql A)
+    if (car(L) eql A)
     {   car(L) = B ;
         return remplace(A, B, cdr(L)) ;
     }
