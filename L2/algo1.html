@@ -2,7 +2,7 @@
 title: Algorithme et structures de données 1
 description: Du LISP et encore du LISP
 published: true
-date: 2022-09-16T12:40:38.496Z
+date: 2024-06-17T14:42:34.825Z
 tags: 
 editor: ckeditor
 dateCreated: 2022-05-28T20:46:38.001Z
@@ -15,6 +15,25 @@ dateCreated: 2022-05-28T20:46:38.001Z
 <h2><strong>D- Chaines de caractères</strong></h2>
 <p>A partir de cette série d'exercices, il va beaucoup être question de mémoire, notamment avec l'utilisation répétée de malloc. Valgrind est un outil qui permet de faire le point sur l'utilisation de la mémoire par le programme. Ce n'est pas précisé dans le cours, mais il est préférable que la mémoire allouée soit ensuite libérée (à l'aide de la fonction free().</p>
 <p>Téléchargement de Valgrind : <a href="https://www.valgrind.org/">https://www.valgrind.org/</a></p>
+<h2>E- Exercices sur les listes</h2>
+<p>Il y a un gros bug dans le code C fourni par le prof. Ce code est faux et plante à tout les coup:</p>
+<pre><code class="language-plaintext">list remplace(atom A, atom B, list L) 
+{ 	if ((car(L)) eql A)
+	{ 	car(L) = B ;
+		return remplace(A, B, cdr(L)) ;
+	}
+	if (L) return remplace(A, B, cdr(L)) ; 
+	return NULL ;
+}</code></pre>
+<p>En effet, lorsque l'on arrive à la fin de la liste, le cdr de L vas être NULL. Donc à l'itération suivante, on va tenter d'exécuter <code>car(L)</code> c'est à dire <code>NULL→car</code> &nbsp;et c'est le plantage assuré. Le code correcte (et qui suit le modèle en LISP) est:</p>
+<pre><code class="language-plaintext">list remplace(atom A, atom B, list L) 
+{ 	if (!L) return L;
+	if ((car(L)) eql A)
+	{ 	car(L) = B ;
+		return remplace(A, B, cdr(L)) ;
+	}
+	return remplace(A, B, cdr(L)) ; 
+}</code></pre>
 <h1>Fin du chapitre II</h1>
 <p>La fin du chapitre II n'est pas dans le PDF mais encore dans l'ancien (ancien) format du cours, en HTML. L'archive se trouve sur Moodle mais vous trouverez <a href="/algostruct1-fin-chapitre2.pdf">une version PDF ici.</a></p>
 <h1><strong>PM 11 - Chapitre IV</strong></h1>
