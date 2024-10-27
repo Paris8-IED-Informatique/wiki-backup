@@ -2,15 +2,23 @@
 title: Méthodologie de la programmation
 description: Python et autres reptiles
 published: true
-date: 2024-10-26T14:36:28.643Z
+date: 2024-10-27T11:01:51.148Z
 tags: 
 editor: ckeditor
 dateCreated: 2022-05-26T13:18:50.730Z
 -->
 
-<h1><strong>Aide installation Jupyter Notebook</strong></h1>
-<p>Plusieurs personnes ont eu des soucis pendant l'installation de Jupyter Notebook, on va essayer de récapituler ici les problèmes rencontrés et leurs solutions.</p>
-<p><strong>Pré-requis</strong> :&nbsp;<br>S'assurer d'abord d'installer Python (<a href="https://www.python.org/downloads/?lang=fr">https://www.python.org/downloads/?lang=fr</a>)<br>Puis s'assurer d'avoir pip (<a href="https://python.land/virtual-environments/installing-packages-with-pip">https://python.land/virtual-environments/installing-packages-with-pip</a>)<br>Suivre la méthode d'installation officielle : <a href="https://jupyter.org/install">https://jupyter.org/install</a><br><br>Sur Windows, il est possible d'installer les éléments via le Windows Powershell natif.</p>
+<h1><strong>installation de Jupyter Notebook</strong></h1>
+<h2><strong>Pré-requis</strong></h2>
+<ul>
+  <li>Eviter d'utiliser Windows ou macOS. Utilisez Ubuntu. Vous trouverez plus d'informations dans la partie <a href="https://wiki.paris8-ied.net/L1/commencer#installation-de-son-environnement">Installation de son environnement</a>.</li>
+  <li>S'assurer d'abord d'installer Python (<a href="https://www.python.org/downloads/?lang=fr">https://www.python.org/downloads/?lang=fr</a>)</li>
+  <li>Puis s'assurer d'avoir pip (<a href="https://python.land/virtual-environments/installing-packages-with-pip">https://python.land/virtual-environments/installing-packages-with-pip</a>)</li>
+</ul>
+<h2>Installation</h2>
+<ul>
+  <li>Suivre la méthode d'installation officielle : <a href="https://jupyter.org/install">https://jupyter.org/install</a></li>
+</ul>
 <p><strong>Jupyter command not found</strong></p>
 <p>Il se peut, qu'après l'installation, votre console ne reconnaisse pas la commande :</p>
 <p><code>jupyter notebook</code></p>
@@ -18,6 +26,8 @@ dateCreated: 2022-05-26T13:18:50.730Z
 <p><code>export PATH=$PATH:~/.local/bin</code></p>
 <p>Normalement, après avoir effectué cette commande vous allez pouvoir ouvrir Jupyter Notebook avec la commande <code>jupyter notebook</code>. Si tout fonctionne correctement, il nous reste un seul problème. La commande <code>export PATH=$PATH:~/.local/bin</code> est activé que pendant la session active ! Donc au redémarrage de votre machine, le problème initial reviendra. Il faut donc exécuter cette commande au lancement de votre machine. Pour cela nous allons modifier un fichier caché qui est exécuté à chaque lancement de votre session.</p>
 <p>Pour cela, il faut donc modifier le fichier <code>~/.bashrc</code> et rajouter la ligne <code>export PATH=$PATH:~/.local/bin</code> tout en haut du fichier ! Ainsi, la commande sera exécuté à chaque redémarrage de votre session.</p>
+<h2>Visual Studio Code</h2>
+<p>Visual Studio Code a un très bon support de Jupyter Notebook. C'est de loin le plus pratique. Vous trouverez plus d'information sur la page <a href="https://code.visualstudio.com/docs/datascience/jupyter-notebooks">Jupyter Notebooks in VS Code</a>.</p>
 <h1><strong>Info de l'année 2024-2025</strong></h1>
 <p>Méthodologie de la programmation est un cours qui est à suivre tout au long de l'année. Le-la professeur-e propose un support de cours sur le Moodle qui faut lire absolument si vous n'êtes pas habitué avec la programmation avec Python. Mais attention, le cours écrit en Python 2, mais vous allez devoir utiliser Python 3 pour les exercices et devoirs !</p>
 <p>(Vous pouvez demander de l'aider sur le groupe Discord si vous ne comprenez pas un passage du cours).</p>
