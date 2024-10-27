@@ -2,11 +2,13 @@
 title: Installation de ce serveur Wiki
 description: Comment est installé et configuré ce serveur
 published: true
-date: 2022-08-07T10:56:05.556Z
+date: 2024-10-27T11:08:39.776Z
 tags: 
 editor: markdown
 dateCreated: 2022-05-29T10:50:06.101Z
 ---
+
+***Note**: Ce guide indique comment a été installé le serveur hébergeant le Wiki. Cela peut vous servir de référence si vous devez installer un Wiki ou même simplement un serveur Linux.*
 
 # Informations générales
 
