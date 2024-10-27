@@ -2,7 +2,7 @@
 title: Commencer la L1
 description: Quelques informations lorsque l'on arrive en L1
 published: true
-date: 2024-10-26T15:15:04.649Z
+date: 2024-10-27T10:25:25.656Z
 tags: 
 editor: ckeditor
 dateCreated: 2022-05-29T10:46:37.767Z
@@ -22,7 +22,15 @@ dateCreated: 2022-05-29T10:46:37.767Z
     </ul>
   </li>
   <li>Il n'y a quasi pas de math dans cette licence. Juste un peu dans le cours Arcitecture des ordinateurs de L1, un peu dans le cours d'IA de L3.</li>
-  <li>La licence est basée sur Linux (Ubuntu). Si vous ne connaissez pas, il faudra vous y mettre rapidement (cours Informatique fondamentale).</li>
+  <li>La licence est basée sur Linux (Ubuntu). Si vous ne connaissez pas, il faudra vous y mettre rapidement (cours Informatique fondamentale). N’utilisez pas Windows, vous allez galérer sans arrêt. Les options sont<ul>
+      <li>Une machine dédié, genre un vieux laptop, sur lequel vous installer Ubuntu. Ce sera votre machine pour tout ce qui se rapporte à l’IED. Pas besoin d’une machine puissante.</li>
+      <li>Une machine virtuelle (avec Virtualbox ou VMware Workstation par exemple qui sont tous les deux gratuits) Ubuntu. Cela marche très bien et c’est même plus facile de faire certains exercices dans une VM (cours de Réseau de L2 par exemple)</li>
+      <li>Un dual boot. C’est ce qui etait conseillé par les profs de l’IED du temps où le premier rassemblement servait à vous aider à installer votre environnement et où les laptops n’étaient pas assez puissants pour tourner une VM. Tout cela n’est plus d’actualité.</li>
+      <li>Utiliser WSL2 qui crée (plus ou moins) une machine virtuelle légère dans Windows. A éviter. Cela vous causera des soucis pour certains cours (en effet, le système de fichiers restera celui de Windows et pas celui d’Ubuntu). il est possible de s’en sortir, mais c’est mieux d’utiliser une VM complète.</li>
+      <li>Si vous avez un Mac avec un processeur Intel (ancienne génération de Mac), les recommandations sont quasi les mêmes: installer VMware Fusion ou UTM et une machine virtuelle Ubuntu. Eviter le dual boot, c’est risqué avec un Mac.</li>
+      <li>Si vous avez un Mac avec un processeur ARM (génération actuelle), c’est plus compliqué. Vous pouvez appliquer les mêmes conseils que ci-dessus mais vous allez avoir un soucis en L3 avec le cours de Compilation car vous n’allez pas avoir le bon processeur. Il existe des solutions (en utilisant Docker).</li>
+    </ul>
+  </li>
   <li>Un changement important a eu lieu en 2023: l'inscription aux EC libres se fait maintenant en ligne, plus par email comme auparavant.</li>
 </ul>
 <h1>Par quoi commencer ?</h1>
