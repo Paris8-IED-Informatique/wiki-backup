@@ -2,7 +2,7 @@
 title: Programmation fonctionnelle
 description: Common LISP
 published: true
-date: 2024-10-27T13:37:23.927Z
+date: 2024-10-28T09:33:42.145Z
 tags: 
 editor: ckeditor
 dateCreated: 2022-05-28T19:00:44.905Z
@@ -328,6 +328,16 @@ Votre code ici
                                  |       |
                                  e       f</code></pre>
 <p>Ne pas oublier le dernière parenthèse qui ferme l'appel à la fonction <code>draw-tree</code>. Vous pouvez ainsi valider vos représentations graphiques ainsi que l'inverse (en vérifiant que la représentation est similaire à celle de l'énoncé).</p>
+<h1>Exercices sur l’évaluation</h1>
+<p>Il y a une erreur dans l'explication du cours page 73:</p>
+<blockquote>
+  <p>A. (set (eval bar) (+ 3 foo))</p>
+  <p>• nom : 5</p>
+  <p>• valeur : obtenue par l’addition de 3 et de foo ;</p>
+  <p>• erreur provoquée par set parce que 5 n’est pas un symbole, c’est un nombre.</p>
+</blockquote>
+<p><code>(eval bar)</code> va bien retourner 5 et on ne peut pas faire un <code>set</code> avec un mombre. Mais il y a une autre erreur qui va apparaître avant à cause de <code>(+ 3 foo)</code> . <code>foo</code> est lié à <code>bar</code>, un symbole et pas un nombre. Donc l'erreur est est fait:</p>
+<pre><code class="language-plaintext">*** - +: bar is not a number</code></pre>
 <h1>Mai 10 Chirurgie</h1>
 <p>Voici un exemple:</p>
 <figure class="image"><img src="/rplacd.jpg"></figure>
