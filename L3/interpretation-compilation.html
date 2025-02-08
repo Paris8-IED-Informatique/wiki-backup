@@ -2,7 +2,7 @@
 title: Interprétation et compilation
 description: 
 published: true
-date: 2025-02-08T15:39:36.238Z
+date: 2025-02-08T16:00:56.685Z
 tags: 
 editor: ckeditor
 dateCreated: 2022-06-07T11:35:40.492Z
@@ -16,9 +16,9 @@ dateCreated: 2022-06-07T11:35:40.492Z
 </ul>
 <pre><code class="language-plaintext">docker image pull --platform linux/amd64 ubuntu</code></pre>
 <ul>
-  <li>Lancer un container avec cette image et exécuter le shell bash dans ce container:</li>
+  <li>Lancer un container que l'on nomme “ubuntu” &nbsp;avec cette image et exécuter le shell bash dans ce container:</li>
 </ul>
-<pre><code class="language-plaintext">docker run -it --platform linux/amd64 ubuntu bash</code></pre>
+<pre><code class="language-plaintext">docker run -it --name --platform linux/amd64 ubuntu bash</code></pre>
 <ul>
   <li>Mettez à jour ce container:</li>
 </ul>
@@ -33,6 +33,8 @@ apt upgrade -y</code></pre>
 </ul>
 <pre><code class="language-plaintext">apt install micro</code></pre>
 <p>Et voilà, vous pouvez maintenant faire les exercices du cous sur votre machine. Il est même possible d'éditer et de débugger des programmes dans ce container directement depuis votre Macintosh. Je décrirai la procédure ultérieurement.</p>
+<p>Pour sortir (et stopper) le container, un simple <code>exit</code>fait le job. Si vous voulez ensuite revenir dans ce même container, il faut utiliser <code>start</code> à la place de <code>run</code> (<code>run</code> démarre toujours un nouveau container):</p>
+<pre><code class="language-plaintext">docker start -ai ubuntu</code></pre>
 <h1>Bison ou Yacc, Flex ou Lex ?</h1>
 <p>Il est préférable d'utiliser <code>bison</code> et <code>flex</code> plutot que <code>yacc</code> et <code>lex</code>. Meme s'il est possible d'uliliser ces derniers, les options et les fichiers générés ne sont pas les meme et vous allez vous compliquer la vie pour rien. Pour installer <code>bison</code> et <code>flex</code> sous Ubuntu:</p>
 <pre><code class="language-plaintext">sudo apt install flex bison</code></pre>
