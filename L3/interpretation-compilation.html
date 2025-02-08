@@ -2,14 +2,42 @@
 title: Interprétation et compilation
 description: 
 published: true
-date: 2023-10-22T13:07:43.216Z
+date: 2025-02-08T15:39:36.238Z
 tags: 
 editor: ckeditor
 dateCreated: 2022-06-07T11:35:40.492Z
 -->
 
+<h1>Processeurs ARM (Apple M1, …)</h1>
+<p>Les processeurs ARM sont de plus en plus répandus y compris sur les laptops. C'est en particulier le cas de tous les Macintosh récents. Ils sont équipés de processeurs Apple Silicon (M1, M2, …) qui sont des processeurs très différents de ceux d'Intel (architecture ARM). Alors, comment faire pour tout de même faire les exercices ? Il y a plusieurs solutions (comme utiliser QEMU par exemple). L'une des plus simple et des plus rapide (~ 5 minutes) est d'utiliser Docker. Les étapes sont les suivantes sous macOS:</p>
+<ul>
+  <li>Installer Docker, soit <a href="https://docs.docker.com/desktop/setup/install/mac-install/">manuellement</a>, soit avec <a href="https://brew.sh">Homebrew</a> (<code>brew install --cask docker</code>)</li>
+  <li>Télécharger une image de Ubuntu pour processeur Intel. Dans un Terminal, entrer la commande:</li>
+</ul>
+<pre><code class="language-plaintext">docker image pull --platform linux/amd64 ubuntu</code></pre>
+<ul>
+  <li>Lancer un container avec cette image et exécuter le shell bash dans ce container:</li>
+</ul>
+<pre><code class="language-plaintext">docker run -it --platform linux/amd64 ubuntu bash</code></pre>
+<ul>
+  <li>Mettez à jour ce container:</li>
+</ul>
+<pre><code class="language-plaintext">apt update
+apt upgrade -y</code></pre>
+<ul>
+  <li>Dans ce container, installer le compilateur GCC avec ce qu'il faut pour le 32 bits:</li>
+</ul>
+<pre><code class="language-plaintext">apt install gcc gcc-multilib -y</code></pre>
+<ul>
+  <li>Pour plus de commodité, vous pouvez installer un éditeur de fichier comme <a href="https://micro-editor.github.io">micro</a>:</li>
+</ul>
+<pre><code class="language-plaintext">apt install micro</code></pre>
+<p>Et voilà, vous pouvez maintenant faire les exercices du cous sur votre machine. Il est même possible d'éditer et de débugger des programmes dans ce container directement depuis votre Macintosh. Je décrirai la procédure ultérieurement.</p>
+<h1>Bison ou Yacc, Flex ou Lex ?</h1>
+<p>Il est préférable d'utiliser <code>bison</code> et <code>flex</code> plutot que <code>yacc</code> et <code>lex</code>. Meme s'il est possible d'uliliser ces derniers, les options et les fichiers générés ne sont pas les meme et vous allez vous compliquer la vie pour rien. Pour installer <code>bison</code> et <code>flex</code> sous Ubuntu:</p>
+<pre><code class="language-plaintext">sudo apt install flex bison</code></pre>
 <h1>Exercice 2.9</h1>
-<p>L'énoncé suggère que le programme a quelque chose à voir avec Héron d'Alexandrie et c'est bien le cas. Mais attention à ne pas confondre la méthode d'Héron (vue en cours d'Architecture des ordinateurs avec le même professeur), cas particulier de la méthode de Newton et la formule d'Héron.</p>
+<p>L'énoncé suggère que le programme a quelque chose à voir avec Héron d'Alexandrie et c'est bien le cas. Mais attention à ne pas confondre la méthode d'Héron (vue en cours d'Architecture des ordinateurs avec le même professeur), cas particulier de la méthode de Newton, et la formule d'Héron.</p>
 <h1>Chapitre 5</h1>
 <p>Bison possède un générateur de graphes intégré qui peut être utile pour aider à la résolution des exercices et à la compréhension des mécanismes. Pour cela, il suffit d'exécuter bison avec l'option -g :</p>
 <pre><code class="language-plaintext">bison -g test.y</code></pre>
@@ -17,9 +45,9 @@ dateCreated: 2022-06-07T11:35:40.492Z
 <h2>Exercice 5.2</h2>
 <p>Il y a une erreur dans l’énoncé. Il est question du fichier <code>ed-3-calc.y</code>, pas du fichier <code>1-calc.y</code>.</p>
 <h1>Chapitre 7</h1>
-<p>Lorsque l’on veut compiler le programme ppcm, on a un certain nombre de problème:</p>
+<p>Lorsque l’on veut compiler le programme ppcm, on a un certain nombre de problèmes:</p>
 <ul>
-  <li>Le Makefile a été renommé ainsi que les autres fichiers et il y a une inchoérence entre ces noms de fichiers et ce que le Makefile attend. Le plus simple est de renommer tous les fichiers et d'enlever le <code>ppcm-</code> devant les noms.&nbsp;</li>
+  <li>Le Makefile a été renommé ainsi que les autres fichiers et il y a une inchoérence entre ces noms de fichiers et ce que le Makefile attend. Le plus simple est de renommer tous les fichiers et d'enlever le <code>ppcm-</code> devant les noms.</li>
   <li>Ensuite, lorsque l'on veut compiler, on a un certain nombre d'erreurs et de warning:</li>
 </ul>
 <pre><code class="language-plaintext">$ make a.out
@@ -62,7 +90,7 @@ gcc -g -O   -c -o expr.o expr.c
 gcc -g -O ppcm.tab.o expr.o</code></pre>
 <p>En effet, le programme est écrit dans un style de C assez ancien. On peut facilement corriger ces problèmes :</p>
 <ul>
-  <li>Au début du fichier ppcm.y, juste avant le premier %}, on déclare les fonctions qui sont utilisées par la grammaire :</li>
+  <li>Au début du fichier <code>ppcm.y</code>, juste avant le premier <code>%}</code>, on déclare les fonctions qui sont utilisées par la grammaire :</li>
 </ul>
 <pre><code class="language-plaintext">// Declaration des fonctions utilisées dans la grammaire
 int yylex(void);
@@ -70,8 +98,9 @@ void yyerror(char *);
 int label();
 void nomem();
 %}</code></pre>
+<p>&nbsp;</p>
 <ul>
-  <li>Toujours dans le même fichier, on indique explicitement le type de retour des fonctions label et nomem:</li>
+  <li>Toujours dans le même fichier, on indique explicitement le type de retour des fonctions <code>label</code> et <code>nomem</code>:</li>
 </ul>
 <pre><code class="language-plaintext">/* label -- renvoie un nouveau numero d'etiquette a chaque appel */ 
 int label(){ // On ajoute explicitement le type de la valeur de retour
@@ -90,16 +119,23 @@ void nomem(){ // On ajoute explicitement le type de la valeur de retour
   fprintf(stderr, "Pas assez de memoire\n");
   exit(1);
 }</code></pre>
+<p>&nbsp;</p>
 <ul>
-  <li>&nbsp;Dans le fichier ppcm.l, la fonction chaine est mal déclarée. Cela doit etre:</li>
+  <li>Dans le fichier ‘ppcm.l’, la fonction chaine est mal déclarée. Cela doit etre:</li>
 </ul>
 <pre><code class="language-plaintext">  char * chaine(char * s);</code></pre>
+<p>&nbsp;</p>
 <ul>
-  <li>On corrige aussi la fonction yywrap:</li>
+  <li>On corrige aussi la fonction <code>yywrap</code>:</li>
 </ul>
 <pre><code class="language-plaintext">int yywrap(){ return 1; }</code></pre>
 <p>Voici une archive avec tous ces problèmes corrigés:</p>
 <p><a href="/chapitre7-ppcm.tgz">chapitre7-ppcm.tgz</a></p>
+<p>Si vous obtenez une erreur lors de la compilation avec <code>make a.out</code>&nbsp;</p>
+<pre><code class="language-plaintext">cc1: fatal error: ppcm.tab.c: No such file or directory
+compilation terminated.
+make: *** [&lt;builtin&gt;: ppcm.tab.o] Error 1</code></pre>
+<p>c'est par ce que vous utilisez yacc à la place de bison. Passez à bison, c'est le plus simple.</p>
 <h1>Chapitre 8</h1>
 <p>Il y a un certain nombre d'erreurs (cela a été confirmé par le professeur) dans le paragraphe 8.4.1 de ce chapitre, à propos de l'utilisation de <code>const</code>. Les exemples à partir de «Un Autre Exemple» sont incorrectes et je suppose que cela remonte au prédécesseur xdi professeur actuel. Le cours sera modifié dans un futur plus ou moins proche.</p>
 <p>En effet:</p>
