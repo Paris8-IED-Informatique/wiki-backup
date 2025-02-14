@@ -2,7 +2,7 @@
 title: Base de données
 description: Thérorie, SQL, Oracle et Postgres
 published: true
-date: 2024-10-17T13:27:18.803Z
+date: 2025-02-14T17:29:14.547Z
 tags: 
 editor: ckeditor
 dateCreated: 2022-05-28T19:22:48.184Z
@@ -17,6 +17,27 @@ dateCreated: 2022-05-28T19:22:48.184Z
 <h1><strong>Chapitre 1</strong></h1>
 <ul>
   <li>Coquille. Page 8 du pdf (ou page 11 en bas de page) : Il manque l'attribut “spécialité” dans la relation “Médecin” (au niveau du schémas relationnel).</li>
+</ul>
+<h2>Passage du modèle E/A vers le modèle relationnel</h2>
+<p>En résumé:</p>
+<ul>
+  <li>Pour chaque entité, on crée une relation (une table) avec les mêmes attributs (colonnes) que l'entité.</li>
+  <li>Il y a 4 cas pour les associations en fonction des deux cardinalités de l'association. On va arbitrairement dire qu'on a deux entités, une à droite et une à gauche:<ol>
+      <li>S'il y a les cardinalités <strong>0,1</strong> ou <strong>1,1</strong> à gauche et <strong>0,n</strong> ou <strong>1,n</strong> à droite, on ne crée pas de nouvelle relation pour cette association. On ajoute un nouvel attribut dans la relation de gauche qui est la clef primaire de la relation de droite &nbsp;(on dit alors que c'est une clef étrangère).</li>
+      <li>S'il y a les cardinalités <strong>0,1</strong> ou <strong>1,1</strong> à gauche et <strong>0,1</strong> ou <strong>1,1</strong> à droite, c'est quasi la même chose. On ne crée pas de nouvelle relation pour cette association. On ajoute dans chaque relation un attribut qui est la clef primaire de l'autre relation.</li>
+      <li>S'il y a les cardinalités <strong>0,n</strong> ou <strong>1,n</strong> à gauche et <strong>0,n</strong> ou <strong>1,n</strong> à droite, on doit créer une nouvelle relation pour représenter cette association. La clef primaire de cette nouvelle relation sera l'union des clefs primaires des deux relations (celles qui correspondes aux entités). “Union” veut simplement dire que l'on a un attribut pour chaque clef primaire des entités et que c'est l'ensemble de ces attributs qui consititue la clef primaire de la nouvelle relation.</li>
+      <li>Le dernier cas est celui des associations n-aires avec 3 ou plus entités. C'est très similaire au cas précédent: on crée une nouvelle relation pour représenter cette association. La clef primaire de cette nouvelle relation sera l'union des clefs primaires des relations (celles qui correspondes aux entités).</li>
+    </ol>
+  </li>
+</ul>
+<h3>Quelques exemples</h3>
+<ul>
+  <li>Une voiture a 4 roues. Chaque roue appartient à une seule voiture. C'est donc des cardinaltés 1 / 4 (cas 1). Donc on crée deux relations (<strong>voiture</strong>, <strong>roue</strong>). Si la crée primaire de la relation <strong>voiture</strong> est son numéro de châssis, on ajoute cette clef dans la relation <strong>roue</strong>. Comme cela, pour chaque roue, on sait à quelle voiture elle appartient.</li>
+  <li>Une voiture a 1 volant et chaque volant appartient à une voiture. C'est donc des cardinaltés 1 / 1 (cas 2). Donc on crée juste les deux relations (<strong>voiture</strong>, <strong>volant</strong>) et on ajoute la clef primaire de chaque relation dans la relation de l'autre. Par exemple, on ajoute le numéro de châssis de la voiture dans la relation <strong>volant</strong> et le numéro de série du volant dans la relation <strong>voiture</strong>.</li>
+  <li>Un-e auteur-e peut écrire plusieurs livres et chaque livre peut avoir plusieurs auteurs. Donc c'est des cardinaltés n / n (cas 3). On crée deux relations <strong>livre</strong> et <strong>auteur</strong>, et en plus une relation qui fait le lien entre les deux (que l'on peut nommer <strong>livre-auteur</strong>). Cette dernière relation a deux champs: l'ISBN qui identifie un livre et un numéro unique qui identifie un-e auteur-e. La clef primaire de la relation est composée de ces deux champs.</li>
+</ul>
+<h2>Quelques ressources</h2>
+<ul>
   <li>1.5 - [<a href="https://www.youtube.com/watch?v=vZzIi5lAD_A&amp;feature=youtu.be&amp;t=43s">https://www.youtube.com/watch?v=vZzIi5lAD_A&amp;feature=youtu.be&amp;t=43s</a> une vidéo] assez claire qui donne un exemple de la section 1.5</li>
   <li>Un [<a href="http://www-igm.univ-mlv.fr/~cdavid/fr/cours/2015-bdL2/cours2.pdf">http://www-igm.univ-mlv.fr/~cdavid/fr/cours/2015-bdL2/cours2.pdf</a> PPT] qui reprend le même contenu du cours mais avec plus d'exemples et d'informations.</li>
   <li>Une information utile donnée dans ce document est que la CNIL n'autorise pas l'utilisation du numéro de sécurité sociale comme identifiant unique pour une base de donnée, contrairement à ce que le poly du cours suggère … Bon à savoir!</li>
