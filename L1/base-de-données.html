@@ -2,7 +2,7 @@
 title: Base de données
 description: Thérorie, SQL, Oracle et Postgres
 published: true
-date: 2025-02-14T17:29:14.547Z
+date: 2025-04-05T14:24:58.393Z
 tags: 
 editor: ckeditor
 dateCreated: 2022-05-28T19:22:48.184Z
@@ -115,21 +115,18 @@ CONSULTATION = {
 <h1><strong>Chapitre 3</strong></h1>
 <p>Le TD demande d'utiliser Postgres 9.4. Or cette version est obsolète et plus supportée. Vous avez donc trois possibilités:</p>
 <ol>
-  <li>Utiliser une version plus récente (comme la version 13)</li>
+  <li>Utiliser une version plus récente</li>
   <li>Installer Postgres 9.4 depuis de dépôt de paquets de Postgres</li>
   <li>Utiliser Docker et une image toute faite avec Postgres 9.4</li>
 </ol>
-<ul>
-  <li>Pour installer Postgres 9.4 sous Ubuntu:</li>
-</ul>
+<p>Je vous consille l'option 1, c'est la plus simple et elle convient parfaitement pour ce cours. Pour installer sous Ubuntu:</p>
+<pre><code class="language-plaintext">sudo apt install postgresql</code></pre>
+<p>Si vous voulez absoluement installer Postgres 9.4 sous Ubuntu (option 2), c'est possible:</p>
 <pre><code class="language-plaintext">sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" &gt; /etc/apt/sources.list.d/pgdg.list'
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 sudo apt-get update
 sudo apt-get -y install postgresql-9.4</code></pre>
-<p>&nbsp;</p>
-<ul>
-  <li>Pour lancer l'interface en ligne de commande:</li>
-</ul>
+<p>Une fois installé (option 1 ou 2), &nbsp;lancer l'interface en ligne de commande:</p>
 <pre><code class="language-plaintext">sudo -u postgres psql</code></pre>
 <p><strong>Attention</strong>: cela va lancer <code>psql</code> dans le contexte de l'utilisateur <code>postgres</code>. Donc si vous voulez par exemple ouvrir un fichier avec la commande <code>\i</code>, cela ne va probablement pas marcher car psql cherchera dans le home de <code>postgres</code>.</p>
 <ul>
