@@ -2,7 +2,7 @@
 title: Architecture des ordinateurs 1
 description: Ce qu'il y a sous la capot
 published: true
-date: 2025-07-31T09:10:28.831Z
+date: 2025-08-15T09:24:50.322Z
 tags: 
 editor: ckeditor
 dateCreated: 2022-05-28T19:27:37.231Z
@@ -31,11 +31,21 @@ dateCreated: 2022-05-28T19:27:37.231Z
 <h1><strong>Chapitre 6</strong></h1>
 <ul>
   <li>Figure 4, page 155: La légende est inversée: le transistor N est à droite, le P à gauche.</li>
-  <li>Figure 7, page 157: Les deux circuits tels que présentés ne sont pas viables. On arrive à réaliser les circuits du cours dans Logisim (version d'origine) car la simulation est très simplifiée. Le fork Logisim Évolution est plus réaliste dans la simulation et montre bien un état indéterminé. Il est difficile d'interpréter l'intention du cours. Ce qui se rapproche le plus de ces circuits en étant viables sont une porte Non-ET (NAND) et Non-OU (NOR).&nbsp;</li>
+  <li>Figure 7, page 157: Les deux circuits tels que présentés ne sont pas viables. On arrive à réaliser les circuits du cours dans Logisim (version d'origine) car la simulation est très simplifiée. Le fork Logisim Évolution est plus réaliste dans la simulation et montre bien un état indéterminé. Il est difficile d'interpréter l'intention du cours. Ce qui se rapproche le plus de ces circuits en étant viables sont une porte Non-ET (NAND) et Non-OU (NOR).</li>
   <li>[Version 1.1 du 31 janvier 2021] p.165, les colonnes s et r sont inversées.</li>
 </ul>
 <h1><strong>Chapitre 10</strong></h1>
-<p>Une élève a mis en ligne un émulateur assez complet de l'ordinateur en papier, qui tourne dans un navigateur. Ca peut aider à la fois pour le projet du chapitre 10 et pour Programmation Impérative (cx25). Il y a aussi une documentation complète (y compris certaines informations techniques qui ne sont pas précisées dans le cours):</p>
+<p>Le but de ce chapitre est double:</p>
+<ul>
+  <li>Créer un émulateur pour un processeur hypothétique ("L'ordinateur en papier") dans le language de votre choix.</li>
+  <li>Réaliser des programmes pour ce processeur et les tester avec votre émulateur (ce sont les exercices du chapitre)</li>
+</ul>
+<p>Quelques points importants à respecter:</p>
+<ul>
+  <li>L'émulateur et sa description dans votre PDF doivent suivre le formalisme “projet” évoqué plusieurs fois par le prof.</li>
+  <li>L'émulateur doit émuler les micro-codes décrits dans le chapitre. C'est la principale différence entre cet émulateur et celui qui est demandé dans le cours Programmation impérative (cx25).</li>
+</ul>
+<p>Une élève a mis en ligne un émulateur assez complet de l'ordinateur en papier, qui tourne dans un navigateur. Ca peut aider à la fois pour le projet du chapitre 10 et pour Programmation Impérative (cx25). Il y a aussi une documentation complète (y compris certaines informations techniques qui ne sont pas précisées dans le cours). C'est juste un exemple, ne le prenez pas au pied de la lettre (votre émulateur ne doit pas obligatoirement tourner dans un navigateur par exemple). Vous avez une grande liberté pour ce projet (choix du language, des technologies, etc.). Pensez à justifier vos choix (formalisme projet).</p>
 <p><a href="https://ordipapier.paris8-ied.net/">Ordipapier</a></p>
 <figure class="image"><img src="/ordipapier.png"></figure>
 <p>Note: Cet émulateur a été mis en ligne avec l'accord du prof.</p>
