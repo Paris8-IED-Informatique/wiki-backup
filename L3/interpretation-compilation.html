@@ -2,7 +2,7 @@
 title: Interprétation et compilation
 description: 
 published: true
-date: 2025-02-08T16:00:56.685Z
+date: 2025-09-07T09:10:45.642Z
 tags: 
 editor: ckeditor
 dateCreated: 2022-06-07T11:35:40.492Z
@@ -15,19 +15,23 @@ dateCreated: 2022-06-07T11:35:40.492Z
   <li>Télécharger une image de Ubuntu pour processeur Intel. Dans un Terminal, entrer la commande:</li>
 </ul>
 <pre><code class="language-plaintext">docker image pull --platform linux/amd64 ubuntu</code></pre>
+<p>&nbsp;</p>
 <ul>
   <li>Lancer un container que l'on nomme “ubuntu” &nbsp;avec cette image et exécuter le shell bash dans ce container:</li>
 </ul>
 <pre><code class="language-plaintext">docker run -it --name --platform linux/amd64 ubuntu bash</code></pre>
+<p>&nbsp;</p>
 <ul>
   <li>Mettez à jour ce container:</li>
 </ul>
 <pre><code class="language-plaintext">apt update
 apt upgrade -y</code></pre>
+<p>&nbsp;</p>
 <ul>
   <li>Dans ce container, installer le compilateur GCC avec ce qu'il faut pour le 32 bits:</li>
 </ul>
 <pre><code class="language-plaintext">apt install gcc gcc-multilib -y</code></pre>
+<p>&nbsp;</p>
 <ul>
   <li>Pour plus de commodité, vous pouvez installer un éditeur de fichier comme <a href="https://micro-editor.github.io">micro</a>:</li>
 </ul>
@@ -195,3 +199,6 @@ int foo (const int n) {
 <p>}</p>
 <p>Le site <a href="https://isocpp.org/">https://isocpp.org</a> dédié au C++ standard (<code>const</code> provient du C++ et a été adopté par le C) a <a href="https://isocpp.org/wiki/faq/const-correctness#%20const-ptr-vs-ptr-const">une page (FAQ)</a> consacrée à l'utilisation de <code>const</code>. Le site <a href="https://www.geeksforgeeks.org/difference-between-const-int-const-int-const-and-int-const/">GeeksForGeeks</a> présente un diagramme assez parlant:</p>
 <figure class="image"><img src="/g4g.png"></figure>
+<h1>Calculer sa note finale</h1>
+<p>Vous pouvez vous référer au <a href="/fr/L1/architecture-des-ordinateurs#obtenir-sa-note-finale">paragraphe correspondant d'Architecture des Ordinateurs</a>.</p>
+<p>&nbsp;</p>
