@@ -2,12 +2,253 @@
 title: Outils informatiques collaboratifs
 description: 
 published: true
-date: 2025-09-07T09:08:43.870Z
+date: 2025-10-13T17:52:38.840Z
 tags: 
 editor: ckeditor
 dateCreated: 2022-06-02T15:21:29.625Z
 -->
 
+<h1>Git et Github</h1>
+<p>Voici une petite présentation de Git et Github ainsi que les commandes principales qui vous servirons pour le cours et possiblement dans la réalisation de projet en groupe pour le versioning</p>
+<h2>Présentation</h2>
+<p><strong><u>Git </u></strong>est un logiciel de gestion de versions décentralisé qui va permettre de suivre les modifications apportées à un projet et de travailler à plusieurs, permettant si besoin, le retour à une version antérieur en cas de problème.&nbsp;</p>
+<p><strong><u>Github </u></strong>est la plateforme en ligne hébergeant les dépôts Git. Il va permettre de stocket et partager les codes, collaborer entre développeurs et gérer les issues, pull requests et workflow de développement.&nbsp;</p>
+<h2>Installation</h2>
+<h3>Sur Linux&nbsp;</h3>
+<p>Pour installer git sur linux, rien de plus simple, il suffit de faire :&nbsp;</p>
+<p><code>sudo apt install git</code></p>
+<p>Cela va installer le nécessaire et vous pourrez commencer à utiliser le logiciel.&nbsp;</p>
+<h3>Sur Windows</h3>
+<p>Rendez-vous sur le site officiel <a href="https://git-scm.com/downloads/win">https://git-scm.com/downloads/win</a></p>
+<p>Télécharger et installer le .exe</p>
+<p>Suivez les étapes.&nbsp;</p>
+<h3>Vérification</h3>
+<p>Pour vérifier si l'installation est bonne, faites :&nbsp;</p>
+<p><code>git --version</code></p>
+<h2>Commandes utiles&nbsp;</h2>
+<p>Voici la liste des commandes que vous aller souvent utiliser</p>
+<h3>Commandes de base (initialisation et configuration)&nbsp;</h3>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td>Commande git</td>
+        <td>Explication</td>
+      </tr>
+      <tr>
+        <td><code>git init</code></td>
+        <td>Initialise un nouveau dépôt Git dans le dossier courant.</td>
+      </tr>
+      <tr>
+        <td><code>git clone http://github.com/pseudo/projet.git</code></td>
+        <td>Copie un dépôt distant sur votre ordinateur avec ses fichiers et dossiers.</td>
+      </tr>
+      <tr>
+        <td><code>git config --global user.name "Nom"</code></td>
+        <td>Définit votre nom d'utilisateur global pour git (reprendre le pseudo Github).</td>
+      </tr>
+      <tr>
+        <td><code>git config --global user.email “votre.mail@mail.com”</code></td>
+        <td>Définit l'adresse mail (reprendre celui sur github).</td>
+      </tr>
+      <tr>
+        <td><code>git config list</code></td>
+        <td>Affiche la configuration Git actuelle.</td>
+      </tr>
+      <tr>
+        <td><code>git --version</code></td>
+        <td>Vérifie la version installée de Git.</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h3>Commandes de suivi et de gestion des fichiers</h3>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td>Commande git</td>
+        <td>Explication</td>
+      </tr>
+      <tr>
+        <td><code>git status</code></td>
+        <td>Affiche l’état des fichiers : modifiés, ajoutés, non suivis.</td>
+      </tr>
+      <tr>
+        <td><code>git add nom_fichier</code></td>
+        <td>Ajoute un fichier à la zone de préparation (staging).</td>
+      </tr>
+      <tr>
+        <td><code>git add .&nbsp;</code></td>
+        <td>Ajoute <strong>tous</strong> les fichiers modifiés à la zone de préparation.</td>
+      </tr>
+      <tr>
+        <td><code>git commit -m “Message”</code></td>
+        <td>Enregistre les modifications avec un message.</td>
+      </tr>
+      <tr>
+        <td><code>git log</code></td>
+        <td>Montre l’historique des commits.</td>
+      </tr>
+      <tr>
+        <td><code>git diff</code></td>
+        <td>Affiche les différences entre les fichiers modifiés et le dernier commit.</td>
+      </tr>
+      <tr>
+        <td><code>git show id_commit</code></td>
+        <td>Affiche les détails d’un commit spécifique.</td>
+      </tr>
+      <tr>
+        <td><code>git rm nom_fichier</code></td>
+        <td>Supprime un fichier du projet et du suivi Git.</td>
+      </tr>
+      <tr>
+        <td><code>git mv ancien nouveau</code></td>
+        <td>Renomme ou déplace un fichier.</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h3>Commandes de branches (travail parallèle)&nbsp;</h3>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td>Commande git</td>
+        <td>Explication</td>
+      </tr>
+      <tr>
+        <td><code>git branch</code></td>
+        <td>Liste les branches locales.</td>
+      </tr>
+      <tr>
+        <td><code>git branch nom_branche</code></td>
+        <td>Crée une nouvelle branche.</td>
+      </tr>
+      <tr>
+        <td><code>git checkout nom_branche</code></td>
+        <td>Change de branche.</td>
+      </tr>
+      <tr>
+        <td><code>git checkout -b nom_branche</code></td>
+        <td>Crée et change directement vers une nouvelle branche.</td>
+      </tr>
+      <tr>
+        <td><code>git branch -d nom_branche</code></td>
+        <td>Supprime une branche locale.</td>
+      </tr>
+      <tr>
+        <td><code>git switch nom_branche</code></td>
+        <td>Alternative moderne à <code>checkout</code> pour changer de branche.</td>
+      </tr>
+      <tr>
+        <td><code>git merge nom_branche</code></td>
+        <td>Fusionne une autre branche dans la branche actuelle.</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h3>Commandes pour le dépôt distant</h3>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td>Commande git</td>
+        <td>Explication</td>
+      </tr>
+      <tr>
+        <td><code>git remote -v</code></td>
+        <td>Liste les dépôts distants configurés.</td>
+      </tr>
+      <tr>
+        <td><code>git remote add origin url</code></td>
+        <td>Lie ton dépôt local à un dépôt distant.</td>
+      </tr>
+      <tr>
+        <td><code>git push -u origin main</code></td>
+        <td>Envoie les commits vers la branche principale distante.</td>
+      </tr>
+      <tr>
+        <td><code>git push</code></td>
+        <td>Envoie les modifications locales vers le dépôt distant.</td>
+      </tr>
+      <tr>
+        <td><code>git pull</code></td>
+        <td>Récupère et fusionne les changements du dépôt distant.</td>
+      </tr>
+      <tr>
+        <td><code>git fetch</code></td>
+        <td>Récupère les changements sans les fusionner.</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h3>Commandes de correction et d'annulation</h3>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td>Commande git</td>
+        <td>Explication</td>
+      </tr>
+      <tr>
+        <td><code>git reset nom_fichier</code></td>
+        <td>Retire un fichier de la zone de préparation.</td>
+      </tr>
+      <tr>
+        <td><code>git reset --hard id_commit</code></td>
+        <td>Restaure le projet à un commit précis.</td>
+      </tr>
+      <tr>
+        <td><code>git restore nom_fichier</code></td>
+        <td>Annule les modifications d’un fichier non encore ajouté.</td>
+      </tr>
+      <tr>
+        <td><code>git revert id_commit</code></td>
+        <td>Crée un nouveau commit qui annule un commit précédent.</td>
+      </tr>
+      <tr>
+        <td><code>git stash</code></td>
+        <td>Met temporairement de côté les changements non commités.</td>
+      </tr>
+      <tr>
+        <td><code>git stash pop</code></td>
+        <td>Restaure les changements mis de côté.</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<h3>Commandes d'inspection et de nettoyage</h3>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td>Commande git</td>
+        <td>Explication</td>
+      </tr>
+      <tr>
+        <td><code>git log --oneline --graph</code></td>
+        <td>Affiche un historique compact et visuel des commits.</td>
+      </tr>
+      <tr>
+        <td><code>git tag</code></td>
+        <td>Liste les balises (versions).</td>
+      </tr>
+      <tr>
+        <td><code>git tag nom</code></td>
+        <td>Crée une nouvelle balise (par ex. une version).</td>
+      </tr>
+      <tr>
+        <td><code>git gc</code></td>
+        <td>Nettoie les fichiers inutiles du dépôt.</td>
+      </tr>
+      <tr>
+        <td><code>git fsck</code></td>
+        <td>Vérifie l’intégrité du dépôt Git.</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
 <h1>Calculer sa note finale</h1>
 <p>Vous pouvez vous référer au <a href="/fr/L1/architecture-des-ordinateurs#obtenir-sa-note-finale">paragraphe correspondant d'Architecture des Ordinateurs</a>. Les bonus comptent un peu plus pour Outils informatiques collaboratifs.</p>
 <p>&nbsp;</p>
