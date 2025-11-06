@@ -2,7 +2,7 @@
 title: Interprétation et compilation
 description: 
 published: true
-date: 2025-09-07T09:10:45.642Z
+date: 2025-11-06T12:37:20.035Z
 tags: 
 editor: ckeditor
 dateCreated: 2022-06-07T11:35:40.492Z
@@ -15,23 +15,19 @@ dateCreated: 2022-06-07T11:35:40.492Z
   <li>Télécharger une image de Ubuntu pour processeur Intel. Dans un Terminal, entrer la commande:</li>
 </ul>
 <pre><code class="language-plaintext">docker image pull --platform linux/amd64 ubuntu</code></pre>
-<p>&nbsp;</p>
 <ul>
   <li>Lancer un container que l'on nomme “ubuntu” &nbsp;avec cette image et exécuter le shell bash dans ce container:</li>
 </ul>
 <pre><code class="language-plaintext">docker run -it --name --platform linux/amd64 ubuntu bash</code></pre>
-<p>&nbsp;</p>
 <ul>
   <li>Mettez à jour ce container:</li>
 </ul>
 <pre><code class="language-plaintext">apt update
 apt upgrade -y</code></pre>
-<p>&nbsp;</p>
 <ul>
   <li>Dans ce container, installer le compilateur GCC avec ce qu'il faut pour le 32 bits:</li>
 </ul>
 <pre><code class="language-plaintext">apt install gcc gcc-multilib -y</code></pre>
-<p>&nbsp;</p>
 <ul>
   <li>Pour plus de commodité, vous pouvez installer un éditeur de fichier comme <a href="https://micro-editor.github.io">micro</a>:</li>
 </ul>
@@ -42,6 +38,21 @@ apt upgrade -y</code></pre>
 <h1>Bison ou Yacc, Flex ou Lex ?</h1>
 <p>Il est préférable d'utiliser <code>bison</code> et <code>flex</code> plutot que <code>yacc</code> et <code>lex</code>. Meme s'il est possible d'uliliser ces derniers, les options et les fichiers générés ne sont pas les meme et vous allez vous compliquer la vie pour rien. Pour installer <code>bison</code> et <code>flex</code> sous Ubuntu:</p>
 <pre><code class="language-plaintext">sudo apt install flex bison</code></pre>
+<h1>Chapitre 1</h1>
+<p>Il y a deux erreurs dans le fichier main.c. Le fichier correcte est:</p>
+<pre><code class="language-plaintext">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int pgcd(int, int);
+
+int main(int ac, char * av[]) {
+	if(ac &lt; 3) {
+		fprintf(stderr, "usage:&nbsp;%s N M", av[0]);
+		return 1;
+	}
+	printf("%d", pgcd(atoi(av[1]), atoi(av[2])));
+	return 0;
+}</code></pre>
 <h1>Exercice 2.9</h1>
 <p>L'énoncé suggère que le programme a quelque chose à voir avec Héron d'Alexandrie et c'est bien le cas. Mais attention à ne pas confondre la méthode d'Héron (vue en cours d'Architecture des ordinateurs avec le même professeur), cas particulier de la méthode de Newton, et la formule d'Héron.</p>
 <h1>Chapitre 5</h1>
