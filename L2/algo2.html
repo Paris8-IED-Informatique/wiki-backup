@@ -2,10 +2,30 @@
 title: Algorithmique / Structures de données 2
 description: 
 published: true
-date: 2022-06-02T15:29:55.821Z
+date: 2025-11-19T09:42:17.084Z
 tags: 
 editor: ckeditor
 dateCreated: 2022-06-02T15:29:55.821Z
 -->
 
-<figure class="image"><img src="/image.jpeg"></figure>
+<p>En date du 19/11/2025, ce cours fait référence au cours d'algorithmique et structure de données d'<strong>Hanane Azzag.</strong></p>
+<p>A modifier au besoin si cela venait à évoluer avec Besacier et une nouvelle organisation des cours entre Algo1 et Algo2.</p>
+<h1>Chapitre 1</h1>
+<h2>TD1</h2>
+<h3>Exercice 2</h3>
+<h4>question 5</h4>
+<p><strong><u>Question</u></strong></p>
+<p>En considérant que la matrice n x n commence en mémoire à partir de l’adresse de base b, donner la formule mathématique donnant l’adresse mémoire de l’élément M[I][J] (on se contentera d’une adresse mémoire en base 10 et non en hexadécimal).</p>
+<p><strong><u>Réponse du corrigé</u></strong></p>
+<p>Adresse décimale = J + (I – 1) * n</p>
+<p><strong><u>Réponse correcte</u></strong></p>
+<p>Adresse décimale = b + (J - 1) + (I – 1) * n</p>
+<p><strong>Pourquoi ?</strong></p>
+<p>Dans le cours et les exercices, il est admis que l'index de départ, est l'index 1, et non 0.<br>De ce fait, et à raison dans la réponse du corrigé, on doit donc soustraire 1 à l'indice I (dans M[ I ][ J ]) : J + <strong>(I – 1)</strong> * n</p>
+<p>Cependant, et pour être cohérent, nous devons également le faire pour l'indice J, soit : &nbsp;<strong>(J - 1)</strong> + (I – 1) * n</p>
+<p>Ensuite, l'ajout de l'adresse de base, comme indiqué dans l'énoncé, peu porter à appréciation :&nbsp;</p>
+<ul>
+  <li>Si on considère que l'adresse de base b vaut 0, et par soucis de simplification, alors pas besoin de l'ajouter dans l'équation</li>
+  <li>Si on considère que l'adresse de base b ne vaut pas 0 (et encore, on pourrait l'inclure même si b = 0), on doit l'inclure, soit : <strong>b </strong>+ (J - 1) + (I – 1) * n</li>
+</ul>
+<p>&nbsp;</p>
