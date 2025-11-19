@@ -2,7 +2,7 @@
 title: Algorithmique / Structures de données 2
 description: 
 published: true
-date: 2025-11-19T09:42:17.084Z
+date: 2025-11-19T09:43:42.136Z
 tags: 
 editor: ckeditor
 dateCreated: 2022-06-02T15:29:55.821Z
@@ -23,7 +23,7 @@ dateCreated: 2022-06-02T15:29:55.821Z
 <p><strong>Pourquoi ?</strong></p>
 <p>Dans le cours et les exercices, il est admis que l'index de départ, est l'index 1, et non 0.<br>De ce fait, et à raison dans la réponse du corrigé, on doit donc soustraire 1 à l'indice I (dans M[ I ][ J ]) : J + <strong>(I – 1)</strong> * n</p>
 <p>Cependant, et pour être cohérent, nous devons également le faire pour l'indice J, soit : &nbsp;<strong>(J - 1)</strong> + (I – 1) * n</p>
-<p>Ensuite, l'ajout de l'adresse de base, comme indiqué dans l'énoncé, peu porter à appréciation :&nbsp;</p>
+<p>Ensuite, l'ajout de l'adresse de base indiqué dans l'énoncé, peut porter à appréciation :&nbsp;</p>
 <ul>
   <li>Si on considère que l'adresse de base b vaut 0, et par soucis de simplification, alors pas besoin de l'ajouter dans l'équation</li>
   <li>Si on considère que l'adresse de base b ne vaut pas 0 (et encore, on pourrait l'inclure même si b = 0), on doit l'inclure, soit : <strong>b </strong>+ (J - 1) + (I – 1) * n</li>
