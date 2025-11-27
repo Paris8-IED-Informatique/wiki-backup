@@ -2,7 +2,7 @@
 title: Programmation fonctionnelle
 description: Common LISP
 published: true
-date: 2025-11-14T13:42:50.424Z
+date: 2025-11-27T14:21:30.814Z
 tags: 
 editor: ckeditor
 dateCreated: 2022-05-28T19:00:44.905Z
@@ -157,7 +157,6 @@ Votre code ici
 (a b c) ⇒ correct 
 (a(b c)d) ⇒ faux 
 (a (b c) d) ⇒ correct</code></pre>
-<p>&nbsp;</p>
 <ul>
   <li>Le premier élément d'une liste sans quote est une fonction, si tout le bloc ne tient pas sur une liste il faut le découper : on dit qu'il faut l'indenter.<ul>
       <li>Le premier élément (le nom de la fonction) doit être seul sur une ligne.</li>
@@ -169,7 +168,6 @@ Votre code ici
 <pre><code class="language-plaintext">(cons
   (car liste)
   (cdr liste) )</code></pre>
-<p>&nbsp;</p>
 <ul>
   <li>Si un argument est lui même une fonction avec plusieurs arguments (et que ça ne tient pas sur une ligne de 80 colonnes) : il faut l'indenter également. (L'exemple suivant aurait pu tenir sur une ligne mais c'est pour vous faire une démonstration de l'indentation).</li>
 </ul>
@@ -178,14 +176,12 @@ Votre code ici
   (cons
     (car liste2)
     (cdr liste2) ) )</code></pre>
-<p>&nbsp;</p>
 <ul>
   <li>Les arguments sont alors décalés par rapport à la fonction à laquelle ils appartiennent. Ainsi, on peut du premier coup d'oeil détecter quels arguments appartiennent à quelle fonction.</li>
   <li>La définition d'une fonction est une exception, on laisse le nom et les arguments que la fonction va prendre (c'est à dire les 2 premiers arguments) sur la première ligne.</li>
 </ul>
 <pre><code class="language-plaintext">(defun fonction (arg1 arg2)
   ( ... ) )</code></pre>
-<p>&nbsp;</p>
 <ul>
   <li>Si une liste trop longue pour une ligne commence par un élément étant lui-même une liste trop grande pour une ligne, on écrit le premier élément de cette liste et la suite avec une indentation double :</li>
 </ul>
@@ -201,7 +197,6 @@ Votre code ici
   de
   la
   liste )</code></pre>
-<p>[<a href="https://www.youtube.com/watch?v=wdVp4jRs-Eg">https://www.youtube.com/watch?v=wdVp4jRs-Eg</a>|Vidéo explications Pretty-print]</p>
 <p>“Annexe-4 : Syntaxe et pretty-print” également disponible dans le cours de Gilles Bernard, version de Novembre 2015</p>
 <h2><strong>Pretty-Print avec Visual Studio Code</strong></h2>
 <p>Pour aider à formatter correctement le code (pretty-print), utilisez un éditeur qui colorie les parenthèses suivant à quel niveau elles se situent (des parenthèses au même niveau ont la même couleur). Vous pouvez par exemple utiliser Visual Studio Code.</p>
