@@ -2,7 +2,7 @@
 title: Interprétation et compilation
 description: 
 published: true
-date: 2025-11-06T12:37:20.035Z
+date: 2025-11-28T10:15:53.945Z
 tags: 
 editor: ckeditor
 dateCreated: 2022-06-07T11:35:40.492Z
@@ -15,19 +15,23 @@ dateCreated: 2022-06-07T11:35:40.492Z
   <li>Télécharger une image de Ubuntu pour processeur Intel. Dans un Terminal, entrer la commande:</li>
 </ul>
 <pre><code class="language-plaintext">docker image pull --platform linux/amd64 ubuntu</code></pre>
+<p>&nbsp;</p>
 <ul>
   <li>Lancer un container que l'on nomme “ubuntu” &nbsp;avec cette image et exécuter le shell bash dans ce container:</li>
 </ul>
 <pre><code class="language-plaintext">docker run -it --name --platform linux/amd64 ubuntu bash</code></pre>
+<p>&nbsp;</p>
 <ul>
   <li>Mettez à jour ce container:</li>
 </ul>
 <pre><code class="language-plaintext">apt update
 apt upgrade -y</code></pre>
+<p>&nbsp;</p>
 <ul>
   <li>Dans ce container, installer le compilateur GCC avec ce qu'il faut pour le 32 bits:</li>
 </ul>
 <pre><code class="language-plaintext">apt install gcc gcc-multilib -y</code></pre>
+<p>&nbsp;</p>
 <ul>
   <li>Pour plus de commodité, vous pouvez installer un éditeur de fichier comme <a href="https://micro-editor.github.io">micro</a>:</li>
 </ul>
@@ -154,7 +158,7 @@ compilation terminated.
 make: *** [&lt;builtin&gt;: ppcm.tab.o] Error 1</code></pre>
 <p>c'est par ce que vous utilisez yacc à la place de bison. Passez à bison, c'est le plus simple.</p>
 <h1>Chapitre 8</h1>
-<p>Il y a un certain nombre d'erreurs (cela a été confirmé par le professeur) dans le paragraphe 8.4.1 de ce chapitre, à propos de l'utilisation de <code>const</code>. Les exemples à partir de «Un Autre Exemple» sont incorrectes et je suppose que cela remonte au prédécesseur xdi professeur actuel. Le cours sera modifié dans un futur plus ou moins proche.</p>
+<p>Il y a un certain nombre d'erreurs (cela a été confirmé par le professeur) dans le paragraphe 8.4.1 de ce chapitre, à propos de l'utilisation de <code>const</code>. Les exemples à partir de «Un Autre Exemple» sont incorrectes et je suppose que cela remonte au prédécesseur du professeur actuel. Le cours sera modifié dans un futur plus ou moins proche.</p>
 <p>En effet:</p>
 <pre><code class="language-plaintext">const char **</code></pre>
 <p>et:</p>
