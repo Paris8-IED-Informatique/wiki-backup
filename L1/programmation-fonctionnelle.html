@@ -2,7 +2,7 @@
 title: Programmation fonctionnelle
 description: Common LISP
 published: true
-date: 2025-11-27T14:21:30.814Z
+date: 2025-11-29T01:00:12.979Z
 tags: 
 editor: ckeditor
 dateCreated: 2022-05-28T19:00:44.905Z
@@ -157,6 +157,7 @@ Votre code ici
 (a b c) ⇒ correct 
 (a(b c)d) ⇒ faux 
 (a (b c) d) ⇒ correct</code></pre>
+<p>&nbsp;</p>
 <ul>
   <li>Le premier élément d'une liste sans quote est une fonction, si tout le bloc ne tient pas sur une liste il faut le découper : on dit qu'il faut l'indenter.<ul>
       <li>Le premier élément (le nom de la fonction) doit être seul sur une ligne.</li>
@@ -168,6 +169,7 @@ Votre code ici
 <pre><code class="language-plaintext">(cons
   (car liste)
   (cdr liste) )</code></pre>
+<p>&nbsp;</p>
 <ul>
   <li>Si un argument est lui même une fonction avec plusieurs arguments (et que ça ne tient pas sur une ligne de 80 colonnes) : il faut l'indenter également. (L'exemple suivant aurait pu tenir sur une ligne mais c'est pour vous faire une démonstration de l'indentation).</li>
 </ul>
@@ -176,12 +178,14 @@ Votre code ici
   (cons
     (car liste2)
     (cdr liste2) ) )</code></pre>
+<p>&nbsp;</p>
 <ul>
   <li>Les arguments sont alors décalés par rapport à la fonction à laquelle ils appartiennent. Ainsi, on peut du premier coup d'oeil détecter quels arguments appartiennent à quelle fonction.</li>
   <li>La définition d'une fonction est une exception, on laisse le nom et les arguments que la fonction va prendre (c'est à dire les 2 premiers arguments) sur la première ligne.</li>
 </ul>
 <pre><code class="language-plaintext">(defun fonction (arg1 arg2)
   ( ... ) )</code></pre>
+<p>&nbsp;</p>
 <ul>
   <li>Si une liste trop longue pour une ligne commence par un élément étant lui-même une liste trop grande pour une ligne, on écrit le premier élément de cette liste et la suite avec une indentation double :</li>
 </ul>
@@ -336,7 +340,7 @@ Votre code ici
   <p>• valeur : obtenue par l’addition de 3 et de foo ;</p>
   <p>• erreur provoquée par set parce que 5 n’est pas un symbole, c’est un nombre.</p>
 </blockquote>
-<p><code>(eval bar)</code> va bien retourner 5 et on ne peut pas faire un <code>set</code> avec un mombre. Mais il y a une autre erreur qui va apparaître avant à cause de <code>(+ 3 foo)</code> . <code>foo</code> est lié à <code>bar</code>, un symbole et pas un nombre. Donc l'erreur est est fait:</p>
+<p><code>(eval bar)</code> va bien retourner 5 et on ne peut pas faire un <code>set</code> avec un nombre. Mais il y a une autre erreur qui va apparaître avant à cause de <code>(+ 3 foo)</code> . <code>foo</code> est lié à <code>bar</code>, un symbole et pas un nombre. Donc l'erreur est en fait:</p>
 <pre><code class="language-plaintext">*** - +: bar is not a number</code></pre>
 <p>Pour les exercices de Lsp 5 Eval, il y a plusieurs choses à prendre en compte:</p>
 <ul>
@@ -360,6 +364,13 @@ Votre code ici
 <h1>Vraiprog3</h1>
 <p>Il y a une coquille page 170 du cours. Il faut lire:</p>
 <pre><code class="language-plaintext">(setq arbre (ajoute "a" arbre)) =&gt; ("k" ("a") nil)</code></pre>
+<h1>Sep 18 LstProp</h1>
+<p>À la page 198 et 199 du cours, l'utilisation de <code>get</code> est incorrecte :</p>
+<blockquote>
+  <p>Voici par exemple comment trouver la mère de l’individu204 :<br><br><code>(get 'mère (get 'individu204 'parents)) =&gt; individu85</code></p>
+</blockquote>
+<p>L'utilisation correcte est :</p>
+<pre><code class="language-plaintext">(get (get 'individu204 'parents) 'mère) =&gt; individu85</code></pre>
 <h1><strong>Références</strong></h1>
 <ul>
   <li>Guide de l'étudiant - Installation de Clisp <a href="https://moodle.iedparis8.net/mod/wiki/view.php?pageid=15">https://moodle.iedparis8.net/mod/wiki/view.php?pageid=15</a></li>
