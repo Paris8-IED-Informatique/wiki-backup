@@ -1,0 +1,26 @@
+<!--
+title: Tips
+description: Quelques astuces entre étudiants et étudiantes
+published: true
+date: 2025-12-28T12:53:45.015Z
+tags: 
+editor: ckeditor
+dateCreated: 2025-12-28T12:53:45.015Z
+-->
+
+<h1>LaTeX - Taille des PDFs</h1>
+<p>Si cela peut être utile à certains, bonne lecture…</p>
+<h3>Problématique</h3>
+<p>Dans mon rendu LaTeX, le PDF de rendu dépasse la taille autorisée lors de mon envoi via <a href="https://www.thunderbird.net/fr/">Thunderbird</a>.&nbsp;<br>J'ai donc une erreur d'envoi, et dois donc réduire la taille de ce PDF, en le compressant.</p>
+<p>Plusieurs options s'offrent à moi, dont des services en ligne, tels que <a href="https://www.ilovepdf.com/fr">ilovepdf</a> ou d'autres. Cependant, dans un souci de ne pas envoyer mes fichiers à une plateforme externe, je vais tenter de chercher des outils à utiliser en local.</p>
+<h3>Source de la taille du PDF</h3>
+<p>Avant de chercher quel outil pourrait m'être utile, il faut d'abord que je connaisse la source de mon problème.</p>
+<p>Ayant pas mal d'image, je vais commencer par là, avec l'outil <strong>pdfimages, </strong>qui peut être installé avec le package <strong>poppler-utils.</strong><br>Installation :&nbsp;</p>
+<p><code>sudo apt install poppler-utils</code></p>
+<p>Vérification du pdf :&nbsp;</p>
+<p><code>pdfimages -list "not_compressed.pdf"</code></p>
+<figure class="image"><img src="/pdfimages_oversized_picture.png">
+  <figcaption>ubuntu - pdfimages - poppler tool</figcaption>
+</figure>
+<p>Je peux voir que ma problématique, dans ce cas-ci, est liée à la taille de mes images embarquées.</p>
+<h3>Compression des images</h3>
