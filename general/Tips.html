@@ -2,34 +2,10 @@
 title: Tips
 description: Quelques astuces entre étudiants et étudiantes
 published: true
-date: 2025-12-28T15:12:45.056Z
+date: 2026-02-04T15:26:25.295Z
 tags: 
 editor: ckeditor
 dateCreated: 2025-12-28T12:53:45.015Z
 -->
 
-<h1>LaTeX - Taille de PDF</h1>
-<p>Si cela peut être utile à certains, bonne lecture…</p>
-<h3>Problématique : PNG trop volumineux</h3>
-<p>Dans mon rendu LaTeX, le PDF de rendu dépasse la taille autorisée lors de mon envoi via <a href="https://www.thunderbird.net/fr/">Thunderbird</a>.&nbsp;<br>J'ai donc une erreur d'envoi, et dois donc réduire la taille de ce PDF, en le compressant.</p>
-<p>Plusieurs options s'offrent à moi, dont des services en ligne, tels que <a href="https://www.ilovepdf.com/fr">ilovepdf</a> ou d'autres. Cependant, dans un souci de ne pas envoyer mes fichiers à une plateforme externe, je vais tenter de chercher des outils à utiliser en local.</p>
-<h3>Source de la taille du PDF</h3>
-<p>Avant de chercher quel outil pourrait m'être utile, il faut d'abord que je connaisse la source de mon problème.</p>
-<p>Ayant pas mal d'image, je vais commencer par là, avec l'outil <strong>pdfimages, </strong>qui peut être installé avec le package <strong>poppler-utils.</strong><br><u>Installation </u>:&nbsp;</p>
-<p><code>&gt; sudo apt install poppler-utils</code></p>
-<p><u>Vérification du pdf </u>:&nbsp;</p>
-<p><code>&gt; pdfimages -list "not_compressed.pdf"</code></p>
-<figure class="image"><img src="/pdfimages_oversized_picture.png">
-  <figcaption>ubuntu - pdfimages - poppler tool</figcaption>
-</figure>
-<p>Je peux voir que ma problématique, dans ce cas-ci, est liée à la taille de mes images embarquées.</p>
-<h3>Compression des images</h3>
-<p>En utilisant l'outil <a href="https://pngquant.org/">pngquant</a>, car dans mon cas, je veux conserver une transparence de certaines images, on peut réduire la taille de nos images PNG :&nbsp;</p>
-<p><u>installation </u>:</p>
-<p><code>&gt; sudo apt install pngquant</code></p>
-<p><u>compression </u>:&nbsp;</p>
-<p><code>&gt; pngquant --quality=65-80 --speed 1 png_folder/*.png</code><br><code>&gt; sudo mv png_folder/*-fs8* png_folder_compressed/</code></p>
-<figure class="image"><img src="/pngquant_pictures_compressed.png">
-  <figcaption>PNG compressed with pngquant</figcaption>
-</figure>
-<p>&nbsp;</p>
+<p>.</p>
