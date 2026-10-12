@@ -2,7 +2,7 @@
 title: Regroupement
 description: 
 published: true
-date: 2026-10-12T15:15:11.652Z
+date: 2026-10-12T16:08:24.570Z
 tags: 
 editor: markdown
 dateCreated: 2026-10-12T14:51:32.267Z
@@ -25,6 +25,6 @@ Le regroupement prend la forme d’un examen en présentiel. Les modalités anno
 * Examen distinct des autres cours.
 * Évaluation portant sur l’ensemble des matières de première année.
 
-Le regroupement est non compensable.
+Le regroupement est non compensable. Il faut l'avoir validé pour passer en L3. On peut le passer autant de fois que l'on veut en L1 ou en L1-L2 AJAC, dans la limite des sessions disponibles.
 
 La possibilité de passer le regroupement se fait sur demande de l'étudiant. De même, les convocations (pour obtenir un visa par exemple) ne sont envoyées que sur demande.
