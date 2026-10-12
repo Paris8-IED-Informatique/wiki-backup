@@ -2,7 +2,7 @@
 title: Regroupement
 description: 
 published: true
-date: 2026-10-12T15:13:55.400Z
+date: 2026-10-12T15:15:11.652Z
 tags: 
 editor: markdown
 dateCreated: 2026-10-12T14:51:32.267Z
@@ -18,8 +18,10 @@ Il y a deux dates pour le regroupement (il faut choisir l'une des deux):
 * le 18 juin 2027
 
 Le regroupement prend la forme d’un examen en présentiel. Les modalités annoncées sont les suivantes :
+
 * Vérification de la carte d’identité ou de la carte étudiante.
 * Autorisation d’utiliser des supports papier.
+* Examen sur papier (pas d'ordinateur).
 * Examen distinct des autres cours.
 * Évaluation portant sur l’ensemble des matières de première année.
 
