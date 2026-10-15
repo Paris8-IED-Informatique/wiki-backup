@@ -2,13 +2,13 @@
 title: Regroupement
 description: 
 published: true
-date: 2026-10-12T16:08:24.570Z
+date: 2026-10-15T14:35:02.485Z
 tags: 
 editor: markdown
 dateCreated: 2026-10-12T14:51:32.267Z
 ---
 
-C'est la seule fois où vous devrez vous rendre à Paris 8.
+C'est la seule fois où vous devrez vous rendre à Paris 8 (Saint Denis).
 
 Il y a la possibilité pour celles et ceux qui habitent trop loin de passer ce regroupement dans certaines représentations françaises à l'étranger (ambassade, consulats, ...). Mais attention, ce n'est pas possible dans tous les pays, les frais seront à votre charge et c'est à vous d'entreprendre les démarches.
 
