@@ -2,11 +2,14 @@
 title: Outils et méthodologie de développement
 description: 
 published: true
-date: 2026-10-16T12:19:47.364Z
+date: 2026-10-19T14:45:38.657Z
 tags: 
 editor: markdown
 dateCreated: 2026-10-12T14:53:39.958Z
 ---
+
+> Professeur s'occupant de la matière : Mr Philippe KISLIN
+> Son adresse mail : philippe.kislin@gmail.com
 
 # Git et Github
 
