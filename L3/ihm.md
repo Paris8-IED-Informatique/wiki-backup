@@ -2,10 +2,11 @@
 title: IHM et programmation évènementielle
 description: 
 published: true
-date: 2026-10-12T15:35:41.580Z
+date: 2026-10-19T14:57:46.008Z
 tags: 
 editor: markdown
 dateCreated: 2026-10-12T15:35:41.580Z
 ---
 
-Désolé, aucune info pour l'instant. N'hésitez pas à contribuer à ce wiki.
+> Professeur s'occupant de la matière : Guillaume BESACIER
+> Son adresse mail : guillaume.besacier@univ-paris8.fr
