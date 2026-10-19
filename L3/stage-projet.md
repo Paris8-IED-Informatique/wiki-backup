@@ -2,11 +2,14 @@
 title: Expérience Pro : stage ou projet tuteuré 
 description: 
 published: true
-date: 2026-10-15T14:51:52.823Z
+date: 2026-10-19T15:03:01.499Z
 tags: 
 editor: markdown
 dateCreated: 2026-10-12T15:40:59.421Z
 ---
+
+> Professeur s'occupant de la matière : Guillaume BESACIER
+> Son adresse mail : guillaume.besacier@univ-paris8.fr
 
 Trois possibilités:
 
