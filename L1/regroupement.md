@@ -2,11 +2,14 @@
 title: Regroupement
 description: 
 published: true
-date: 2026-10-15T14:41:06.590Z
+date: 2026-10-19T14:32:31.329Z
 tags: 
 editor: markdown
 dateCreated: 2026-10-12T14:51:32.267Z
 ---
+
+> Professeur s'occupant de la matière : Guillaume BESACIER
+> Son adresse mail : guillaume.besacier@univ-paris8.fr
 
 C'est la seule fois où vous devrez vous rendre à Paris 8 (Saint Denis).
 
