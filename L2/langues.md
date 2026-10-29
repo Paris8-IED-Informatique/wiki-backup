@@ -2,7 +2,7 @@
 title: Langues
 description: 
 published: true
-date: 2026-10-19T14:53:44.821Z
+date: 2026-10-29T09:37:40.450Z
 tags: 
 editor: markdown
 dateCreated: 2026-10-12T15:29:58.978Z
@@ -20,3 +20,7 @@ dateCreated: 2026-10-12T15:29:58.978Z
 * **Choix du diplôme** (à vérifier) : STN-LICENCE (Sciences et Technologies du Numérique)
 
 ![cdl_-_choix_de_la_specialite.png](/cdl_-_choix_de_la_specialite.png)
+
+* **Note** : La note sera visible en passant par le menu du haut
+
+![cdl_paris_8_-_note.png](/cdl_paris_8_-_note.png)
